@@ -6,9 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="injection-constructor" />
+        <module name="configuration-based-annotation" />
+        <module name="injection-setter" />
         <module name="configuration-based-java" />
         <module name="configuration-based-xml" />
-        <module name="configuration-based-annotation" />
       </profile>
     </annotationProcessing>
   </component>

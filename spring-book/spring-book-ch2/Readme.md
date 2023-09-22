@@ -14,3 +14,7 @@ AccountService accountService = applicationContext.getBean("accountService", Acc
 基于Java注解配置spring容器。
 包扫描`<context:component-scan base-package="org.example"/>`和注解总是成对出现的，包扫描的意义就在于将扫描路径下所有`@Component`及其派生注解加载到Spring容器当中。
 注意[AccountDaoInMemoryImpl.java](configuration-based-annotation%2Fsrc%2Fmain%2Fjava%2Forg%2Fexample%2FAccountDaoInMemoryImpl.java)加载到内存后，Spring为其分配的id是`accountDaoInMemoryImpl`,但是在[AccountServiceImpl.java](configuration-based-annotation%2Fsrc%2Fmain%2Fjava%2Forg%2Fexample%2FAccountServiceImpl.java)中注入的却是`AccountDao`说明`@Autowired`在可根据类型进行注入，并会对类型推断。
+## [injection-setter](injection-setter)
+setter注入示例，注意：类中要定义setter()方法
+## [injection-constructor](injection-constructor)
+构造器注入示例，注意：必须要有对应的构造器

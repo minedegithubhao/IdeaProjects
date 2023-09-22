@@ -12,6 +12,8 @@
         <module>configuration-based-java</module>
         <module>configuration-based-xml</module>
         <module>configuration-based-annotation</module>
+        <module>injection-setter</module>
+        <module>injection-constructor</module>
     </modules>
 
     <properties>
