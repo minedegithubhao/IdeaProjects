@@ -19,12 +19,17 @@
         <module name="java-current" />
         <module name="aopDemo" />
         <module name="iteratorDemo" />
+        <module name="java-io" />
         <module name="MyProxyDemo-Static" />
         <module name="rabbitmqDemo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="iteratorDemo" target="18" />
       <module name="rabbitmq-simplest" target="18" />
+      <module name="spring-di-01" target="18" />
+      <module name="spring-di-02" target="18" />
+      <module name="spring-di-03" target="18" />
     </bytecodeTargetLevel>
   </component>
 </project>
