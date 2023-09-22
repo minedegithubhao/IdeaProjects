@@ -9,6 +9,7 @@
         <module name="injection-constructor" />
         <module name="configuration-based-annotation" />
         <module name="injection-setter" />
+        <module name="bean-definition-override" />
         <module name="configuration-based-java" />
         <module name="configuration-based-xml" />
       </profile>

@@ -14,6 +14,7 @@
         <module>configuration-based-annotation</module>
         <module>injection-setter</module>
         <module>injection-constructor</module>
+        <module>bean-definition-override</module>
     </modules>
 
     <properties>

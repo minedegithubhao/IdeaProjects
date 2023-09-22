@@ -21,3 +21,5 @@ setter注入示例，注意：类中要定义setter()方法
 * 一般来说，构造器有多个参数时，参数的放置顺序并不重要，Spring通过参数类型找到合适的构造器。
 * 当构造器的参数类型相同，仅仅参数的顺序不同，这时候Spring就无法准确识别出来，需要人工干预，具体参见代码[ch2-beans.xml](injection-constructor%2Fsrc%2Fmain%2Fresources%2Fch2-beans.xml)
 * 循环依赖如果两个Bean通过各自的构造函数互为依赖，那么Spring将无法实例化这两个Bean
+## [bean-definition-override](bean-definition-override)
+该示例演示了重写Bean定义，不同的配置元数据含有两个同名的Bean定义就会发生重写
