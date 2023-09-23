@@ -18,6 +18,7 @@
         <module>autowiring-based-xml</module>
         <module>autowiring-based-java</module>
         <module>autowiring-based-annotation</module>
+        <module>bean-instantiation-methods</module>
     </modules>
 
     <properties>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<!--调用的无参构造-->
+	<bean id="foo1" class="org.example.Foo">
+		<property name="name" value="foo1"/>
+	</bean>
+
+	<!--调用的有参构造-->
+	<bean id="foo2" class="org.example.Foo">
+		<constructor-arg value="foo2"/>
+	</bean>
+
+	<!--使用静态工厂创建Bean-->
+	<bean id="foo3" class="org.example.FooFactory" factory-method="createFoo3"/>
+
+	<!--使用静态工厂创建Bean，另一种写法-->
+	<bean id="fooFactory" class="org.example.FooFactory"/>
+	<bean id="foo4" factory-bean="fooFactory" factory-method="createFoo4"/>
+
+	<!--基于Java和基于注解的别，基于Java使用@Configuration，基于注解使用@Componet，其他的无区别-->
+	<context:component-scan base-package="org.example"/>
+
+	<!--使用Spring自带的FactoryBean接口创建Bean-->
+	<bean id="foo5" class="org.example.FooFactoryBean"/>
+
+</beans>

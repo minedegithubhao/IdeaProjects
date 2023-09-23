@@ -107,3 +107,49 @@ public class AccountDaoInMemoryImpl implements AccountDao
 public class AccountDaoJdbcImpl implements AccountDao
 ```
 总之就是让Spring容器中存在id="accountDao"的Bean，或者告诉Spring注入Bean的id（方式三）
+## Bean查找
+Spring容器控制之外的其他对想访问Bean，或者Spring管理的没有直接依赖关系Bean之间的访问。常见的方法：
+
+Spring容器控制之外的其他对想访问Bean：
+* 将ApplicationContext分配给一个创建完成后可以全局访问的静态变量。
+* 对于Web程序来说，Spring提供了一个名为WebApplicationContextUtils的工具类
+
+Spring管理的没有直接依赖关系Bean之间的访问
+* 实现ApplicationContextAware接口，Spring创建期间会将自身注入其中
+* 对于基于Java和基于注解的配置，可以使用@Autowired将自身注入
+## Bean的命名
+* 方式一：第一个是名称，其他的都是别名
+```xml
+<bean name="accountDao,accountDaoInMemoryImpl" class="org.example.AccountDaoInMemoryImpl"/>
+```
+* 方式二：通过`<alias>`元素
+```xml
+<bean id="accountDaoInMemoryImpl" class="org.example.AccountDaoInMemoryImpl"/>
+<alias name="accountDaoInMemoryImpl" alias="accountDao"/>
+```
+* 第三种：基于注解配置,这种不是不是取别名，而是修改名称，修改后Spring容器中就不存在名称为accountServiceImpl和accountDaoInMemoryImpl的Bean了
+```java
+@Service("accountService")
+public class AccountServiceImpl implements AccountService {
+
+}
+@Repository("accountDao")
+public class AccountDaoInMemoryImpl implements AccountDao{
+    
+}
+```
+* 第四种：基于Java配置
+```java
+@Configuration
+public class Ch2BeanConfiguration {
+
+    @Bean(name={"accountDao,accountDaoInMemoryImpl"})
+    public AccountService accountService() {
+        AccountServiceImpl bean = new AccountServiceImpl();
+        return bean;
+    }
+}
+```
+## [bean-instantiation-methods](bean-instantiation-methods)
+本示例演示了基于XML、基于Java、基于注解、Spring自带的实例化Bean的方法
+

@@ -9,6 +9,8 @@
     <file url="file://$PROJECT_DIR$/autowiring-based-xml/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bean-definition-override/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bean-definition-override/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bean-instantiation-methods/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bean-instantiation-methods/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/configuration-based-annotation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/configuration-based-annotation/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/configuration-based-java/src/main/java" charset="UTF-8" />

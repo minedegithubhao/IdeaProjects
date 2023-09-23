@@ -10,6 +10,7 @@
         <module name="configuration-based-annotation" />
         <module name="autowiring-based-xml" />
         <module name="configuration-based-xml" />
+        <module name="bean-instantiation-methods" />
         <module name="injection-constructor" />
         <module name="injection-setter" />
         <module name="bean-definition-override" />
