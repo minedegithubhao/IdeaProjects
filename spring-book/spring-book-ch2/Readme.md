@@ -152,4 +152,31 @@ public class Ch2BeanConfiguration {
 ```
 ## [bean-instantiation-methods](bean-instantiation-methods)
 本示例演示了基于XML、基于Java、基于注解、Spring自带的实例化Bean的方法
-
+## [bean-scopes](bean-scopes)
+本示例演示了Bean的作用域
+## [lifecycle-callback-methods](lifecycle-callback-methods)
+本示例演示了Bean的生命周期回调方法
+* 方式一：基于XMl的回调方法
+```xml
+<bean id="foo" class="org.example.Foo" init-method="init" destroy-method="destroy"/>
+```
+* 方式二：基于注解的回调方法
+```java
+public class Bar {
+	@PostConstruct
+	public void init() throws Exception {
+		System.out.println("init method invoked");
+	}
+	
+	@PreDestroy
+	public void destroy() throws RuntimeException {
+		System.out.println("destroy method invoked");
+	}	
+}
+```
+* 方式三：实现接口
+```java
+public class Baz implements InitializingBean, DisposableBean {
+    
+}
+```

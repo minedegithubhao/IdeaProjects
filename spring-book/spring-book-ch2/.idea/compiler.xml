@@ -10,11 +10,13 @@
         <module name="configuration-based-annotation" />
         <module name="autowiring-based-xml" />
         <module name="configuration-based-xml" />
+        <module name="lifecycle-callback-methods" />
         <module name="bean-instantiation-methods" />
         <module name="injection-constructor" />
         <module name="injection-setter" />
         <module name="bean-definition-override" />
         <module name="autowiring-based-annotation" />
+        <module name="bean-scopes" />
         <module name="configuration-based-java" />
       </profile>
     </annotationProcessing>
