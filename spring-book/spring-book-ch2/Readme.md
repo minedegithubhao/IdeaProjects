@@ -43,4 +43,4 @@ setter注入示例，注意：类中要定义setter()方法
         <!--aotuwire-candidate=false，告诉Spring容器该Bean取消自动注入的候选资格-->
 	<bean id="accountDaoJdbc" class="org.example.AccountDaoJdbcImpl" autowire-candidate="false"/>
 ```
-* byName
+* byName Spring通过反射的查看Bean中定义的类，然后尝试将容器中可用的Bean注入与其`id`相匹配的属性
