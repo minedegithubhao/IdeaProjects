@@ -15,6 +15,7 @@
         <module>injection-setter</module>
         <module>injection-constructor</module>
         <module>bean-definition-override</module>
+        <module>autowiring-based-xml</module>
     </modules>
 
     <properties>
