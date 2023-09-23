@@ -181,4 +181,6 @@ public class Baz implements InitializingBean, DisposableBean {
 }
 ```
 ## [bean-definition-profiles](bean-definition-profiles)
-本示例演示了根据运行环境选择不同的Bean定义，比如dataSource
+本示例演示了根据profiles选择不同的Bean定义，比如dataSource
+## [configuring-environment](configuring-environment)
+通过该接口可以管理应用程序所使用的配置文件和属性信息，并刷新spring上下文

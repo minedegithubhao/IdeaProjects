@@ -22,6 +22,7 @@
         <module>bean-scopes</module>
         <module>lifecycle-callback-methods</module>
         <module>bean-definition-profiles</module>
+        <module>configuring-environment</module>
     </modules>
 
     <properties>
