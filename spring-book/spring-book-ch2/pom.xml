@@ -21,6 +21,7 @@
         <module>bean-instantiation-methods</module>
         <module>bean-scopes</module>
         <module>lifecycle-callback-methods</module>
+        <module>bean-definition-profiles</module>
     </modules>
 
     <properties>
