@@ -6,12 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="autowiring-based-java" />
         <module name="configuration-based-annotation" />
         <module name="autowiring-based-xml" />
         <module name="configuration-based-xml" />
         <module name="injection-constructor" />
         <module name="injection-setter" />
         <module name="bean-definition-override" />
+        <module name="autowiring-based-annotation" />
         <module name="configuration-based-java" />
       </profile>
     </annotationProcessing>

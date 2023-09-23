@@ -16,6 +16,8 @@
         <module>injection-constructor</module>
         <module>bean-definition-override</module>
         <module>autowiring-based-xml</module>
+        <module>autowiring-based-java</module>
+        <module>autowiring-based-annotation</module>
     </modules>
 
     <properties>

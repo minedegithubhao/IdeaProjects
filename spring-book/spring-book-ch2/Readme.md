@@ -44,3 +44,66 @@ setter注入示例，注意：类中要定义setter()方法
 	<bean id="accountDaoJdbc" class="org.example.AccountDaoJdbcImpl" autowire-candidate="false"/>
 ```
 * byName Spring通过反射的查看Bean中定义的类，然后尝试将容器中可用的Bean注入与其`id`相匹配的属性
+## [autowiring-based-java](autowiring-based-java)
+本示例演示了基于Java的自动装配，@Autowired注解，优先使用的byType，当适合的装配类型有多个时，则使用byName
+虽然`@Qualifier`不太常用，但这里简单说明下@Qualifier用于解决依赖注入时的歧义性问题。当有多个具有相同类型的 Bean 可以注入到一个类中时，@Qualifier 可以与 @Autowired 结合使用，以指定要注入的特定 Bean 的名称或标识符。
+## [autowiring-based-annotation](autowiring-based-annotation)
+本案例演示基于注解的自动装配，与基于XML和基于Java的一大区别就是，基于注解的配置可以不用编写Setter方法，Spring借助Java反射实现依赖注入。
+>当autowired自动注入时，如果类型匹配不到唯一，名字也未匹配到唯一就会报错
+
+如下：Spring通过类型推断匹配到了2个，通过名称`accountDao`也为匹配到，就会报错，这时候的解决办法要么让类型唯一，要么让id唯一
+```java
+@Autowired
+public void setAccountDao(AccountDao accountDao) {
+		this.accountDao = accountDao;
+	}
+    
+@Repository
+public class AccountDaoInMemoryImpl implements AccountDao
+
+@Repository
+public class AccountDaoJdbcImpl implements AccountDao
+```
+指定id有以下几种方式：
+* 方式一：
+```java
+@Autowired
+public void setAccountDao(AccountDao accountDao) {
+		this.accountDao = accountDao;
+	}
+    
+@Repository("accountDao")
+public class AccountDaoInMemoryImpl implements AccountDao
+
+@Repository
+public class AccountDaoJdbcImpl implements AccountDao
+```
+* 方式二：
+```java
+@Autowired
+public void setAccountDao(AccountDao accountDao) {
+this.accountDao = accountDao;
+}
+
+@Repository
+@Qualifier("accountDao")
+public class AccountDaoInMemoryImpl implements AccountDao
+
+@Repository
+public class AccountDaoJdbcImpl implements AccountDao
+```
+* 方式三：
+```java
+@Autowired
+@Qualifier("accountDaoInMemoryImpl")
+public void setAccountDao(AccountDao accountDao) {
+this.accountDao = accountDao;
+}
+
+@Repository
+public class AccountDaoInMemoryImpl implements AccountDao
+
+@Repository
+public class AccountDaoJdbcImpl implements AccountDao
+```
+总之就是让Spring容器中存在id="accountDao"的Bean，或者告诉Spring注入Bean的id（方式三）
