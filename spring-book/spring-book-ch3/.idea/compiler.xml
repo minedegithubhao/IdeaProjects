@@ -6,9 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="basic" />
+        <module name="fileupload" />
         <module name="basic-annotationconfig" />
         <module name="form-element" />
+        <module name="bean-validation" />
+        <module name="basic" />
       </profile>
     </annotationProcessing>
   </component>

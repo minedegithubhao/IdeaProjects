@@ -3,18 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.example</groupId>
+        <artifactId>spring-book-ch3</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
-    <groupId>org.example</groupId>
-    <artifactId>spring-book-ch3</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <modules>
-        <module>basic</module>
-        <module>basic-annotationconfig</module>
-        <module>form-element</module>
-        <module>bean-validation</module>
-        <module>fileupload</module>
-    </modules>
+    <artifactId>bean-validation</artifactId>
 
     <properties>
         <maven.compiler.source>18</maven.compiler.source>
@@ -50,13 +45,15 @@
             <version>4.0.5.RELEASE</version>
         </dependency>
 
-        <!-- Added for debugging purposes -->
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-            <scope>provided</scope>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.1.1.Final</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>beanvalidation</finalName>
+    </build>
 
 </project>

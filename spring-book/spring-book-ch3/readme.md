@@ -51,3 +51,7 @@ SpringMVC之请求原理示例-基于注解的形式
 + <mvc:annotation-driven> 用于启用 Spring MVC 中的注解驱动功能。如 @Controller、@RequestMapping、@PathVariable 等注解，以便支持基于注解的 MVC 控制器和请求映射。
 
 总的来说，<context:annotation-config> 用于启用 Spring 容器中的基本注解处理功能，而 <mvc:annotation-driven> 用于启用 Spring MVC 中的注解驱动功能。通常情况下，构建一个 Spring MVC 应用程序，需要包含 <mvc:annotation-driven> 来启用 MVC 注解驱动功能，但不一定需要包含 <context:annotation-config>，因为 <mvc:annotation-driven> 通常已经包括了基本的注解处理功能。
+## [bean-validation](bean-validation)
+该示例演示了通过注解的方式验，在VO层验证用户输入
+## [fileupload](fileupload)
+该示例演示了文件上传
