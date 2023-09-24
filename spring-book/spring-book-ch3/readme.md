@@ -30,3 +30,24 @@ SpringMVC之请求原理示例
 ```
 ## [basic-annotationconfig](basic-annotationconfig)
 SpringMVC之请求原理示例-基于注解的形式
+## [form-element](form-element)
+该示例演示了Springmvc项目如何与表单交互
+>表单标签库：标签库的目标是使开发者能够更轻松地创建和渲染表单元素，并将表单数据绑定到后端的 Spring 控制器（Controller）中。位于spring-webmvc项目的META-INF/spring-form.tld
+```html
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="mvc" %>
+```
+属性绑定：path指向了一个类的name属性，用户输入的值将会被自动设置到该类的name属性，path只知道属性不知道具体是哪个类
+```html
+<mvc:label path="name">Name</mvc:label>
+```
+表单：通过modelAttribute指向了绑定的模型类，path指明了具体绑定的属性
+```html
+<mvc:form modelAttribute="user" action="result.mvc">
+    <mvc:label path="name">Name</mvc:label>
+</mvc:form>
+```
+<context:annotation-config />和<mvc:annotation-driven />的区别
++ <context:annotation-config> 用于启用 Spring 容器中的基本注解处理功能。如 @Autowired、@Resource、@Value 等注解，以便进行依赖注入、属性注入等操作。
++ <mvc:annotation-driven> 用于启用 Spring MVC 中的注解驱动功能。如 @Controller、@RequestMapping、@PathVariable 等注解，以便支持基于注解的 MVC 控制器和请求映射。
+
+总的来说，<context:annotation-config> 用于启用 Spring 容器中的基本注解处理功能，而 <mvc:annotation-driven> 用于启用 Spring MVC 中的注解驱动功能。通常情况下，构建一个 Spring MVC 应用程序，需要包含 <mvc:annotation-driven> 来启用 MVC 注解驱动功能，但不一定需要包含 <context:annotation-config>，因为 <mvc:annotation-driven> 通常已经包括了基本的注解处理功能。

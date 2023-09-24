@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="basic" />
         <module name="basic-annotationconfig" />
+        <module name="form-element" />
       </profile>
     </annotationProcessing>
   </component>
