@@ -55,3 +55,10 @@ SpringMVC之请求原理示例-基于注解的形式
 该示例演示了通过注解的方式验，在VO层验证用户输入
 ## [fileupload](fileupload)
 该示例演示了文件上传
+## [exceptionhandling](exceptionhandling)
+该示例演示了公共异常处理
+[GlobalExceptionHandler.java](exceptionhandling%2Fsrc%2Fmain%2Fjava%2Forg%2Fexample%2Fhandler%2FGlobalExceptionHandler.java)实现了应用程序公共异常处理，通过`@ExceptionHandler`可以定义每一种异常的具体处理方法。
+## [internationalisation](internationalisation)
+该示例演示了国际化
+## [theme](theme)
+该示例演示了动态主题

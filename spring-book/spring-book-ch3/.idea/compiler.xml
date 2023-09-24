@@ -7,9 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="fileupload" />
-        <module name="basic-annotationconfig" />
         <module name="form-element" />
         <module name="bean-validation" />
+        <module name="internationalisation" />
+        <module name="exceptionhandling" />
+        <module name="basic-annotationconfig" />
+        <module name="theme" />
         <module name="basic" />
       </profile>
     </annotationProcessing>
