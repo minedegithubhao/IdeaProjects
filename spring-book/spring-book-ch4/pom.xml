@@ -19,6 +19,7 @@
         <module>using-preparedstatements</module>
         <module>inserting-updating-deleting-records</module>
         <module>calling-storedprocedures</module>
+        <module>performing-batch-operations</module>
     </modules>
 
     <properties>
