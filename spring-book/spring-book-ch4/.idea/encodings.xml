@@ -17,6 +17,8 @@
     <file url="file://$PROJECT_DIR$/encapsulating-dml-operations/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/encapsulating-sql-queries/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/encapsulating-sql-queries/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/encapsulating-storedprocedures/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/encapsulating-storedprocedures/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/handling-lob-objects/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/handling-lob-objects/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inserting-updating-deleting-records/src/main/java" charset="UTF-8" />

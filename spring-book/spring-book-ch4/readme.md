@@ -58,4 +58,5 @@ public int update(String sql, Object... args){}
 ```
 ## [encapsulating-dml-operations](encapsulating-dml-operations)
 该示例演示了如何使用spring将插入、更新、删除封装成可重复使用的Java对象
-
+## [encapsulating-storedprocedures](encapsulating-storedprocedures)
+该示例演示了如何使用spring将封装成存储过程

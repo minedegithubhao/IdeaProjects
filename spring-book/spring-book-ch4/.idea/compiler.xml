@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="configuring-datasource" />
         <module name="performing-batch-operations" />
+        <module name="encapsulating-storedprocedures" />
         <module name="using-preparedstatements" />
         <module name="queries-with-in-clause" />
         <module name="running-queries-with-jdbctemplate" />
