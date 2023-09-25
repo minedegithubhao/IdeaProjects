@@ -16,6 +16,7 @@
         <module>running-queries-with-jdbctemplate</module>
         <module>using-named-parameters</module>
         <module>queries-with-in-clause</module>
+        <module>using-preparedstatements</module>
     </modules>
 
     <properties>

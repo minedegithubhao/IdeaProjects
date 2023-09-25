@@ -9,6 +9,7 @@
         <module name="running-queries-with-jdbctemplate" />
         <module name="configuring-datasource" />
         <module name="embedded-db-support" />
+        <module name="using-preparedstatements" />
         <module name="configuring-datasource-pool" />
         <module name="queries-with-in-clause" />
         <module name="configuring-and-using-jdbctemplate" />

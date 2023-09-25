@@ -22,3 +22,8 @@ public <T> List<T> query(String sql, Map<String, ?> paramMap, RowMapper<T> rowMa
 public <T> List<T> query(String sql, SqlParameterSource paramSource, RowMapper<T> rowMapper) throws DataAccessException {}
 ```
 注意：in的支持的List大小有限制，在使用的时候需要格外注意
+## [using-preparedstatements](using-preparedstatements)
+该示例演示了如何使用PreparedStatement进行数据库查询,可以防止SQL注入，还能提高执行效率(预处理只会执行一次)
+```java
+public <T> List<T> query(PreparedStatementCreator psc, RowMapper<T> rowMapper) throws DataAccessException {}
+```
