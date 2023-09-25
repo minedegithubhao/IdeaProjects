@@ -13,6 +13,8 @@
     <file url="file://$PROJECT_DIR$/embedded-db-support-pool/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/embedded-db-support/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/embedded-db-support/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/handling-lob-objects/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/handling-lob-objects/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inserting-updating-deleting-records/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inserting-updating-deleting-records/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/performing-batch-operations/src/main/java" charset="UTF-8" />

@@ -20,6 +20,7 @@
         <module>inserting-updating-deleting-records</module>
         <module>calling-storedprocedures</module>
         <module>performing-batch-operations</module>
+        <module>handling-lob-objects</module>
     </modules>
 
     <properties>

@@ -46,3 +46,5 @@ public int update(String sql, Object... args){}
 该示例演示了如何使用JdbcTemplate调用存储过程、存储方法。
 ## [performing-batch-operations](performing-batch-operations)
 该示例演示了如何使用JdbcTemplate执行批处理
+## [handling-lob-objects](handling-lob-objects)
+该示例演示了如何使用JdbcTemplate处理大型对象LOB(Large Object),如二进制大型数据CLOB(Character Large Object)、大型文本数据BLOB(Binary Large Object)
