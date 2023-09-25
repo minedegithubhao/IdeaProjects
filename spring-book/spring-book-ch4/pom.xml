@@ -18,6 +18,7 @@
         <module>queries-with-in-clause</module>
         <module>using-preparedstatements</module>
         <module>inserting-updating-deleting-records</module>
+        <module>calling-storedprocedures</module>
     </modules>
 
     <properties>

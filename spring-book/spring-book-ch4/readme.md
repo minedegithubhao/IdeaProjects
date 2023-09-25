@@ -42,3 +42,5 @@ public int update(String sql, Object... args){}
 ```java
 public int update(String sql, Object... args){}
 ```
+## [calling-storedprocedures](calling-storedprocedures)
+该示例演示了如何使用JdbcTemplate调用存储过程、存储方法。
