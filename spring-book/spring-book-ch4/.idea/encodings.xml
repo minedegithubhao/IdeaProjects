@@ -13,6 +13,8 @@
     <file url="file://$PROJECT_DIR$/embedded-db-support/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pooled-datasource/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pooled-datasource/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/queries-with-in-clause/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/queries-with-in-clause/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/running-queries-with-jdbctemplate/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/running-queries-with-jdbctemplate/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />

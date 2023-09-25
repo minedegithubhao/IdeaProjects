@@ -12,7 +12,12 @@
 public <T> T queryForObject(String sql, RowMapper<T> rowMapper, Object... args){}
 ```
 ## [using-named-parameters](using-named-parameters)
-该示例演示了如何使用JdbcTemplate查询,返回List<T>
+该示例演示了如何使用JdbcTemplate使用参数查询,返回List<T>
 ```java
 public <T> List<T> query(String sql, Map<String, ?> paramMap, RowMapper<T> rowMapper) throws DataAccessException {}
+```
+## [queries-with-in-clause](queries-with-in-clause)
+该示例演示了如何使用JdbcTemplate使用in查询,返回List<T>
+```java
+public <T> List<T> query(String sql, SqlParameterSource paramSource, RowMapper<T> rowMapper) throws DataAccessException {}
 ```
