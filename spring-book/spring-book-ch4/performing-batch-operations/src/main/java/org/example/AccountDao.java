@@ -3,13 +3,13 @@ package org.example;
 import java.util.List;
 
 public interface AccountDao {
-    public void insert(Account account);
-    public void update(Account account);
-    public void update(List<Account> accounts);
-    public void delete(long accountId);
-    public Account find(long accountId);
-    public List<Account> find(List<Long> accountIds);
-    public List<Account> find(String ownerName);
-    public List<Account> find(boolean locked);
+    void insert(Account account);
+    void update(Account account);
+    void update(List<Account> accounts);
+    void delete(long accountId);
+    Account find(long accountId);
+    List<Account> find(List<Long> accountIds);
+    List<Account> find(String ownerName);
+    List<Account> find(boolean locked);
 }
 

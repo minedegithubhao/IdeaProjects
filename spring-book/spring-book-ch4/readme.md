@@ -50,8 +50,12 @@ public int update(String sql, Object... args){}
 该示例演示了如何使用JdbcTemplate处理大型对象LOB(Large Object),如二进制大型数据CLOB(Character Large Object)、大型文本数据BLOB(Binary Large Object)
 ## [encapsulating-sql-queries](encapsulating-sql-queries)
 该示例演示了如何使用spring将SQL封装为Java对象
+使用MappingSqlQuery封装
 ```java
 	public Account find(long accountId) {
 		return accountByIdQuery.findObject(accountId);
 	}
 ```
+## [encapsulating-dml-operations](encapsulating-dml-operations)
+该示例演示了如何使用spring将插入、更新、删除封装成可重复使用的Java对象
+

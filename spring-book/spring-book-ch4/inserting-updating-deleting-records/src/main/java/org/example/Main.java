@@ -38,7 +38,7 @@ public class Main {
 		
 		accountDao.delete(account.getId());
 		
-		List<Account> accounts = accountDao.find(Arrays.asList(account.getId()));
+		List<Account> accounts = accountDao.find(List.of(account.getId()));
 		
 		System.out.println(accounts.size());
 	}

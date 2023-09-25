@@ -22,6 +22,7 @@
         <module>performing-batch-operations</module>
         <module>handling-lob-objects</module>
         <module>encapsulating-sql-queries</module>
+        <module>encapsulating-dml-operations</module>
     </modules>
 
     <properties>

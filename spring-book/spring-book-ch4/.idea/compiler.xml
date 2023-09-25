@@ -15,15 +15,12 @@
         <module name="embedded-db-support" />
         <module name="calling-storedprocedures" />
         <module name="configuring-datasource-pool" />
+        <module name="encapsulating-dml-operations" />
         <module name="configuring-and-using-jdbctemplate" />
         <module name="inserting-updating-deleting-records" />
         <module name="using-named-parameters" />
         <module name="encapsulating-sql-queries" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="embedded-db-support-pool" target="1.8" />
-      <module name="pooled-datasource" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

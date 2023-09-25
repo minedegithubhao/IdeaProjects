@@ -2,6 +2,7 @@ package org.example;
 
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -15,7 +16,7 @@ public class Main {
 		
 		account.setBalance(20.0);
 		
-		accountDao.update(Arrays.asList(account));
+		accountDao.update(List.of(account));
 		
 		account = accountDao.find(100L);
 		
