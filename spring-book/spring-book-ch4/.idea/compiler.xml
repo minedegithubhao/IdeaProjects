@@ -6,12 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="running-queries-with-jdbctemplate" />
+        <module name="configuring-datasource-pool" />
+        <module name="configuring-and-using-jdbctemplate" />
         <module name="configuring-datasource" />
         <module name="embedded-db-support" />
-        <module name="configuring-datasource-pool" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="embedded-db-support-pool" target="1.8" />
       <module name="pooled-datasource" target="1.8" />
     </bytecodeTargetLevel>
   </component>
