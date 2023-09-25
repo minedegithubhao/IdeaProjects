@@ -8,7 +8,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="configuring-datasource" />
         <module name="embedded-db-support" />
+        <module name="configuring-datasource-pool" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="pooled-datasource" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -11,6 +11,7 @@
     <modules>
         <module>configuring-datasource</module>
         <module>embedded-db-support</module>
+        <module>configuring-datasource-pool</module>
     </modules>
 
     <properties>
