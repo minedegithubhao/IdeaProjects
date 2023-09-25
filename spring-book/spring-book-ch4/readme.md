@@ -21,3 +21,4 @@ public <T> List<T> query(String sql, Map<String, ?> paramMap, RowMapper<T> rowMa
 ```java
 public <T> List<T> query(String sql, SqlParameterSource paramSource, RowMapper<T> rowMapper) throws DataAccessException {}
 ```
+注意：in的支持的List大小有限制，在使用的时候需要格外注意
