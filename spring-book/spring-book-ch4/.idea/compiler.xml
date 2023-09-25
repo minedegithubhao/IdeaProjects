@@ -13,6 +13,7 @@
         <module name="configuring-datasource-pool" />
         <module name="queries-with-in-clause" />
         <module name="configuring-and-using-jdbctemplate" />
+        <module name="inserting-updating-deleting-records" />
         <module name="using-named-parameters" />
       </profile>
     </annotationProcessing>

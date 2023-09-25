@@ -27,3 +27,18 @@ public <T> List<T> query(String sql, SqlParameterSource paramSource, RowMapper<T
 ```java
 public <T> List<T> query(PreparedStatementCreator psc, RowMapper<T> rowMapper) throws DataAccessException {}
 ```
+## [inserting-updating-deleting-records](inserting-updating-deleting-records)
+该示例演示了如何使用JdbcTemplate进行插入、更新、删除。
+
+插入
+```java
+public int update(final PreparedStatementCreator psc, final KeyHolder generatedKeyHolder)
+```
+更新
+```java
+public int update(String sql, Object... args){}
+```
+删除
+```java
+public int update(String sql, Object... args){}
+```

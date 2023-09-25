@@ -17,6 +17,7 @@
         <module>using-named-parameters</module>
         <module>queries-with-in-clause</module>
         <module>using-preparedstatements</module>
+        <module>inserting-updating-deleting-records</module>
     </modules>
 
     <properties>
