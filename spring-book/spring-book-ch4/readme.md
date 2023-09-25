@@ -7,5 +7,12 @@
 ## [configuring-and-using-jdbctemplate](configuring-and-using-jdbctemplate)
 该示例演示了如何配置JdbcTemplate
 ## [running-queries-with-jdbctemplate](running-queries-with-jdbctemplate)
-该示例演示了如何使用JdbcTemplate进行查询
-
+该示例演示了如何使用JdbcTemplate进行查询,返回T
+```java
+public <T> T queryForObject(String sql, RowMapper<T> rowMapper, Object... args){}
+```
+## [using-named-parameters](using-named-parameters)
+该示例演示了如何使用JdbcTemplate查询,返回List<T>
+```java
+public <T> List<T> query(String sql, Map<String, ?> paramMap, RowMapper<T> rowMapper) throws DataAccessException {}
+```

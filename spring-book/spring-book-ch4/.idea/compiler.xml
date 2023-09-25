@@ -9,6 +9,7 @@
         <module name="running-queries-with-jdbctemplate" />
         <module name="configuring-datasource-pool" />
         <module name="configuring-and-using-jdbctemplate" />
+        <module name="using-named-parameters" />
         <module name="configuring-datasource" />
         <module name="embedded-db-support" />
       </profile>

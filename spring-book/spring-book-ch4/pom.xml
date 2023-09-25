@@ -14,6 +14,7 @@
         <module>configuring-datasource-pool</module>
         <module>configuring-and-using-jdbctemplate</module>
         <module>running-queries-with-jdbctemplate</module>
+        <module>using-named-parameters</module>
     </modules>
 
     <properties>
