@@ -48,3 +48,10 @@ public int update(String sql, Object... args){}
 该示例演示了如何使用JdbcTemplate执行批处理
 ## [handling-lob-objects](handling-lob-objects)
 该示例演示了如何使用JdbcTemplate处理大型对象LOB(Large Object),如二进制大型数据CLOB(Character Large Object)、大型文本数据BLOB(Binary Large Object)
+## [encapsulating-sql-queries](encapsulating-sql-queries)
+该示例演示了如何使用spring将SQL封装为Java对象
+```java
+	public Account find(long accountId) {
+		return accountByIdQuery.findObject(accountId);
+	}
+```

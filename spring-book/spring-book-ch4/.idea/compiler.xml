@@ -6,18 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="running-queries-with-jdbctemplate" />
-        <module name="handling-lob-objects" />
         <module name="configuring-datasource" />
-        <module name="embedded-db-support" />
         <module name="performing-batch-operations" />
         <module name="using-preparedstatements" />
+        <module name="queries-with-in-clause" />
+        <module name="running-queries-with-jdbctemplate" />
+        <module name="handling-lob-objects" />
+        <module name="embedded-db-support" />
         <module name="calling-storedprocedures" />
         <module name="configuring-datasource-pool" />
-        <module name="queries-with-in-clause" />
         <module name="configuring-and-using-jdbctemplate" />
         <module name="inserting-updating-deleting-records" />
         <module name="using-named-parameters" />
+        <module name="encapsulating-sql-queries" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

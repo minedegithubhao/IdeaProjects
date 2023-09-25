@@ -21,6 +21,7 @@
         <module>calling-storedprocedures</module>
         <module>performing-batch-operations</module>
         <module>handling-lob-objects</module>
+        <module>encapsulating-sql-queries</module>
     </modules>
 
     <properties>
