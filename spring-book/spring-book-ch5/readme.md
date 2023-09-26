@@ -49,7 +49,7 @@ public PlatformTransactionManager transactionManager(EntityManagerFactory entity
 * 使用`@Repository`注解标记Bean。
 * 需要从`PersistenceExceptionTranslationPostProcessor`类创建一个Bean定义
 ```java
- @Bean
+@Bean
 public static PersistenceExceptionTranslationPostProcessor 
     persistenceExceptionTranslationPostProcessor() {
     PersistenceExceptionTranslationPostProcessor bean = 
