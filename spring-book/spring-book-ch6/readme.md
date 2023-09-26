@@ -94,3 +94,36 @@ public void transferMoney(long sourceAccountId, long targetAccountId, double amo
 </aop:config>
 ```
 * 使用`@ImportResource("classpath:/beans-tx.xml")`加载Spring配置文件
+## [using-transaction-template](using-transaction-template)
+本示例演示了使用编程式事务
+* 创建`TransactionTemplate`
+```java
+@Bean
+public TransactionTemplate transactionTemplate() {
+    TransactionTemplate transactionTemplate = new TransactionTemplate();
+    transactionTemplate.setTransactionManager(transactionManager());
+    // 在这里可以配置事务的规则
+    transactionTemplate.setReadOnly(transactionTemplate().isReadOnly());
+    transactionTemplate.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+    return transactionTemplate;
+}
+```
+* 将transactionTemplate注入到Service里面
+* 使用`TransactionTemplate`
+```java
+@Override
+public void transferMoney(final long sourceAccountId, final long targetAccountId, final double amount) {
+    transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+        @Override
+        protected void doInTransactionWithoutResult(TransactionStatus status) {
+            Account sourceAccount = accountDao.find(sourceAccountId);
+            Account targetAccount = accountDao.find(targetAccountId);
+            sourceAccount.setBalance(sourceAccount.getBalance() - amount);
+            targetAccount.setBalance(targetAccount.getBalance() + amount);
+            accountDao.update(sourceAccount);
+            accountDao.update(targetAccount);
+        }
+    });
+} 
+```
+>注意：`TransactionTemplate`和`@Transactional`的默认规则一样，但`TransactionTemplate`不管检查式异常还是非检查式异常都会进行回滚。
