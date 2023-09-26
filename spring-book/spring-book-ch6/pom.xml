@@ -13,6 +13,7 @@
         <module>configuring-platform-tx-manager</module>
         <module>enabling-declarative-tx-management</module>
         <module>separating-service-layer</module>
+        <module>using-txadvice-for-declarative-tx</module>
     </modules>
 
     <properties>

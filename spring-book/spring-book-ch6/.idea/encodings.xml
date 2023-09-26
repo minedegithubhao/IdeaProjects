@@ -11,5 +11,7 @@
     <file url="file://$PROJECT_DIR$/separating-service-layer/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/using-txadvice-for-declarative-tx/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/using-txadvice-for-declarative-tx/src/main/resources" charset="UTF-8" />
   </component>
 </project>

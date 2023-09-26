@@ -71,3 +71,26 @@ public class someService {
     }
 }
 ```
+## [using-txadvice-for-declarative-tx](using-txadvice-for-declarative-tx)
+本示例演示了基于XML进行声明式事务
+
+* 基于XML配置事务的规则
+```xml
+<tx:advice id="txAdvice" transaction-manager="transactionManager">
+    <tx:attributes>
+        <tx:method name="*" propagation="REQUIRED" />
+    </tx:attributes>
+</tx:advice>
+```
+相当于
+```java
+@Transactional(propagation = Propagation.REQUIRED)
+public void transferMoney(long sourceAccountId, long targetAccountId, double amount) {}
+```
+* 将配置好的事务与Spring Bean绑定起来
+```xml
+<aop:config>
+    <aop:advisor advice-ref="txAdvice" pointcut="bean(accountService)" />
+</aop:config>
+```
+* 使用`@ImportResource("classpath:/beans-tx.xml")`加载Spring配置文件
