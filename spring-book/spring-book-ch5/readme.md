@@ -20,4 +20,40 @@ Book book2 = entityManager.getReference(Book.class, 2L);
 本示例介绍了JPA QL 查询数据库
 ## [configuring-and-using-jpa-with-spring](configuring-and-using-jpa-with-spring)
 基于 Spring配置和使用 JPA
-`LocalContainerEntityManagerFactoryBean`是最基本且功能有限的，主要用于测试目的和独立环境
+`LocalContainerEntityManagerFactoryBean`是最灵活且最强大的JPA配置方法，主要用于测试目的和独立环境
+```java
+@Bean
+public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+    LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+    // 针对不同的服务商创建一个实际的 EntityManagerFactory
+    factoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
+    factoryBean.setDataSource(dataSource());
+    factoryBean.setPackagesToScan("org.example");
+    factoryBean.setJpaPropertyMap(jpaProperties());
+    return factoryBean;
+}
+```
+## [using-persistence-unit](using-persistence-unit)
+使用`@PersistenceUnit`可以将Spring容器中定义的EntityManagerFactory注入到Dao Bean中
+## [using-persistence-context](using-persistence-context)
+使用`@PersistenceContext`可以将Spring容器中定义的EntityManager注入到Dao Bean中。
+
+`@EnableTransactionManagement`启用Spring管理事务
+```java
+@Bean
+@Autowired //这里@Autowired是是告诉Spring将找到一个 EntityManagerFactory bean 注入到 行参中。
+public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+```
+## [handling-translating-exceptions](handling-translating-exceptions)
+使用Spring的异常管理和转化功能：
+* 使用`@Repository`注解标记Bean。
+* 需要从`PersistenceExceptionTranslationPostProcessor`类创建一个Bean定义
+```java
+ @Bean
+public static PersistenceExceptionTranslationPostProcessor 
+    persistenceExceptionTranslationPostProcessor() {
+    PersistenceExceptionTranslationPostProcessor bean = 
+    new PersistenceExceptionTranslationPostProcessor();
+    return bean;
+}
+```

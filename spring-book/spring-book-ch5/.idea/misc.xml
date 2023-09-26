@@ -7,6 +7,9 @@
         <option value="$PROJECT_DIR$/configuring-and-using-jdbctemplate/pom.xml" />
         <option value="$PROJECT_DIR$/querying-database-with-jpaql/pom.xml" />
         <option value="$PROJECT_DIR$/configuring-and-using-jpa-with-spring/pom.xml" />
+        <option value="$PROJECT_DIR$/using-persistence-unit/pom.xml" />
+        <option value="$PROJECT_DIR$/using-persistence-context/pom.xml" />
+        <option value="$PROJECT_DIR$/handling-translating-exceptions/pom.xml" />
       </list>
     </option>
   </component>
