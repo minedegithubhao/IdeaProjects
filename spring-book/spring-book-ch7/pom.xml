@@ -16,6 +16,7 @@
         <module>transaction-management</module>
         <module>loading-webapplicationcontext</module>
         <module>testing-request-and-session-scoped-beans</module>
+        <module>test-mvc</module>
     </modules>
 
     <properties>
