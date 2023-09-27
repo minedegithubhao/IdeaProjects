@@ -14,6 +14,8 @@
         <module>context-caching</module>
         <module>dependency-injection-in-tests</module>
         <module>transaction-management</module>
+        <module>loading-webapplicationcontext</module>
+        <module>testing-request-and-session-scoped-beans</module>
     </modules>
 
     <properties>
