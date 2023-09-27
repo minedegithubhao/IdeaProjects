@@ -18,3 +18,22 @@ public class IntegrationTests {
 ```
 ## [context-config-inheritance](context-config-inheritance)
 该示例演示了继承上下文
+## [context-caching](context-caching)
+该示例演示了多个测试类指定完全相同的XML位置和配置类，那么将之创建一次ApplicationContext实例。
+## [dependency-injection-in-tests](dependency-injection-in-tests)
+该示例演示了集成测试，自动注入
+## [transaction-management](transaction-management)
+该示例演示了继承测试时，使用事务。
+
+为了确保测试方法对数据库的影响不会对数据库状态产生永久性的改变。这样可以保证测试的独立性，每次测试都从一个干净的状态开始。 默认情况下，Spring 测试框架会在测试方法执行结束后回滚事务。`@Rollback(false)` 来告诉测试框架不要回滚事务，使得测试方法执行后对数据库的更改保留在数据库中。
+
+`@Transactional`注解默认会在容器中寻找名称为`transactionManager`的Bean，并在测试完成后执行回滚。然而这种行为可以通过注解`@TransactionConfiguration`更改，如下：
+```java
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:/applicationContext.xml")
+// Spring容器回去查找名称为myTxMgr的Bean来进行事务管理，并设置测试完成后提交事务(因为 defaultRollback设置成了false)
+@TransactionConfiguration(transactionManager = "myTxMgr", defaultRollback = false)
+public class TransactionalTests {
+    
+}
+```
