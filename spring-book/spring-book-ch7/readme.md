@@ -41,3 +41,5 @@ public class TransactionalTests {
 测试Web应用程序
 ## [testing-request-and-session-scoped-beans](testing-request-and-session-scoped-beans)
 测试Request和Session域中的Bean
+## [test-mvc](test-mvc)
+演示了使用mvc的集成测试案例
