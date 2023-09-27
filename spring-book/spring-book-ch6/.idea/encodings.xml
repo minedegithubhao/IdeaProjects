@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/advising-transactional-operations/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/advising-transactional-operations/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/configuring-platform-tx-manager/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/configuring-platform-tx-manager/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/defining-transaction-with-jdbc/src/main/java" charset="UTF-8" />
@@ -11,6 +13,8 @@
     <file url="file://$PROJECT_DIR$/separating-service-layer/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/using-platform-tx-manager/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/using-platform-tx-manager/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/using-transaction-template/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/using-transaction-template/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/using-txadvice-for-declarative-tx/src/main/java" charset="UTF-8" />

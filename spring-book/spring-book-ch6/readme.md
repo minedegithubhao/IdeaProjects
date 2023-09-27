@@ -127,3 +127,7 @@ public void transferMoney(final long sourceAccountId, final long targetAccountId
 } 
 ```
 >注意：`TransactionTemplate`和`@Transactional`的默认规则一样，但`TransactionTemplate`不管检查式异常还是非检查式异常都会进行回滚。
+## [using-platform-tx-manager](using-platform-tx-manager)
+本示例介绍使用`PlatformTransactionManager`来进行编程式事务管理，相较于`TransactionTemplate`,`PlatformTransactionManager`更见的灵活，粒度也更细适合复杂的场景
+## [advising-transactional-operations](advising-transactional-operations)
+该示例演示了在事务之前或者之后执行逻辑-实现`MethodInterceptor`接口
