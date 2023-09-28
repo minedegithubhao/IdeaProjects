@@ -14,16 +14,14 @@
     <context:component-scan base-package="org.example" />
     <context:annotation-config />
 
-    <!--ExecutionTimeLoggingSpringAOP就是一个通知（类）-->
-    <bean id="executionTimeLoggingSpringAop" class="org.example.aspect.ExecutionTimeLoggingSpringAOP" />
+    <bean id="executionTimeLoggingThrowsAdvice" class="org.example.aspect.ExecutionTimeLoggingThrowsAdvice" />
 
     <aop:config>
-        <!--定义切入点-->
-        <aop:pointcut id="executionTimeLoggingPointcut" expression="execution(public * *(..))" />
+        <aop:pointcut id="executionTimeLoggingPointcut"
+                      expression="execution(public * *(..))" />
 
-        <!--织入：这里的作用就是将切入点和通知进行匹配-->
         <aop:advisor id="executionTimeLoggingAdvisor"
-                     advice-ref="executionTimeLoggingSpringAop"
+                     advice-ref="executionTimeLoggingThrowsAdvice"
                      pointcut-ref="executionTimeLoggingPointcut" />
     </aop:config>
 
