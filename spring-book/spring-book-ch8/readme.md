@@ -24,5 +24,4 @@ public class ExecutionTimeLoggingThrowsAdvice implements ThrowsAdvice {
 该示例演示了如何定义`After(Finally)`
 ## [executiontimeloggingwitharound](executiontimeloggingwitharound)
 该示例演示了如何定义`Around`
->注意：只有 `Around` 支持 ProceedingJoinPoint
-
+>注意：只有 `Around` 支持 ProceedingJoinPoint，如果有多个切入点可以通过Ordered接口指定顺序
