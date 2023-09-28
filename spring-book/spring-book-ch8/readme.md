@@ -22,3 +22,7 @@ public class ExecutionTimeLoggingThrowsAdvice implements ThrowsAdvice {
 
 ## [executiontimeloggingwithafterfinally](executiontimeloggingwithafterfinally)
 该示例演示了如何定义`After(Finally)`
+## [executiontimeloggingwitharound](executiontimeloggingwitharound)
+该示例演示了如何定义`Around`
+>注意：只有 `Around` 支持 ProceedingJoinPoint
+

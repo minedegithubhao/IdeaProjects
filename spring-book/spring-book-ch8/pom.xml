@@ -12,6 +12,7 @@
         <module>executiontimelogging</module>
         <module>executiontimeloggingthrowsadvice</module>
         <module>executiontimeloggingwithafterfinally</module>
+        <module>executiontimeloggingwitharound</module>
     </modules>
 
     <properties>
