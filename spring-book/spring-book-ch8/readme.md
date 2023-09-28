@@ -1,11 +1,11 @@
 ## [executiontimelogging](executiontimelogging)
-该示例演示了`Before`和`After Returning`
+该示例演示了如何定义`Before`和`After Returning`
 >当同一个类中的一个方法调用另一个方法，后者就不能应用通知
 
 ![img.png](img.png)
 ![img_1.png](img_1.png)
 ## [executiontimeloggingthrowsadvice](executiontimeloggingthrowsadvice)
-该示例演示了`After Throwing`
+该示例演示了如何定义`After Throwing`
 ```java
 public class ExecutionTimeLoggingThrowsAdvice implements ThrowsAdvice {
 
@@ -19,3 +19,6 @@ public class ExecutionTimeLoggingThrowsAdvice implements ThrowsAdvice {
 }
 ```
 >如果ThrowsAdvice中抛出异常，则该异常将会覆盖原异常。
+
+## [executiontimeloggingwithafterfinally](executiontimeloggingwithafterfinally)
+该示例演示了如何定义`After(Finally)`

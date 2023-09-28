@@ -11,6 +11,7 @@
     <modules>
         <module>executiontimelogging</module>
         <module>executiontimeloggingthrowsadvice</module>
+        <module>executiontimeloggingwithafterfinally</module>
     </modules>
 
     <properties>
