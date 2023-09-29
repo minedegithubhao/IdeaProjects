@@ -8,7 +8,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="executiontimelogging" />
         <module name="executiontimeloggingwithafterfinally" />
+        <module name="executiontimeloggingaspectj" />
         <module name="executiontimeloggingwitharound" />
+        <module name="executiontimeloggingaspectjcglib" />
         <module name="executiontimeloggingthrowsadvice" />
       </profile>
     </annotationProcessing>

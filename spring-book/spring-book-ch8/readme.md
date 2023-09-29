@@ -25,3 +25,7 @@ public class ExecutionTimeLoggingThrowsAdvice implements ThrowsAdvice {
 ## [executiontimeloggingwitharound](executiontimeloggingwitharound)
 该示例演示了如何定义`Around`
 >注意：只有 `Around` 支持 ProceedingJoinPoint，如果有多个切入点可以通过Ordered接口指定顺序
+## [executiontimeloggingaspectj](executiontimeloggingaspectj)
+该示例演示了基于XML在Spring中使用`Aspectj`。
+## [executiontimeloggingaspectjcglib](executiontimeloggingaspectjcglib)
+该示例演示了基于XML在Spring中使用`cglib`, 只需要设置在`<aop:aspectj-autoproxy />` 中加上`proxy-target-class="true"` 属性就有JDK动态代理变成了`Cglib`

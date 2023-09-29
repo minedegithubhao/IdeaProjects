@@ -13,6 +13,8 @@
         <module>executiontimeloggingthrowsadvice</module>
         <module>executiontimeloggingwithafterfinally</module>
         <module>executiontimeloggingwitharound</module>
+        <module>executiontimeloggingaspectj</module>
+        <module>executiontimeloggingaspectjcglib</module>
     </modules>
 
     <properties>
