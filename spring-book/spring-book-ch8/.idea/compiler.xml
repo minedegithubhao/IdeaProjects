@@ -7,11 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="executiontimelogging" />
-        <module name="executiontimeloggingwithafterfinally" />
         <module name="executiontimeloggingaspectj" />
         <module name="executiontimeloggingwitharound" />
-        <module name="executiontimeloggingaspectjcglib" />
         <module name="executiontimeloggingthrowsadvice" />
+        <module name="executiontimeloggingwithafterfinally" />
+        <module name="annotations" />
+        <module name="executiontimeloggingaspectjcglib" />
+        <module name="pointcutsextreme" />
       </profile>
     </annotationProcessing>
   </component>

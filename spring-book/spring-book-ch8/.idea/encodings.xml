@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/annotations/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/annotations/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/executiontimelogging/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/executiontimelogging/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/executiontimeloggingaspectj/src/main/java" charset="UTF-8" />
@@ -13,6 +15,8 @@
     <file url="file://$PROJECT_DIR$/executiontimeloggingwithafterfinally/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/executiontimeloggingwitharound/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/executiontimeloggingwitharound/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pointcutsextreme/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pointcutsextreme/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>

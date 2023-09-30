@@ -15,6 +15,8 @@
         <module>executiontimeloggingwitharound</module>
         <module>executiontimeloggingaspectj</module>
         <module>executiontimeloggingaspectjcglib</module>
+        <module>annotations</module>
+        <module>pointcutsextreme</module>
     </modules>
 
     <properties>
