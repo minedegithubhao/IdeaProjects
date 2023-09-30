@@ -16,5 +16,8 @@
         <module name="pointcutsextreme" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="executiontimeloggingannotationconfig" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
