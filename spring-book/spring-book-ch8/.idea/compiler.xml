@@ -12,6 +12,7 @@
         <module name="executiontimeloggingthrowsadvice" />
         <module name="executiontimeloggingwithafterfinally" />
         <module name="annotations" />
+        <module name="annotationswithexception" />
         <module name="executiontimeloggingaspectjcglib" />
         <module name="pointcutsextreme" />
       </profile>

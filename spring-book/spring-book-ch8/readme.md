@@ -136,8 +136,111 @@ public class ExecutionOrderBefore {
     }
 }
 ```
+* 定义切入点
+```java
+// @Component IOC的核心注解，表示该类交给Spring管理
+@Component
+// 标记该类是一个切面Aspect，它的作用是将切点比表达式和通知绑定起来，作用类似于<aop:config>标签
+@Aspect
+public class ExecutionOrderBeforeWithPointCut {
+
+    // 定义切点，这里指匹配所有public修饰的任意包下的任意方法
+    @Pointcut("execution(public * *(..))")
+    public void anyPublicMethod()  {
+    }
+
+    // 定义通知Before，同时将切点和通知绑定起来
+    @Before("anyPublicMethod()")
+    public void beforeWithPointCut(JoinPoint joinPoint) {
+        System.out.println("===1.1. Before Advice with @PointCut.");
+    }
+}
+```
+* 给通知绑定多个切点
+```java
+// IOC核心注解，用来告诉Spring该类交给Spring管理
+@Component
+// 切面（类），在切面中定义切点和通知，并将切点和通知进行绑定，其作用类似与XML中的<aop:config>
+@Aspect
+public class ExecutionOrderAfterWithMultiplePointCut {
+
+    // 切点1，匹配所有包下所有类的public修饰的方法
+    @Pointcut("execution(public * *(..))")
+    public void anyPublicMethod() {
+    }
+
+    // 切点2，匹配所有使用`@MarkerAnnotation`修饰的方法
+    @Pointcut("@annotation(org.example.MarkerAnnotation)")
+    public void annotatedWithMarkerAnnotation() {
+    }
+
+    // 给通知绑定多个其切入点
+    @After(value = "anyPublicMethod() & annotatedWithMarkerAnnotation()")
+    public void afterWithMultiplePointcut(JoinPoint joinPoint) {
+        System.out.println("===5.1. After Advice with Multiple Pointcut applied on method.");
+    }
+}
+```
+* 获取通知的返回值
+```java
+// 该类由Spring进行管理
+@Component
+// 表示切面（类），切面中用来定义切点和通知，并将他们绑定起来，类似XML中的<aop:config>
+@Aspect
+public class ExecutionOrderAfterReturning {
+
+    // 匹配所有包下的所有类中public修饰及有返回值的方法，并接受返回值
+    @AfterReturning(value = "execution(public * *(..))", returning = "result")
+    public void afterReturning(JoinPoint joinPoint, String result) {
+        System.out.println("===6. After Returning Advice." + result);
+    }
+}
+```
+* 访问方法返回的异常信息[ExecutionOrderAfterThrowing.java](annotationswithexception%2Fsrc%2Fmain%2Fjava%2Forg%2Fexample%2Faspect%2FExecutionOrderAfterThrowing.java)
+```java
+// 该类由Spring进行管理
+@Component
+// 该类是切面，在切面中我们常定义切点和通知，并将他们绑定起来，类似XML配置中的<aop:config>
+@Aspect
+public class ExecutionOrderAfterThrowing {
+
+    // 抛出异常后进入，并获取到异常信息
+    @AfterThrowing(value = "within(org.example.bean.MyOtherBeanImpl)", throwing = "t")
+    public void afterThrowing(JoinPoint joinPoint, Throwable t) {
+        System.out.println("===3 After throwing an exception: " + t.getMessage());
+    }
+}
+```
 ## [executiontimeloggingaspectj](executiontimeloggingaspectj)
-该示例演示了基于XML在Spring中使用`Aspectj`。
+该示例演示了`@Around`
+```java
+// 该类由Spring进行管理
+@Component
+// 这是一个切面，在其中定义切点和通知的，并将它们绑定起来，类似与XML中的<aop:config>
+@Aspect
+public class ExecutionTimeLoggingAspectJ {
+
+    // 匹配所有包下的所有类中的所有public修饰的方法
+    @Around("execution(public * *(..))")
+    public Object profile(ProceedingJoinPoint pjp) throws Throwable {
+        // Step1:执行前的逻辑
+        long startTime = System.nanoTime();
+
+        String className = pjp.getTarget().getClass().getCanonicalName();
+        String methodName = pjp.getSignature().getName();
+
+        // Step2:执行pjp.proceed();
+        Object output = pjp.proceed();
+        
+        // Step3:执行后的逻辑
+        long elapsedTime = System.nanoTime() - startTime;
+        System.out.println("Execution of " + className + "#" + methodName + " ended in " + new BigDecimal(elapsedTime).divide(new BigDecimal(1000000)) + " milliseconds");
+
+        // Step4:返回执行结果
+        return output;
+    }
+}
+```
 ## [executiontimeloggingaspectjcglib](executiontimeloggingaspectjcglib)
 该示例演示了基于XML在Spring中使用`cglib`, 只需要设置在`<aop:aspectj-autoproxy />` 中加上`proxy-target-class="true"` 属性就有JDK动态代理变成了`Cglib`
 

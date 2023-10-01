@@ -17,6 +17,7 @@
         <module>executiontimeloggingaspectjcglib</module>
         <module>annotations</module>
         <module>pointcutsextreme</module>
+        <module>annotationswithexception</module>
     </modules>
 
     <properties>
