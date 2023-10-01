@@ -19,6 +19,7 @@
         <module>pointcutsextreme</module>
         <module>annotationswithexception</module>
         <module>declareparents</module>
+        <module>executiontimeloggingannotationconfig</module>
     </modules>
 
     <properties>

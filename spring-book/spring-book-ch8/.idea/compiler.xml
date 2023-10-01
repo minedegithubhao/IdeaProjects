@@ -9,6 +9,7 @@
         <module name="executiontimelogging" />
         <module name="executiontimeloggingaspectj" />
         <module name="declareparents" />
+        <module name="executiontimeloggingannotationconfig" />
         <module name="executiontimeloggingwitharound" />
         <module name="executiontimeloggingthrowsadvice" />
         <module name="executiontimeloggingwithafterfinally" />
@@ -18,8 +19,5 @@
         <module name="pointcutsextreme" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="executiontimeloggingannotationconfig" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

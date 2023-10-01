@@ -342,3 +342,5 @@ public class Main {
 }
 
 ```
+## [executiontimeloggingannotationconfig](executiontimeloggingannotationconfig)
+本示例演示了使用注解配置Spring AOP
