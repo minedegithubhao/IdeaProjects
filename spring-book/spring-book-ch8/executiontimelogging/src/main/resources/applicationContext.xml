@@ -10,8 +10,9 @@
                            http://www.springframework.org/schema/aop
                            http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
-
+    <!--包扫描-->
     <context:component-scan base-package="org.example" />
+    <!--注解驱动，用来识别@Service、@Component、@AutoWired等注解-->
     <context:annotation-config />
 
     <!--ExecutionTimeLoggingSpringAOP就是一个通知（类）-->

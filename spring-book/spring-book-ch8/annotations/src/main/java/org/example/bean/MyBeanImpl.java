@@ -12,7 +12,7 @@ public class MyBeanImpl implements MyBean {
 
     @Override
     @MarkerAnnotation
-    public void sayHello() {
+    public void sayHello(String name) {
         System.out.println("===3. Actual method execution.");
         System.out.println("Hello..!");
     }

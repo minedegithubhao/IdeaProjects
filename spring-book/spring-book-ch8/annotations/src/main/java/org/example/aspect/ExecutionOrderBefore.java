@@ -17,6 +17,6 @@ public class ExecutionOrderBefore {
 
     @Before(value = "execution(public * *(..)) && args(param)")
     public void before(JoinPoint joinPoint, String param) {
-        System.out.println("===1. Before Advice.");
+        System.out.println("===1. Before Advice." + param);
     }
 }

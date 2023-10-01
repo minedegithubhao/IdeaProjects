@@ -104,9 +104,40 @@ public void after() {
 }
 public class MyBeanImpl implements MyBean, MarkerInterface {}
 ```
+## [annotations](annotations)
+该示例演示了基于注解来配置Spring容器
+* 定义通知
+```java
+// @Component组件，告诉Spring这个类由Spring来管理
+@Component
+// 标记该类是一个通知
+@Aspect
+public class ExecutionOrderBefore {
+
+    // 匹配所有包下public修饰的方方法
+    @Before(value = "execution(public * *(..))")
+    public void before(JoinPoint joinPoint) {
+        System.out.println("===1. Before Advice.");
+    }
+}
+```
+* 定义通知，访问传递的参数
+```java
+// IOC注解，表示该类交给Spring管理
+@Component
+// 该类是一个通知类
+@Aspect
+public class ExecutionOrderBefore {
+
+    // args(param)将方法的参数名称绑定到过滤器表达式，访问到传递的参数
+    @Before(value = "execution(public * *(..)) && args(param)")
+    public void before(JoinPoint joinPoint, String param) {
+        System.out.println("===1. Before Advice." + param);
+    }
+}
+```
 ## [executiontimeloggingaspectj](executiontimeloggingaspectj)
 该示例演示了基于XML在Spring中使用`Aspectj`。
 ## [executiontimeloggingaspectjcglib](executiontimeloggingaspectjcglib)
 该示例演示了基于XML在Spring中使用`cglib`, 只需要设置在`<aop:aspectj-autoproxy />` 中加上`proxy-target-class="true"` 属性就有JDK动态代理变成了`Cglib`
-## [annotations](annotations)
-该示例演示了基于 Java 的配置
+

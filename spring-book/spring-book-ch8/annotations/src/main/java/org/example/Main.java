@@ -14,6 +14,6 @@ public class Main {
         ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 
         MyBean myBean = context.getBean(MyBean.class);
-        myBean.sayHello();
+        myBean.sayHello("张三");
     }
 }

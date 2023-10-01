@@ -6,5 +6,5 @@ package org.example.bean;
  */
 public interface MyBean {
 
-    void sayHello();
+    void sayHello(String name);
 }
