@@ -13,7 +13,6 @@
     <context:component-scan base-package="org.example" />
     <context:annotation-config/>
 
-    <!--启用AspectJ注解风格的AOP支持。可以在Spring应用程序中使用AspectJ注解（例如 @Aspect、@Pointcut、@Before、@After 等）来定义切面-->
     <aop:aspectj-autoproxy/>
 
 </beans>

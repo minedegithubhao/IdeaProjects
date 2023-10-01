@@ -18,6 +18,7 @@
         <module>annotations</module>
         <module>pointcutsextreme</module>
         <module>annotationswithexception</module>
+        <module>declareparents</module>
     </modules>
 
     <properties>

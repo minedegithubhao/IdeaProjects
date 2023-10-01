@@ -211,8 +211,21 @@ public class ExecutionOrderAfterThrowing {
     }
 }
 ```
+## [declareparents](declareparents)
+本示例演示类如何实现"多重继承"
+```java
+// 该类由Spring进行管理
+@Component
+// 这是一个切面（类），常用来定义切点和通知，并将他们绑定起来，类似于XML中的<aop:config>
+@Aspect
+public class GreekMythologyIntroducer {
+    // 匹配Pegasus及其子类
+    @DeclareParents(value = "org.example.bean.Pegasus+", defaultImpl = Bird.class)
+    public static IBird iBird;
+}
+```
 ## [executiontimeloggingaspectj](executiontimeloggingaspectj)
-该示例演示了`@Around`
+该示例演示使用AspectJ框架
 ```java
 // 该类由Spring进行管理
 @Component
@@ -241,6 +254,91 @@ public class ExecutionTimeLoggingAspectJ {
     }
 }
 ```
-## [executiontimeloggingaspectjcglib](executiontimeloggingaspectjcglib)
-该示例演示了基于XML在Spring中使用`cglib`, 只需要设置在`<aop:aspectj-autoproxy />` 中加上`proxy-target-class="true"` 属性就有JDK动态代理变成了`Cglib`
+```xml
+<!--包扫描-->
+<context:component-scan base-package="org.example" />
+<!--启用注解驱动，告诉Spring自动扫描并注册注解类及其依赖关系-->
+<context:annotation-config/>
 
+<!--启用AspectJ注解风格的AOP支持。可以在Spring应用程序中使用AspectJ注解（例如 @Aspect、@Pointcut、@Before、@After 等）来定义切面-->
+<aop:aspectj-autoproxy/>
+```
+## [executiontimeloggingaspectjcglib](executiontimeloggingaspectjcglib)
+该示例演示了在Spring中使用`cglib`, 只需要设置在`<aop:aspectj-autoproxy />` 中加上`proxy-target-class="true"` 属性就有JDK动态代理变成了`Cglib`
+```xml
+<!--包扫描-->
+<context:component-scan base-package="org.example" />
+<!--启用注解驱动-->
+<context:annotation-config />
+<!--启用AspectJ注解风格的AOP支持，并选择使用CGLIB代理方式（即基于类的代理）而非JDK动态代理（基于接口的代理）。-->
+<aop:aspectj-autoproxy proxy-target-class="true" />
+```
+>CGLIB代理方式（基于类的代理）和JDK动态代理（基于接口的代理），它在创建代理对象的方式和代理的目标对象类型上存在差异
+* CGLIB创建代理
+```java
+public class UserService {
+    public void saveUser() {
+        // 保存用户逻辑
+    }
+}
+
+public class MyMethodInterceptor implements MethodInterceptor {
+    @Override
+    public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+        // 在方法调用前或后添加逻辑
+        return proxy.invokeSuper(obj, args);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(UserService.class);
+        enhancer.setCallback(new MyMethodInterceptor());
+        UserService proxy = (UserService) enhancer.create();
+
+        proxy.saveUser(); // 代理对象调用目标类的方法
+    }
+}
+```
+* JDK动态代理
+```java
+public interface UserService {
+    void saveUser();
+}
+
+public class UserServiceImpl implements UserService {
+    @Override
+    public void saveUser() {
+        // 保存用户逻辑
+    }
+}
+
+public class MyInvocationHandler implements InvocationHandler {
+    private Object target;
+
+    public MyInvocationHandler(Object target) {
+        this.target = target;
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        // 在方法调用前或后添加逻辑
+        return method.invoke(target, args);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        UserService userService = new UserServiceImpl();
+        UserService proxy = (UserService) Proxy.newProxyInstance(
+                userService.getClass().getClassLoader(),
+                userService.getClass().getInterfaces(),
+                new MyInvocationHandler(userService)
+        );
+
+        proxy.saveUser(); // 代理对象调用目标类的方法
+    }
+}
+
+```

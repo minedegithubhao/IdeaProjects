@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="executiontimelogging" />
         <module name="executiontimeloggingaspectj" />
+        <module name="declareparents" />
         <module name="executiontimeloggingwitharound" />
         <module name="executiontimeloggingthrowsadvice" />
         <module name="executiontimeloggingwithafterfinally" />
