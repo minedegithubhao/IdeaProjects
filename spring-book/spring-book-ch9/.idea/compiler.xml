@@ -7,9 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="helloworld" />
-        <module name="annotationconfig" />
         <module name="variables" />
         <module name="methodinvocation" />
+        <module name="functions" />
+        <module name="operators" />
+        <module name="annotationconfig" />
         <module name="xmlconfig" />
       </profile>
     </annotationProcessing>

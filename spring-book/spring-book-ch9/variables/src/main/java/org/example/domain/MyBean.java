@@ -5,4 +5,13 @@ package org.example.domain;
  */
 public class MyBean {
 
+    private String property = "property";
+
+    public String getProperty() {
+        return property;
+    }
+
+    public void setProperty(String property) {
+        this.property = property;
+    }
 }

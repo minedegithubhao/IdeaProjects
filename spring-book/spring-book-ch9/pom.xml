@@ -14,6 +14,8 @@
         <module>helloworld</module>
         <module>methodinvocation</module>
         <module>variables</module>
+        <module>functions</module>
+        <module>operators</module>
     </modules>
 
     <properties>
