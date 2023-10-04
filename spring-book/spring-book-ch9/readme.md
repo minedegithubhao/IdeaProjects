@@ -35,3 +35,28 @@ public void helloWorldParsedOK() {
     assertThat(value, is("Hello World!"));
 }
 ```
+分析器默认使用前缀"#"，后缀为"}",但是也提供了这种修改这种默认方式的方法
+```java
+@Test
+public void helloWorldParsedWithDifferentPrefixAndSuffixOK() {
+    // 使用下划线"_"作为前后缀来进行解析
+    Expression exp = parser.parseExpression("_'Hello World!'_", new TemplateParserContext("_", "_"));
+    String value = exp.getValue(String.class);
+    assertThat(value, is("Hello World!"));
+}
+```
+>#{}和${}的区别
+* #{}常用于XML配置文件或注解中，例如Spring的bean定义、注解中的@Value注解等。
+```xml
+<bean id="myBean" class="com.example.MyBean">
+    <property name="propertyValue" value="#{someBean.someProperty}" />
+</bean>
+```
+```java
+@Value("#{someBean.someProperty}")
+private String propertyValue;
+```
+* ${} 表达式常用于属性文件（例如.properties文件）中
+```properties
+db.url=jdbc:mysql://${db.host}:${db.port}/mydatabase
+```
