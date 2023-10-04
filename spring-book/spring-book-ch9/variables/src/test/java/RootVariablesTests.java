@@ -1,6 +1,4 @@
-package org.example;
-
-import com.wiley.beginningspring.ch9.domain.MyBean;
+import org.example.domain.MyBean;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.expression.ExpressionParser;

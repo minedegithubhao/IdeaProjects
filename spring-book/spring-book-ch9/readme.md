@@ -68,3 +68,4 @@ db.url=jdbc:mysql://${db.host}:${db.port}/mydatabase
     <property name="song" value="#{show2.guitarSong()}" />
 </bean>
 ```
+## [variables](variables)

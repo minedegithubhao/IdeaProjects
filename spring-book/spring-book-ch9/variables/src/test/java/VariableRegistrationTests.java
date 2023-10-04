@@ -1,5 +1,3 @@
-package org.example;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.expression.ExpressionParser;
@@ -13,7 +11,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * Created by mertcaliskan
  * on 14/08/14.
  */
-public class qVariableRegistrationTests {
+public class VariableRegistrationTests {
 
     ExpressionParser parser;
 
@@ -24,6 +22,7 @@ public class qVariableRegistrationTests {
 
     @Test
     public void variableRegisteredOK() {
+        //SpEL中使用StandardEvaluationContext查找表达式中存在的任何变量。
         StandardEvaluationContext context = new StandardEvaluationContext();
         context.setVariable("message", "Hello World!");
         String value = parser.parseExpression("#message").getValue(context, String.class);
