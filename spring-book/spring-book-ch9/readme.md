@@ -60,3 +60,11 @@ private String propertyValue;
 ```properties
 db.url=jdbc:mysql://${db.host}:${db.port}/mydatabase
 ```
+## [methodinvocation](methodinvocation)
+该示例演示来SpEL调用构造方法、方法、静态方法。
+```xml
+<bean id="show2" class="org.example.Show">
+    <property name="instrument" value="Guitar" />
+    <property name="song" value="#{show2.guitarSong()}" />
+</bean>
+```

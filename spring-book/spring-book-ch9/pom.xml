@@ -12,6 +12,8 @@
         <module>xmlconfig</module>
         <module>annotationconfig</module>
         <module>helloworld</module>
+        <module>methodinvocation</module>
+        <module>variables</module>
     </modules>
 
     <properties>
