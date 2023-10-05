@@ -7,10 +7,9 @@
                            http://www.springframework.org/schema/cache
                            http://www.springframework.org/schema/cache/spring-cache-4.0.xsd">
 
-    <!--cache-manager默认查找cacheManager，当然也可以指定Bean-->
-    <cache:annotation-driven cache-manager="cacheManager"/>
+    <cache:annotation-driven />
 
-    <bean id="userService" class="org.example.UserService"/>
+    <bean id="userService" class="org.example.UserService" />
 
     <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
         <property name="caches">

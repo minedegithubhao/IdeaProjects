@@ -10,6 +10,10 @@
     <packaging>pom</packaging>
     <modules>
         <module>simplecachemanager</module>
+        <module>annotationconfig</module>
+        <module>customkey</module>
+        <module>condition</module>
+        <module>cacheevict</module>
     </modules>
 
     <properties>
