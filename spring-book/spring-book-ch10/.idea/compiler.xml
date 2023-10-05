@@ -7,11 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="customkey" />
-        <module name="annotationconfig" />
         <module name="simplecachemanager" />
         <module name="condition" />
         <module name="cacheput" />
         <module name="cacheevict" />
+        <module name="annotationconfig" />
+        <module name="caching" />
       </profile>
     </annotationProcessing>
   </component>

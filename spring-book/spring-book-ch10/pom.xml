@@ -15,6 +15,7 @@
         <module>condition</module>
         <module>cacheevict</module>
         <module>cacheput</module>
+        <module>caching</module>
     </modules>
 
     <properties>

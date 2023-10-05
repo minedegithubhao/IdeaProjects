@@ -130,3 +130,24 @@ public class UserService {
 >`@Cacheable`和`@CachePut`的区别在于
 > * @Cacheable 主要用于读取缓存，而 @CachePut 主要用于更新缓存
 > * `@Cacheable` 从缓存中获取数据，如果缓存中有数据，方法将不会被执行。`@CachePut` 将方法的返回值存入缓存，无论缓存中是否有数据，方法都会被执行。
+## [caching](caching)
+该示例演示了如何使用组注解
+```java
+public class ClassroomService {
+
+    private Map<Integer, Person> ppl = new HashMap<Integer, Person>();
+    {
+        ppl.put(1, new Teacher(1, "Mert"));
+        ppl.put(2, new Student(2, "Tugce"));
+    }
+
+    // 如果obj的类型是Student则走students缓存域，类型是Teacher走teachers缓存域
+    @Caching(cacheable = {
+        @Cacheable(value = "students", condition = "#obj instanceof T(org.example.Student)"),
+        @Cacheable(value = "teachers", condition = "#obj instanceof T(org.example.Teacher)")
+    })
+    public Person getPerson(Person obj) {
+        return ppl.get(obj.getId());
+    }
+}
+```
