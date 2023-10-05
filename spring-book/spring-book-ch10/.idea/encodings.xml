@@ -5,6 +5,8 @@
     <file url="file://$PROJECT_DIR$/annotationconfig/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cacheevict/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cacheevict/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cacheput/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cacheput/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/condition/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/condition/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/customkey/src/main/java" charset="UTF-8" />

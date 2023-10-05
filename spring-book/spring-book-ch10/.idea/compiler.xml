@@ -10,6 +10,7 @@
         <module name="annotationconfig" />
         <module name="simplecachemanager" />
         <module name="condition" />
+        <module name="cacheput" />
         <module name="cacheevict" />
       </profile>
     </annotationProcessing>

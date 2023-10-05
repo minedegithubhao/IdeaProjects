@@ -103,7 +103,30 @@ public class UserService {
     // 从users缓存移除对象
     @CacheEvict("users")
     public void removeUser(int id) {
-        users.remove(id);
+       // 仅从缓存中去除，不删除数据
+//        users.remove(id);
     }
 }
 ```
+## [cacheput](cacheput)
+该示例演示了如何向缓存域中添加缓存
+```java
+public class UserService {
+
+    private Map<Integer, User> users = new HashMap<Integer, User>();
+    {
+        users.put(1, new User(1, "Kenan"));
+        users.put(2, new User(2, "Mert"));
+    }
+
+    // 向缓存域中添加数据
+    @CachePut(value = "users")
+    public User getUser(int id) {
+        System.out.println("User with id " + id + " requested.");
+        return users.get(id);
+    }
+}
+```
+>`@Cacheable`和`@CachePut`的区别在于
+> * @Cacheable 主要用于读取缓存，而 @CachePut 主要用于更新缓存
+> * `@Cacheable` 从缓存中获取数据，如果缓存中有数据，方法将不会被执行。`@CachePut` 将方法的返回值存入缓存，无论缓存中是否有数据，方法都会被执行。

@@ -1,11 +1,9 @@
 package org.example;
 
-import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,15 +18,9 @@ public class UserService {
         users.put(2, new User(2, "Mert"));
     }
 
-    @Cacheable(value = "users")
+    @CachePut(value = "users")
     public User getUser(int id) {
         System.out.println("User with id " + id + " requested.");
         return users.get(id);
-    }
-
-    // 仅从缓存中去除，不删除数据
-    @CacheEvict("users")
-    public void removeUser(int id) {
-//        users.remove(id);
     }
 }
