@@ -7,12 +7,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="customkey" />
+        <module name="hazelcastintegration" />
         <module name="simplecachemanager" />
         <module name="condition" />
+        <module name="initialisecache" />
         <module name="cacheput" />
+        <module name="concurrentmapcachemanager" />
         <module name="cacheevict" />
+        <module name="noopcachemanager" />
         <module name="annotationconfig" />
         <module name="caching" />
+        <module name="compositecachemanager" />
       </profile>
     </annotationProcessing>
   </component>

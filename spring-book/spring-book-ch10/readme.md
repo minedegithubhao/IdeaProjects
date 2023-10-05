@@ -151,3 +151,45 @@ public class ClassroomService {
     }
 }
 ```
+## 缓存管理器
+### [noopcachemanager](noopcachemanager)(没有用)
+该示例演示了noopcachemanager缓存管理器，该管理器实际上并不缓存
+### [concurrentmapcachemanager](concurrentmapcachemanager)
+该示例演示了`concurrentmapcachemanager`缓存管理器，该管理器配置简单，用法同`SimpleCacheManager`,他们两个的区别在于：
+* ConcurrentMapCacheManager 适用于小规模应用程序，它将缓存数据存储在内存中的 ConcurrentHashMap 中。
+* SimpleCacheManager 更灵活，可以同时管理多个不同类型的缓存，例如将一个缓存存储在内存中，另一个缓存存储在外部缓存服务器中。
+### [hazelcastintegration](hazelcastintegration)
+该示例演示了Hazelcast分布式缓存框架
+### [compositecachemanager](compositecachemanager)
+该示例演示了在应用程序中使用多种不同的缓存策略
+## [initialisecache](initialisecache)
+该示例演示了如何在程序启动时，将数据加载到缓存中
+```java
+@Service
+public class UserService {
+
+    private Map<Integer, User> users = new HashMap<>();
+    {
+        users.put(1, new User(1, "Kenan"));
+        users.put(2, new User(2, "Mert"));
+    }
+
+    @Autowired
+    private CacheManager cacheManager;
+
+    // Spring启动时会调用该方法，将数据加载到 users 缓存域中
+    @PostConstruct
+    public void setup() {
+        Cache usersCache = cacheManager.getCache("users");
+        for (Integer key : users.keySet()) {
+            usersCache.put(key, users.get(key));
+        }
+    }
+
+    @Cacheable(value = "users")
+    public User getUser(int id) {
+        System.out.println("User with id " + id + " requested.");
+        return users.get(id);
+    }
+}
+```
