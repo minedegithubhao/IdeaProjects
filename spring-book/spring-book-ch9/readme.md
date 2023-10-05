@@ -94,14 +94,14 @@ assertThat(parser.parseExpression("#root.property").getValue(context), is("prope
 ```java
 public void systemPropertyFetchedOK() {
     StandardEvaluationContext context = new StandardEvaluationContext();
-    context.setBeanResolver(new BeanFactoryResolver(new AnnotationConfigApplicationContext(ApplicationConfig.class)));
+    context.setBeanResolver(new BeanFactoryResolver(new AnnotationConfigApplicationContext(org.example.ApplicationConfig.class)));
     String value = parser.parseExpression("@systemProperties['java.version']").getValue(context, String.class);
     assertThat(value, startsWith("1.8"));
 }
 
 public void systemEnvironmentVariableFetchedOK() {
     StandardEvaluationContext context = new StandardEvaluationContext();
-    context.setBeanResolver(new BeanFactoryResolver(new AnnotationConfigApplicationContext(ApplicationConfig.class)));
+    context.setBeanResolver(new BeanFactoryResolver(new AnnotationConfigApplicationContext(org.example.ApplicationConfig.class)));
     String value = parser.parseExpression("@systemEnvironment[JAVA_HOME]").getValue(context, String.class);
     System.out.println(value);
 }
@@ -272,5 +272,18 @@ public void collectionLastElementAccessOK() {
     // 找到最后一个大于3的元素
     Integer element = parser.parseExpression("#root.$[#this>3]").getValue(context, Integer.class);
     assertThat(element, is(9));
+}
+```
+## [utilities](utilities)
+本示例演示了SpEL所提供的实用工具
+* 访问SpringBean
+```java
+@Test
+public void springBeanAccessWorksOK() {
+    StandardEvaluationContext context = new StandardEvaluationContext();
+    context.setBeanResolver(new BeanFactoryResolver(new AnnotationConfigApplicationContext(ApplicationConfig.class)));
+    Expression exp = parser.parseExpression("@myBean.sayHello()");
+    String value = exp.getValue(context, String.class);
+    assertThat(value, is("Hello!"));
 }
 ```

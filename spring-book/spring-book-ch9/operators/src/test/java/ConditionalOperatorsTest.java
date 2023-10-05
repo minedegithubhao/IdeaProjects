@@ -1,4 +1,4 @@
-import domain.User;
+import org.example.domain.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.expression.ExpressionParser;

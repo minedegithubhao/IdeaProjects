@@ -1,5 +1,5 @@
-import domain.Country;
-import domain.Worker;
+import org.example.domain.Country;
+import org.example.domain.Worker;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.expression.ExpressionParser;

@@ -22,7 +22,7 @@ public class StaticConstantFieldAccessInNestedClassTest {
 
     @Test
     public void staticConstantFieldAccessInNestedClassWorksOK() {
-        Expression exp = parser.parseExpression("T(domain.MyClass$MyNestedClass).VALUE");
+        Expression exp = parser.parseExpression("T(org.example.domain.MyClass$MyNestedClass).VALUE");
         Integer value = exp.getValue(Integer.class);
         assertThat(value, is(10));
     }

@@ -16,6 +16,7 @@
         <module>variables</module>
         <module>functions</module>
         <module>operators</module>
+        <module>utilities</module>
     </modules>
 
     <properties>

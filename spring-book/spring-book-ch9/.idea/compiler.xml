@@ -12,6 +12,7 @@
         <module name="functions" />
         <module name="operators" />
         <module name="annotationconfig" />
+        <module name="utilities" />
         <module name="xmlconfig" />
       </profile>
     </annotationProcessing>
