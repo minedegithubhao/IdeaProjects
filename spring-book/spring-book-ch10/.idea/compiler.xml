@@ -9,15 +9,17 @@
         <module name="customkey" />
         <module name="hazelcastintegration" />
         <module name="simplecachemanager" />
-        <module name="condition" />
         <module name="initialisecache" />
         <module name="cacheput" />
         <module name="concurrentmapcachemanager" />
-        <module name="cacheevict" />
-        <module name="noopcachemanager" />
         <module name="annotationconfig" />
+        <module name="ehcacheintegration" />
         <module name="caching" />
         <module name="compositecachemanager" />
+        <module name="condition" />
+        <module name="guavaintegration" />
+        <module name="cacheevict" />
+        <module name="noopcachemanager" />
       </profile>
     </annotationProcessing>
   </component>
