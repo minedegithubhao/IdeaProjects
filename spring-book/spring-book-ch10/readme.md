@@ -158,8 +158,10 @@ public class ClassroomService {
 该示例演示了`concurrentmapcachemanager`缓存管理器，该管理器配置简单，用法同`SimpleCacheManager`,他们两个的区别在于：
 * ConcurrentMapCacheManager 适用于小规模应用程序，它将缓存数据存储在内存中的 ConcurrentHashMap 中。
 * SimpleCacheManager 更灵活，可以同时管理多个不同类型的缓存，例如将一个缓存存储在内存中，另一个缓存存储在外部缓存服务器中。
-### [hazelcastintegration](hazelcastintegration)（推荐使用该方式进行缓存配置）
+****
+### [hazelcastintegration](hazelcastintegration)（****推荐使用该方式进行缓存配置****）
 该示例演示了Hazelcast分布式缓存框架
+****
 >缓存类实现Serializable接口，并有默认的构造器
 ### [compositecachemanager](compositecachemanager)
 该示例演示了在应用程序中使用多种不同的缓存策略
