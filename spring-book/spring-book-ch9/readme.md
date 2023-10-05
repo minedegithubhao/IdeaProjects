@@ -204,6 +204,7 @@ public void ternaryOperatorWorksOK() {
 public void elvisOperatorWorksOK() {
     User user1 = new User();
     StandardEvaluationContext context1 = new StandardEvaluationContext(user1);
+    // name == null 则将name = 'Funda'，否则name的值不变，
     assertThat(p.parseExpression("Name ?: 'Funda'").getValue(context1, String.class), is("Funda"));
 
     User user2 = new User("Mert");
@@ -211,4 +212,65 @@ public void elvisOperatorWorksOK() {
     assertThat(p.parseExpression("Name ?: 'Funda'").getValue(context2, String.class), is("Mert"));
 }
 ```
+* 正则表达式运算符
+```java
+@Test
+public void relationalOperatorsWorkOK() {
+    assertThat(p.parseExpression("35 matches '[0-9]+'").getValue(Boolean.class), is(true));
+    assertThat(p.parseExpression("'John' matches '[A-Za-z]+'").getValue(Boolean.class), is(true));
+}
+```
+* 安全导航符
+```java
+@Test
+public void safeNavigationOperatorsWorkOK() {
+    Employee employee = new Employee("Mert");
+    StandardEvaluationContext context = new StandardEvaluationContext(employee);
 
+    // 如果Address不为null，则返回name属性，如果Address为null则返回null
+    assertThat(p.parseExpression("Address?.Name").getValue(context, String.class), is(nullValue()));
+}
+```
+* 集合选择和投影
+```java
+@Test
+public void collectionSelectedOK() {
+    StandardEvaluationContext context = new StandardEvaluationContext();
+    context.setRootObject(Arrays.asList(1,2,3,4,5,6,7,8,9));
+    // 将所有的偶数删选出来
+    List<Integer> evenNumbers = parser.parseExpression("#root.?[#this%2 == 0 ?: false]").getValue(context, List.class);
+    assertThat(evenNumbers, hasItems(2, 4, 6, 8));
+}
+
+@Test
+public void collectionProjectedOK() {
+    StandardEvaluationContext context = new StandardEvaluationContext();
+    context.setRootObject(Arrays.asList(
+    new Worker("Mert", Country.DE),
+    new Worker("Funda", Country.TR),
+    new Worker("Tugce", Country.USA)));
+    // 从根对象中获取每个Worker对象的birthPlace属性，并将其收集到一个列表里面
+    List<Country> birthPlaces = parser.parseExpression("#root.![#this.birthPlace]").getValue(context, List.class);
+    assertThat(birthPlaces, hasItems(Country.TR, Country.USA, Country.DE));
+}
+```
+* 选择集合的第一个(^[...])和最后一个元素($[...])
+```java
+@Test
+public void collectionFirstElementAccessOK() {
+    StandardEvaluationContext context = new StandardEvaluationContext();
+    context.setRootObject(Arrays.asList(1,2,3,4,5,6,7,8,9));
+    //找到第一个大于3的元素
+    Integer element = parser.parseExpression("#root.^[#this>3]").getValue(context, Integer.class);
+    assertThat(element, is(4));
+}
+
+@Test
+public void collectionLastElementAccessOK() {
+    StandardEvaluationContext context = new StandardEvaluationContext();
+    context.setRootObject(Arrays.asList(1,2,3,4,5,6,7,8,9));
+    // 找到最后一个大于3的元素
+    Integer element = parser.parseExpression("#root.$[#this>3]").getValue(context, Integer.class);
+    assertThat(element, is(9));
+}
+```
