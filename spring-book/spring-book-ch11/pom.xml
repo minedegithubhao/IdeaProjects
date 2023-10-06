@@ -11,6 +11,8 @@
     <modules>
         <module>basic</module>
         <module>basicwithannotations</module>
+        <module>basicwithxml</module>
+        <module>exceptionhandling</module>
     </modules>
 
     <properties>
