@@ -4,6 +4,15 @@
 >HttpStatus中定义了常见的状态码，如下图
 
 ![img.png](img.png)
+
+GET ： 查询
+
+POST ： 新增
+
+PUT ： 修改
+
+DELETE ： 删除
+
 ## [basicwithannotations](basicwithannotations)
 本示例演示了基于注解创建Rest Web服务
 ## [basicwithxml](basicwithxml)
