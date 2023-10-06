@@ -10,5 +10,8 @@
 本示例演示了基于XML创建Rest Web服务
 ## [exceptionhandling](exceptionhandling)
 本示例演示了Rest Web使用异常处理机制
+## [testing](testing)
+该示例演示了Rest Web的单元测试
 
+![img_1.png](img_1.png)
 

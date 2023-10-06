@@ -10,6 +10,7 @@
         <module name="exceptionhandling" />
         <module name="basic" />
         <module name="basicwithannotations" />
+        <module name="testing" />
       </profile>
     </annotationProcessing>
   </component>
