@@ -22,7 +22,7 @@ public class UpdateUserTest {
     public void updateUserWorksOK() {
         RestTemplate template = new RestTemplate();
         User user = new User(3, "Funda Caliskan");
-        template.put("http://localhost:8080/rest/users/3", user);
+        template.put("http://localhost:8080/basic/rest/users/3", user);
 
         ResponseEntity<List> resultList = template.getForEntity("http://localhost:8080/basic/rest/users", List.class);
         assertNotNull(resultList);
