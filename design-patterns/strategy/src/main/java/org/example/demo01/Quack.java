@@ -1,4 +1,4 @@
-package org.example;
+package org.example.demo01;
 
 public class Quack implements QuackBehavior {
 	public void quack() {

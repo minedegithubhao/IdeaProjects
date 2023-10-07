@@ -1,4 +1,4 @@
-package org.example;
+package org.example.demo01;
 
 public class MallardDuck extends Duck {
 
