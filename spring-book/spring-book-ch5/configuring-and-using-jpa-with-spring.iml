@@ -48,4 +48,7 @@
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-entitymanager:4.3.1.Final" level="project" />
     <orderEntry type="library" name="Maven: com.h2database:h2:1.3.175" level="project" />
   </component>
+  <component name="SonarLintModuleSettings">
+    <option name="uniqueId" value="a453ad41-1638-4443-a364-eb1b1f5623cb" />
+  </component>
 </module>
