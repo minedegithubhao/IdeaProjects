@@ -1,23 +1,22 @@
 package org.example.weather;
 
 import java.util.*;
-import java.util.Observer;
 
 public class WeatherData implements Subject {
-	private List<java.util.Observer> observers;
+	private List<Observer> observers;
 	private float temperature;
 	private float humidity;
 	private float pressure;
 	
 	public WeatherData() {
-		observers = new ArrayList<java.util.Observer>();
+		observers = new ArrayList<Observer>();
 	}
 	
-	public void registerObserver(java.util.Observer o) {
+	public void registerObserver(Observer o) {
 		observers.add(o);
 	}
 	
-	public void removeObserver(java.util.Observer o) {
+	public void removeObserver(Observer o) {
 		observers.remove(o);
 	}
 	

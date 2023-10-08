@@ -1,5 +1,6 @@
 package org.example.simpleobservable;
 
+
 import java.util.Observable;
 
 public class SimpleSubject extends Observable {
