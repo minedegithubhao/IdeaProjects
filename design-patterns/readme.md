@@ -9,3 +9,5 @@
 Weather-0-Rama气象站有很好的商业营运模式：一旦客户上钩，他们使用每个布告板都要付钱。最好的部分就是，为了感谢贵公司建立此系统，我们将以公司的认股权支付你。
 ![img_1.png](img_1.png)
 ![img_2.png](img_2.png)
+简单的观察者模式 [demo](observer%2Fsrc%2Fmain%2Fjava%2Forg%2Fexample%2Fdemo)
+气象站实现观察者模式 [demo2](observer%2Fsrc%2Fmain%2Fjava%2Forg%2Fexample%2Fdemo2)
