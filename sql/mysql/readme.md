@@ -26,6 +26,7 @@ select 'abcdefg' regexp '[wcx]'
 select 'efg' regexp '[^XYZ]','X' regexp '[^XYZ]'
 ```
 ## SQL优化
+>SQL优化的顺序，先定位慢查询SQL，使用explain分析问问题出现的原因，再根据问题进行优化
 ### 使用`show stauts` 命令了解各种SQL的执行频率
 ```sql
 -- 显示当前session中所有的统计参数的值
@@ -71,3 +72,75 @@ show variables like 'long_query_time';
 SELECT * FROM mysql.slow_log WHERE start_time > NOW() - INTERVAL 1 DAY;
 ```
 >通过`slow_query_log`和`long_query_time`来查看是否开启慢查询日志和慢查询阈值。
+### 通过`explain`分析慢查询语句
+```sql
+explain select sum(profit) from sales;
+```
+![img_1.png](img_1.png)
+* id：表示执行顺序，id相同时越靠上的先执行。
+* select_type：查询的类型
+  * SIMPLE：简单表，不使用表连接或者子查询
+  * PRIMARY：主查询，也叫外层查询，包含表连接或者子查询
+  * SUBQUERY：子查询
+  * UNION：`union`中的第二个或后续查询
+  * DERIVED：`from`字句中的子查询
+* table：查询的的表名
+* type：表示表的连接类型，代表来MySQL如何从表中获取数据。性能由好到坏依次如下：
+  * system：表中仅有一行，即常量表。（这里是说一张表只有一条数据，放心，基本上实际生产中基本不会出现）
+  * const：表中最多由一行匹配，例如主键(primary key)、或者唯一索引(unique key)。
+  * eq_ref：对于前面的每一行，在此表中只查询一条记录，简单来说就是多表查询中使用主键(primary key）、或者唯一索引(unique key)关联
+  * ref：与eq_ref类似，多表查询中使用普通索引。
+  * ref_or_null：与ref类似，区别在于包含对null的查询
+  * index_merge：索引合并优化。
+  * unique_subquery：in的后面是一个查询主键字段的子查询
+  * index_subquery：与unique_subquery类似，in的后面是一个查询非唯一索引字段的子查询。
+  * range：按照索引范围扫描
+  * index：按照索引顺序扫描，前面的每一行都是通过索引得到数据
+  * all：全表扫描，前面的每一行都通过全表扫描得到数据
+* possible_keys：表示查询时，可能使用的索引
+* key：表示查询时，实际使用的索引
+* key_len：索引字段的长度
+* rows：扫描行的数量
+* filtered：表示查询结果的过滤程度，即在所有行中筛选的出行的百分比
+* extra：执行情况的说明和描述
+  * Using where：在存储引擎中使用了where过滤结果集
+  * Using index：表示MySQL使用用索引覆盖，查询可以只通过索引而不必读取实际的数据行
+  * Using temporary：表示MySQL使用了临时表来处理查询
+  * Using filesort：表示MySQL需要对结果集进行排序操作
+>通常，只需要关注type、key、rows等字段，以确定查询的性能瓶颈在哪里，并据此进行索引优化、查询重写等操作。
+## 索引
+### 索引的存储分类
+MySQL中索引的存储类型目前只有2中（btree和hash），MyISAM和InnoDB存储引擎都支持btree索引。
+>MySQL目前不支持函数索引（版本5.0），但是支持字段部分索引，如对字段name的前4位创建索引
+```sql
+create index ind_company_name on company(name(4));
+```
+### MySQL中如何使用索引
+* 复合索引，只有查询条件中使用了最左边的列，索引才会被使用
+```sql
+-- 创建索引
+create index ind_sales_companyId_money on sales(company_id, money);
+-- 查询索引
+show index from sales;
+-- 该sql使用了复合索引ind_sales_companyId_money中左侧的列索引使用索引，如下图
+explain select * from   sales where company_id = 1;
+```
+![img_2.png](img_2.png)
+```sql
+-- 该sql使用了复合索引ind_sales_companyId_money中右侧的索引，索引索引未生效，如下图：
+explain select * from   sales where money > 3000;
+```
+![img_3.png](img_3.png)
+* like使用索引
+```sql
+-- 创建索引
+create index ind_country on sales(country);
+-- 泗洪左like，走了索引
+explain select * from sales where country like 'ch%';
+```
+![img_4.png](img_4.png)
+```sql
+-- 泗洪右like，索引失效,如下图
+explain select * from sales where country like '%ina';
+```
+![img_5.png](img_5.png)
