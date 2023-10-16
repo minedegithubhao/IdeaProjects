@@ -144,3 +144,77 @@ explain select * from sales where country like 'ch%';
 explain select * from sales where country like '%ina';
 ```
 ![img_5.png](img_5.png)
+* null使用索引
+```sql
+-- 创建索引
+create index ind_company_name on company(name);
+-- 查看索引
+show index from company;
+```
+![img_6.png](img_6.png)
+### 索引失效
+* 使用or条件查询时，前面的条件有索引，后面的条件无索引，就会出现索引失效
+```sql
+-- 查看索引
+show index from sales;
+-- 删除索引
+drop index ind_country on sales
+-- 创建索引
+create index ind_money on sales(money);
+-- money有索引，country无索引，导致索引失效
+explain select * from sales where money > 3000 or country = 'china';
+```
+![img_7.png](img_7.png)
+```sql
+-- 有索引
+explain select * from sales where money > 3000;
+```
+![img_8.png](img_8.png)
+* 复合索引如果查询条件不是索引第一列，将会导致索引失效，参照复合索引案例。
+* '%a'，%出现在前面，会导致索引失效。
+* 如果索引列字段类型为字符串，使用where查询时一定要用引号括起来，否则会导致索引失效。
+```sql
+-- 创建索引
+create index ind_sales_companyId on sales(company_id);
+-- 不加引号，索引失效
+explain select * from sales where company_id = 2;
+```
+![img_9.png](img_9.png)
+```sql
+-- 加上引号，索引有效
+explain select * from sales where company_id = '2';
+```
+![img_10.png](img_10.png
+### 查看索引的使用情况
+`show status like 'Handler_read%'`查询结果如下
+![img_11.png](img_11.png)
+* Handler_read_next：表示范围扫描或者索引扫描的次数
+* Handler_read_key： 表示等值查询使用索引的次数。
+
+Handler_read_next 和 Handler_read_key 的比率： 这两个值的比率越高，表示索引的使用越高效
+
+这些值相对于以前的查询有所减少，表示索引的优化对查询性能产生了积极影响。
+```sql
+SELECT * FROM performance_schema.table_io_waits_summary_by_index_usage
+WHERE OBJECT_SCHEMA = 'test' AND OBJECT_NAME = 'sales';
+```
+* COUNT_STAR： 可以告诉你索引被查询的频率。频繁使用的索引通常是被高效利用的。
+* AVG_TIMER_WAIT： 表示了使用该索引的查询的平均等待时间。较低的等待时间通常意味着索引的性能较好。
+* SUM_TIMER_WAIT： 显示了所有查询等待时间的总和，用于评估索引的总体性能。
+
+## 常用SQL优化
+### insert优化
+```sql
+-- 方式一
+insert into sales values (1,2),(3,4),(5,6);
+-- 方式二
+insert into sales values (1,2);
+insert into sales values (3,4);
+insert into sales values (5,6);
+```
+> 同一个客户端使用方式一比方式二要快好几倍，方式一大大缩减了客户端与数据库之间连接、关闭等消耗
+### group by优化
+group by 查询的时候，查看执行计划可能会发现`Extral`里面有Using filesort，filesort很耗时，可以是使用`order by null`来避免filesort。
+
+
+
