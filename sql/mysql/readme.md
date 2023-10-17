@@ -215,6 +215,59 @@ insert into sales values (5,6);
 > 同一个客户端使用方式一比方式二要快好几倍，方式一大大缩减了客户端与数据库之间连接、关闭等消耗
 ### group by优化
 group by 查询的时候，查看执行计划可能会发现`Extral`里面有Using filesort，filesort很耗时，可以是使用`order by null`来避免filesort。
+### order by优化
+* 使用函数、表达式或别名进行排序
+```sql
+-- company_id、money均有索引，索引生效
+select * from sales order by company_id, money;
+-- company_id、money均有索引，order by 顺序与索引顺序相同，且所有列都是升序或降序。
+select * from sales order by company_id desc, money desc;
+-- company_id、money均有索引，查询条件和 order 使用相同的索引列
+select * from sales where company_id = '1' order by company_id desc, money desc;
+```
+```sql
+-- 以下索引失效
+-- 不满足所有列均是升序或者降序，索引失效
+select * from sales order by company_id asc, money desc;
+-- 查询条件和order by 未使用相同的索引，所以失效
+select * from sales year = 2022 order by company_id;
+```
+### 嵌套查询优化
+```sql
+-- sales.company_id 和 company.id 均有索引
+explain select * from sales where company_id not in (select id from company);
+```
+![img_12.png](img_12.png)
+```sql
+-- 优化后,效率提高了
+explain select * from sales s left join company c on c.id = s.company_id where s.company_id is null;
+```
+![img_13.png](img_13.png)
+### or 优化
+三个索引分别是：id、year、company_id 和 year
+```sql
+-- 建立id、year，下面会使用索引
+select * from sales where id = '1' or year = '2006';
+-- 建立复合索引company_id 和 year，下面索引失效
+select * from sales where company_id = '3' or year = '2006';
+```
+### 使用 SQL 提示
+* using index
+```sql
+-- 使用索引
+select * from sales using index (ind_company_id) where company_id = '1';
+-- 忽略索引
+select * from sales ignore index (ind_company_id) where company_id = '1';
+-- 强制使用索引
+select * from sales force index (ind_company_id) where company_id = '1';
+```
+>using index 和 force index 的区别
+
+using index :这并不是强制使用该索引，MySQL优化器仍然会根据查询条件和索引选择性选择最佳索引
+
+force index :它告诉MySQL优化器强制使用指定的索引来处理查询，即使优化器认为其他索引更合适。这个提示会忽略MySQL优化器的选择，强制使用指定的索引进行查询.
+
+
 
 
 
