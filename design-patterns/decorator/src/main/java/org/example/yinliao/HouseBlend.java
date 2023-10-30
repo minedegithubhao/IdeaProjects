@@ -1,4 +1,4 @@
-package headfirst.designpatterns.decorator.starbuzz;
+package org.example.yinliao;
 
 public class HouseBlend extends Beverage {
 	public HouseBlend() {

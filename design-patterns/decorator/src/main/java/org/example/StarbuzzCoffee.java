@@ -1,4 +1,12 @@
-package headfirst.designpatterns.decorator.starbuzz;
+package org.example;
+
+import org.example.tiaoliao.Mocha;
+import org.example.tiaoliao.Soy;
+import org.example.tiaoliao.Whip;
+import org.example.yinliao.Beverage;
+import org.example.yinliao.DarkRoast;
+import org.example.yinliao.Espresso;
+import org.example.yinliao.HouseBlend;
 
 public class StarbuzzCoffee {
  

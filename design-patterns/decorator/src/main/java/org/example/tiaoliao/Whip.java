@@ -1,5 +1,7 @@
-package headfirst.designpatterns.decorator.starbuzz;
- 
+package org.example.tiaoliao;
+
+import org.example.yinliao.Beverage;
+
 public class Whip extends CondimentDecorator {
 	public Whip(Beverage beverage) {
 		this.beverage = beverage;

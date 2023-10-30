@@ -1,4 +1,4 @@
-package org.example;
+package org.example.yinliao;
 
 /**
  * 浓缩咖啡

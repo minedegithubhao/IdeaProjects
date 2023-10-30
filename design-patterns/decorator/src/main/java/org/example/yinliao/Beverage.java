@@ -1,10 +1,10 @@
-package org.example;
+package org.example.yinliao;
 
 /**
  * 饮料
  */
 public abstract class Beverage {
-	String description = "Unknown Beverage";
+	public String description = "Unknown Beverage";
   
 	public String getDescription() {
 		return description;

@@ -1,4 +1,6 @@
-package headfirst.designpatterns.decorator.starbuzz;
+package org.example.tiaoliao;
+
+import org.example.yinliao.Beverage;
 
 public class Mocha extends CondimentDecorator {
 	public Mocha(Beverage beverage) {

@@ -1,4 +1,6 @@
-package headfirst.designpatterns.decorator.starbuzz;
+package org.example.tiaoliao;
+
+import org.example.yinliao.Beverage;
 
 public class Milk extends CondimentDecorator {
 	public Milk(Beverage beverage) {
