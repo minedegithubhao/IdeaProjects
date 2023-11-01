@@ -10,15 +10,11 @@
         <module name="spring-transcation" />
         <module name="myProxyDemo" />
         <module name="java-nio" />
-        <module name="spring-di-01" />
-        <module name="spring-di-02" />
-        <module name="spring-di-03" />
         <module name="lambdaShow" />
         <module name="spring-Profiles" />
         <module name="spring-mybatis" />
         <module name="java-current" />
         <module name="aopDemo" />
-        <module name="iteratorDemo" />
         <module name="java-io" />
         <module name="MyProxyDemo-Static" />
         <module name="rabbitmqDemo" />
