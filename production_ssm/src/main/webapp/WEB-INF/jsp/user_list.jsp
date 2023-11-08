@@ -38,6 +38,7 @@
         </c:if>
     </c:forEach>
     <div style="float: left;">
+<%--        <input class="easyui-combotree" data-options="url:'/organ/list',method:'get',required:true" style="width:200px;">--%>
         <input id="organ" class="easyui-combotree"/>
     </div>
 
@@ -73,83 +74,44 @@
 
 <script>
 
-    <%--
+    var interval = window.setInterval(function () {
+        //等待页面加载完毕
+        if ($("#organ").combobox().length > 0) {
+            $('#organ').combotree({
+                url: 'organ/list',
+                required: true,
+                textField: 'text', // 显示文本字段
+                valueField: 'id', // 值字段
+                onLoadSuccess: function(node, data) {
+                    // 默认展开第一级节点
+                    var roots = $(this).combotree('tree').tree('getRoots');
+                    $(this).combotree('tree').tree('expand', roots[0].target);
+                }
+            });
+            window.clearInterval(interval);
+        }
+    }, 100)
 
-       --%>
-    $(document).ready(function () {
-        $('#organ').combotree({
-            required: true,
-            loadData: [{
-                "id":1,
-                "text":"My Documents",
-                "children":[{
-                    "id":11,
-                    "text":"Photos",
-                    "state":"closed",
-                    "children":[{
-                        "id":111,
-                        "text":"Friend"
-                    },{
-                        "id":112,
-                        "text":"Wife"
-                    },{
-                        "id":113,
-                        "text":"Company"
-                    }]
-                },{
-                    "id":12,
-                    "text":"Program Files",
-                    "children":[{
-                        "id":121,
-                        "text":"Intel"
-                    },{
-                        "id":122,
-                        "text":"Java",
-                        "attributes":{
-                            "p1":"Custom Attribute1",
-                            "p2":"Custom Attribute2"
-                        }
-                    },{
-                        "id":123,
-                        "text":"Microsoft Office"
-                    },{
-                        "id":124,
-                        "text":"Games",
-                        "checked":true
-                    }]
-                },{
-                    "id":13,
-                    "text":"index.html"
-                },{
-                    "id":14,
-                    "text":"about.html"
-                },{
-                    "id":15,
-                    "text":"welcome.html"
-                }]
-            }]
-        });
-    })
-        // $("#organ").combotree({
-        //     url: "/organ/list",
-        //     valueField: "organ_code",
-        //     textField: "organ_name",
-        //     lines: true,
-        //     queryParams: {
-        //         ParamType: "Init",
-        //         Action: "GetProjectTree",
-        //         M: Math.random()
-        //     },
-        //     onBeforeSelect: function (node) {
-        //         // debugger;
-        //         if (!$(this).tree('isLeaf', node.target)) {
-        //             $(this).combo("showPanel");
-        //             return false;
-        //         }
-        //
-        //     }
-        //
-        // });
+    // $("#organ").combotree({
+    //     url: "/organ/list",
+    //     valueField: "organ_code",
+    //     textField: "organ_name",
+    //     lines: true,
+    //     queryParams: {
+    //         ParamType: "Init",
+    //         Action: "GetProjectTree",
+    //         M: Math.random()
+    //     },
+    //     onBeforeSelect: function (node) {
+    //         // debugger;
+    //         if (!$(this).tree('isLeaf', node.target)) {
+    //             $(this).combo("showPanel");
+    //             return false;
+    //         }
+    //
+    //     }
+    //
+    // });
 
     function doSearch_user(value, name) { //用户输入用户名,点击搜素,触发此函数
         if (value == null || value == '') {
