@@ -9,7 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1fadbc75-9071-4e86-9f2d-d692075e739c" name="Changes" comment="m" />
+    <list default="true" id="1fadbc75-9071-4e86-9f2d-d692075e739c" name="Changes" comment="m">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smart_drm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/smart_drm.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/helloReader.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/helloReader.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,13 +52,13 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="localRepository" value="D:\Tools\repository" />
+        <option name="useMavenConfig" value="true" />
         <option name="userSettingsFile" value="D:\Tools\Maven\apache-maven-3.9.4\conf\settings_mine.xml" />
       </MavenGeneralSettings>
     </option>
     <option name="importingSettings">
       <MavenImportingSettings>
         <option name="jdkForImporter" value="corretto-1.8" />
-        <option name="workspaceImportEnabled" value="true" />
       </MavenImportingSettings>
     </option>
   </component>
@@ -63,17 +72,17 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Tools/IdeaProjects/smart_drm/src/main/webapp/WEB-INF/jsp",
+    "last_opened_file_path": "D:/Tools/IdeaProjects/smart_drm/src/main/webapp/WEB-INF/web.xml",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.32528734",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "spring.configuration.checksum": "0567d47e9bfb97138dc50016167fd5eb",
+    "settings.editor.selected.configurable": "spring",
+    "spring.configuration.checksum": "323d07ef8ad0b24046ad071f9a85ea0d",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -196,6 +205,7 @@
       <workItem from="1698756252685" duration="9442000" />
       <workItem from="1699368081289" duration="15000" />
       <workItem from="1699873565192" duration="10133000" />
+      <workItem from="1699885357402" duration="1276000" />
     </task>
     <task id="LOCAL-00001" summary="m">
       <created>1698677640127</created>
@@ -238,5 +248,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="m" />
     <option name="LAST_COMMIT_MESSAGE" value="m" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
