@@ -8,14 +8,21 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <!-- 使用注解的包，包括子集 -->
-    <context:component-scan base-package="com.smartdrm"/>
+    <mvc:annotation-driven/>
     <context:annotation-config />
+    <context:component-scan base-package="com.smartdrm"/>
 
     <!-- 视图解析器 -->
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/jsp/"/>
-        <property name="suffix" value=".jsp"></property>
+        <property name="prefix" value="/WEB-INF/html/"/>
+        <property name="suffix" value=".html"></property>
     </bean>
+    <!--使用html作为view需要添加该配置，否则会报404，具体原因不清楚-->
+    <mvc:default-servlet-handler/>
+
+    <!--静态资源映射，将url中/js/* 映射到/WEB-INF/js/路径 -->
+    <mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
+    <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
+    <mvc:resources location="/WEB-INF/image/" mapping="/image/**"/>
 </beans>
