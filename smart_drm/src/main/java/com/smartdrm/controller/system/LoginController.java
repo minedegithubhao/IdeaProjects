@@ -1,7 +1,9 @@
 package com.smartdrm.controller.system;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author ASUS
@@ -12,8 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginController {
 
-    @RequestMapping(value = {"/","/login"})
+    @RequestMapping("/")
     public String login(){
-        return "helloReader";
+        return "login";
+    }
+
+    @RequestMapping("/login")
+    public String login(String username){
+        System.out.println("登陆成功");
+        return "index";
     }
 }
