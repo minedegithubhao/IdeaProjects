@@ -19,9 +19,9 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping("/login")
+    @RequestMapping("/index")
     public String login(String username){
-        System.out.println("登陆成功");
         return "index";
     }
+
 }
