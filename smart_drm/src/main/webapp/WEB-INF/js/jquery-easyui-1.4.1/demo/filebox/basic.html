@@ -8,6 +8,33 @@
 	<link rel="stylesheet" type="text/css" href="../demo.css">
 	<script type="text/javascript" src="../../jquery.min.js"></script>
 	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			//添加对话框，上传控件初始化
+			$('#file1').filebox({
+				buttonText: '选择文件',  //按钮文本
+				buttonAlign: 'right',   //按钮对齐
+				//multiple: true,       //是否多文件方式
+				accept: 'application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', //指定文件类型
+				onChange: function (e) {
+					change(this);//上传处理
+				}
+			});
+		});
+		function change(_obj){
+			var tempFile = $("#file1");
+			var value=tempFile.filebox('getValue');
+			// 取后缀名
+			var ext=value.substring(value.lastIndexOf(".")+1).toLowerCase();
+			if((ext!='xls')){
+				$.messager.alert("消息提示", "文件格式需为*.xls或*.xlsx 类型", "error");
+				$('#file1').filebox('setValue','');// 清空filebox
+
+				return;
+			}
+		}
+
+	</script>
 </head>
 <body>
 	<h2>Basic FileBox</h2>
@@ -20,7 +47,7 @@
 		</div>
 		<div style="margin-bottom:20px">
 			<div>File1:</div>
-			<input class="easyui-filebox" name="file1" data-options="prompt:'Choose a file...'" style="width:100%">
+			<input class="easyui-filebox" id="file1" name="file1"data-options="prompt:'Choose a file...'" style="width:100%">
 		</div>
 		<div style="margin-bottom:20px">
 			<div>File2:</div>

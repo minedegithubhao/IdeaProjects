@@ -16,7 +16,7 @@
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/html/"/>
-        <property name="suffix" value=".html"></property>
+        <property name="suffix" value=".html"/>
     </bean>
     <!--使用html作为view需要添加该配置，否则会报404，具体原因不清楚-->
     <mvc:default-servlet-handler/>
@@ -24,5 +24,4 @@
     <!--静态资源映射，将url中/js/* 映射到/WEB-INF/js/路径 -->
     <mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
     <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
-    <mvc:resources location="/WEB-INF/image/" mapping="/image/**"/>
 </beans>

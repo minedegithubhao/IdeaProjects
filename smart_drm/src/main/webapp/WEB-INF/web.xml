@@ -6,6 +6,11 @@
         version="3.0"
         metadata-complete="true">
 
+    <!--首页-->
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
     <!-- spring请求配置，指向springmvc的核心配置文件，定义所有以.do结尾的请求都被springmvc拦截 -->
     <servlet>
         <servlet-name>springMVC</servlet-name>
@@ -22,4 +27,5 @@
         <servlet-name>springMVC</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
 </web-app>

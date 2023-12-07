@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.time.LocalDate;
+
 /**
  * @author ASUS
  * @version 1.0
@@ -14,14 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class LoginController {
 
-    @RequestMapping("/")
-    public String login(){
-        return "login";
-    }
-
-    @RequestMapping("/index")
+    @RequestMapping("/login")
     public String login(String username){
-        return "index";
+        System.out.println("登陆成功");
+        return "main";
     }
-
 }
