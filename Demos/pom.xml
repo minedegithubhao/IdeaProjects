@@ -20,6 +20,7 @@
         <module>MyProxyDemo-Static</module>
         <module>lambdaShow</module>
         <module>java-io</module>
+        <module>lambdaDemo</module>
     </modules>
 
     <properties>
@@ -86,6 +87,11 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.12.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml</groupId>
+            <artifactId>jackson-xml-databind</artifactId>
+            <version>0.6.2</version>
         </dependency>
     </dependencies>
 

@@ -1,11 +1,7 @@
 package com.smartdrm.controller.system;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.time.LocalDate;
 
 /**
  * @author ASUS
@@ -16,9 +12,14 @@ import java.time.LocalDate;
 @Controller
 public class LoginController {
 
-    @RequestMapping("/login")
-    public String login(String username){
-        System.out.println("登陆成功");
+    @RequestMapping("/main")
+    public String index(){
         return "main";
+    }
+
+    @RequestMapping("/login")
+    public boolean login(String username){
+        System.out.println("登陆成功");
+        return true;
     }
 }
