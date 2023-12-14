@@ -12,8 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginController {
 
-    @RequestMapping("/main")
+    @RequestMapping("/index")
     public String index(){
+        return "login";
+    }
+
+    @RequestMapping("/main")
+    public String main(){
         return "main";
     }
 
@@ -21,5 +26,14 @@ public class LoginController {
     public boolean login(String username){
         System.out.println("登陆成功");
         return true;
+    }
+
+    @RequestMapping("/user")
+    public String user(){
+        return "user";
+    }
+    @RequestMapping("/role")
+    public String role(){
+        return "role";
     }
 }
