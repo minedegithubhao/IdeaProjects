@@ -1,5 +1,9 @@
 package com.smartdrm.controller.system;
 
+import com.smartdrm.entity.User;
+import com.smartdrm.mapper.User.UserMapper;
+import com.smartdrm.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -11,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class LoginController {
+
+    @Autowired
+    UserService userService;
 
     @RequestMapping("/index")
     public String index(){
@@ -24,6 +31,7 @@ public class LoginController {
 
     @RequestMapping("/login")
     public boolean login(String username){
+        User user = userService.getUserById("001");
         System.out.println("登陆成功");
         return true;
     }
