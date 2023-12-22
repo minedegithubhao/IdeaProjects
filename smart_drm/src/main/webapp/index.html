@@ -20,7 +20,47 @@
     </style>
 </head>
 <body>
-    index.html
+<div style="margin:20px 0;">
+    <form id="login" method="post">
+        <div class="easyui-panel" style="width:400px;padding:30px 70px 20px 70px">
+
+            <div style="margin-bottom:10px">
+                <input class="easyui-textbox" style="width:100%;height:40px;padding:12px"
+                       data-options="prompt:'username',iconCls:'icon-man',iconWidth:38">
+            </div>
+            <div style="margin-bottom:20px">
+                <input class="easyui-textbox" type="password" style="width:100%;height:40px;padding:12px"
+                       data-options="prompt:'password',iconCls:'icon-lock',iconWidth:38">
+            </div>
+            <div style="margin-bottom:20px">
+                <input type="checkbox" checked="checked">
+                <span>记住我</span>
+            </div>
+            <div>
+                <a href="#" class="easyui-linkbutton" onclick="submitForm()" data-options="iconCls:'icon-ok'"
+                   style="padding:5px 0;width:100%;">
+                    <span style="font-size:14px;">登陆</span>
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+
+    function submitForm(){
+        console.log("submit");
+        $('#login').form('submit', {
+            url: "loginController/login?date="+ new Date().getTime(),
+            onSubmit: function(){
+                // 表单校验
+                return $(this).form('validate');
+            },
+            success: function(){
+                window.location.href = "systemController/main";
+            }
+        });
+    }
+</script>
 </body>
 </html>
 
