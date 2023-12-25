@@ -21,7 +21,7 @@ public class LoginController {
 
     @RequestMapping("/login")
     public boolean login(String username){
-        User user = userService.getUserById("001");
+//        User user = userService.getUserById("001");
         System.out.println("登陆成功");
         return true;
     }

@@ -2,6 +2,7 @@ package com.smartdrm.controller.system;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author cxdpc
@@ -13,6 +14,12 @@ public class UserController {
 
     @RequestMapping("/user")
     public String user(){
-        return "user";
+        return "user/user";
+    }
+
+    @RequestMapping("/query")
+    public String query(){
+        System.out.println("he");
+        return "he";
     }
 }
