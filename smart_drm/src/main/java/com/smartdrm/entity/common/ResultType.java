@@ -1,4 +1,4 @@
-package com.smartdrm.entity;
+package com.smartdrm.entity.common;
 
 /**
  * @author cxdpc

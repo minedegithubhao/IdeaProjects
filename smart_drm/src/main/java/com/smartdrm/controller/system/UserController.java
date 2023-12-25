@@ -1,6 +1,6 @@
 package com.smartdrm.controller.system;
 
-import com.smartdrm.entity.AjaxResult;
+import com.smartdrm.entity.common.AjaxResult;
 import com.smartdrm.entity.User;
 import com.smartdrm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
