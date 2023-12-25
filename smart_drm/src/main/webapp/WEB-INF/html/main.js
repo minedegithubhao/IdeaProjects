@@ -24,3 +24,10 @@ $(function() {
         $("#layout").css("visibility", "visible");
     }, 800);
 });
+
+/**
+ *  根据百分比展示宽度
+ */
+function fixWidth(percent){
+    return (document.body.clientWidth) * percent;
+}

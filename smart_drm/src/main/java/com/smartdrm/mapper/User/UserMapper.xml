@@ -5,9 +5,7 @@
 <mapper namespace="com.smartdrm.mapper.User.UserMapper">
 
     <select id="getUserById" parameterType="java.lang.String" resultType="com.smartdrm.entity.User">
-        select id, username, password, locked
-        from sys_user
-        where id = #{id};
+        select * from sys_user where id = #{id};
     </select>
 
     <select id="getUsers" parameterType="java.lang.String" resultType="com.smartdrm.entity.User">

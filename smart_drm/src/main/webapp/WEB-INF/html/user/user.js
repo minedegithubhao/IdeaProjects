@@ -10,7 +10,7 @@ function loadGrid() {
       nowrap:false,
       pagination:true,
       singleSelect:true,
-      // rownumbers:true,
+      rownumbers:true,
       checkbox:true,
       fixColumns:true,
       checkOnSelect:true,
@@ -23,12 +23,9 @@ function loadGrid() {
       queryParams:getParams(),
       columns:[[
          {field: '', align:'center', checkbox:true},
-         {field: 'username', align: 'center', title: '用户名'},
-         {field: 'realname', align: 'center', title: '真实姓名'},
-         {field: 'role', align: 'center', title: '角色'},
-         {field: 'department', align: 'center', title: '部门'},
-         {field: 'email', align: 'center', title: '邮箱'},
-         {field: 'phone', align: 'center', title: '手机号'}
+         {field: 'id', align: 'center', title: '用户名'},
+         {field: 'username', align: 'center', title: '真实姓名'},
+         {field: 'status', align: 'center', title: '状态'}
       ]],
       onBeforeLoad:function(param){
          // param.username = $('#username').val();

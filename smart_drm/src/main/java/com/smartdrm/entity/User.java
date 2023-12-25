@@ -3,13 +3,18 @@ package com.smartdrm.entity;
 /**
  * @author cxdpc
  * @date 2023-12-15 13:44
+ * @description 用户信息
  */
 public class User {
 
+    /**主键*/
     private String id;
+    /**姓名*/
     private String username;
+    /**密码*/
     private String password;
-    private String locked;
+    /**状态，1：有效，0：失效*/
+    private String status;
 
     public String getId() {
         return id;
@@ -35,11 +40,11 @@ public class User {
         this.password = password;
     }
 
-    public String getLocked() {
-        return locked;
+    public String getStatus() {
+        return status;
     }
 
-    public void setLocked(String locked) {
-        this.locked = locked;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
