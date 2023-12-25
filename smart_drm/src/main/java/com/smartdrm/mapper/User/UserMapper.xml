@@ -9,16 +9,18 @@
     </select>
 
     <select id="getUsers" parameterType="com.smartdrm.entity.user.UserParam" resultType="com.smartdrm.entity.user.User">
-        select * from sys_user where 1=1
-        <if test="id != null and id != ''">
-            and id = #{id}
-        </if>
-        <if test="username != null and username != ''">
-            and username = #{username}
-        </if>
-        <if test="status != null and status != ''">
-            and status = #{status}
-        </if>
+        select * from sys_user
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="username != null and username != ''">
+                and username = #{username}
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+        </where>
     </select>
 
 </mapper>
