@@ -31,3 +31,18 @@ $(function() {
 function fixWidth(percent){
     return (document.body.clientWidth) * percent;
 }
+
+function statusFormatter(value,row,index){
+    let result;
+    switch (value) {
+        case "1":
+            result = "启用";
+            break;
+        case "0":
+            result = "禁用";
+            break;
+        default:
+            result = "未定义";
+    }
+    return result;
+}

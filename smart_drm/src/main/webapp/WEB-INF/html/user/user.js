@@ -23,9 +23,9 @@ function loadGrid() {
       queryParams:getParams(),
       columns:[[
          {field: '', align:'center', checkbox:true},
-         {field: 'id', align: 'center', title: '用户名'},
-         {field: 'username', align: 'center', title: '真实姓名'},
-         {field: 'status', align: 'center', title: '状态'}
+         {field: 'id', align: 'center', title: '用户名', width:fixWidth(0.1)},
+         {field: 'username', align: 'center', title: '真实姓名', width:fixWidth(0.1)},
+         {field: 'status', align: 'center', title: '状态', width:fixWidth(0.1), formatter:statusFormatter}
       ]],
       onBeforeLoad:function(param){
          // param.username = $('#username').val();
