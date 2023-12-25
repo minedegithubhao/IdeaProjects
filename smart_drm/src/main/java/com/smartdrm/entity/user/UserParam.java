@@ -1,19 +1,19 @@
-package com.smartdrm.entity;
+package com.smartdrm.entity.user;
 
 /**
  * @author cxdpc
- * @date 2023-12-15 13:44
- * @description 用户信息
+ * @date 2023/12/25 16:17
+ * @description 用户管理查询条件
  */
-public class User {
+public class UserParam {
 
-    /**主键*/
+    /**用户id*/
     private String id;
-    /**姓名*/
+
+    /**用户名*/
     private String username;
-    /**密码*/
-    private String password;
-    /**状态，1：有效，0：失效*/
+
+    /**状态*/
     private String status;
 
     public String getId() {
@@ -30,14 +30,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getStatus() {

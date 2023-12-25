@@ -1,6 +1,7 @@
 package com.smartdrm.mapper.User;
 
-import com.smartdrm.entity.User;
+import com.smartdrm.entity.user.User;
+import com.smartdrm.entity.user.UserParam;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -18,5 +19,5 @@ public interface UserMapper {
      */
     User getUserById(String id);
 
-    List<User> getUsers();
+    List<User> getUsers(UserParam param);
 }

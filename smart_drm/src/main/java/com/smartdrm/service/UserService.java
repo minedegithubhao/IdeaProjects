@@ -1,6 +1,7 @@
 package com.smartdrm.service;
 
-import com.smartdrm.entity.User;
+import com.smartdrm.entity.user.User;
+import com.smartdrm.entity.user.UserParam;
 
 import java.util.List;
 
@@ -12,5 +13,5 @@ public interface UserService {
 
     User getUserById(String id);
 
-    List<User> getUsers();
+    List<User> getUsers(UserParam param);
 }

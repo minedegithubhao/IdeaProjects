@@ -43,15 +43,14 @@ function loadGrid() {
 
 function getParams(){
    return {
+      id: $('#id').val(),
       username: $('#username').val(),
-      realname: $('#realname').val(),
-      role: $('#role').val(),
-      department: $('#department').val(),
-      email: $('#email').val(),
-      phone: $('#phone').val()
+      status: $('#status').val()
    };
 }
 
-function search(){
+function searchInfo(){
+   let url = '../userController/query?date=' + new Date().getTime();
+   $('#index_dataGrid').datagrid('options').url = url;
    $('#index_dataGrid').datagrid('load',getParams());
 }

@@ -16,16 +16,15 @@
 <div id="tb">
     <div>
         <form id="userForm" style="float: left; margin-right: 5px" action="../userController/query">
-            用户编号: <input class="easyui-textbox" style="width:80px">
-            用户姓名: <input class="easyui-textbox" style="width:80px">
+            用户编号: <input class="easyui-textbox" id="id" style="width:80px">
+            用户姓名: <input class="easyui-textbox" id="username" style="width:80px">
             状态:
-            <select class="easyui-combobox" panelHeight="auto" style="width:100px">
-                <option value="java">正常</option>
-                <option value="c">锁定</option>
-                <option value="basic">删除</option>
+            <select class="easyui-combobox" panelHeight="auto" id="status" style="width:100px">
+                <option value="1">正常</option>
+                <option value="0">锁定</option>
             </select>
         </form>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="searchInfo()">查询</a>
     </div>
     <div class="menuBtn">
         <a href="#" class="easyui-linkbutton" iconCls="icon-add">新增</a>

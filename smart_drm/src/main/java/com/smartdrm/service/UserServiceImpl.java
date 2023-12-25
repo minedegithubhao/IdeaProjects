@@ -1,6 +1,7 @@
 package com.smartdrm.service;
 
-import com.smartdrm.entity.User;
+import com.smartdrm.entity.user.User;
+import com.smartdrm.entity.user.UserParam;
 import com.smartdrm.mapper.User.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<User> getUsers() {
-        return userMapper.getUsers();
+    public List<User> getUsers(UserParam param) {
+        return userMapper.getUsers(param);
     }
 }

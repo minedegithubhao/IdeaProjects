@@ -1,6 +1,5 @@
 package com.smartdrm.controller.system;
 
-import com.smartdrm.entity.User;
 import com.smartdrm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
