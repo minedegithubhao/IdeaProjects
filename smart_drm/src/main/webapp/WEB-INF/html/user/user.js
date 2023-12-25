@@ -28,15 +28,10 @@ function loadGrid() {
          {field: 'status', align: 'center', title: '状态', width:fixWidth(0.1), formatter:statusFormatter}
       ]],
       onBeforeLoad:function(param){
-         // param.username = $('#username').val();
-         // param.realname = $('#realname').val();
-         // param.role = $('#role').val();
-         // param.department = $('#department').val();
-         // param.email = $('#email').val();
-         // param.phone = $('#phone').val();
+
       },
       onLoadSuccess:function(data) {
-         // $('#index_dataGrid').datagrid('clearSelections');
+
       }
    });
 }

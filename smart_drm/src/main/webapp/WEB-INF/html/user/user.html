@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.4.1/demo/demo.css">
     <script type="text/javascript" src="../js/jquery-easyui-1.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript" src="../html/user/user.js"></script>
     <script type="text/javascript" src="../html/main.js"></script>
 </head>
@@ -15,11 +16,11 @@
 <div id="index_dataGrid"></div>
 <div id="tb">
     <div>
-        <form id="userForm" style="float: left; margin-right: 5px" action="../userController/query">
-            用户编号: <input class="easyui-textbox" id="id" style="width:80px">
-            用户姓名: <input class="easyui-textbox" id="username" style="width:80px">
+        <form id="userForm" style="float: left; margin-right: 5px">
+            用户编号: <input id="id" class="easyui-textbox" style="width:80px">
+            用户姓名: <input id="username" class="easyui-textbox" style="width:80px">
             状态:
-            <select class="easyui-combobox" panelHeight="auto" id="status" style="width:100px">
+            <select id="status" class="easyui-combobox" data-options="panelHeight:'auto'" style="width:100px">
                 <option value="1">正常</option>
                 <option value="0">锁定</option>
             </select>
@@ -27,9 +28,9 @@
         <a class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="searchInfo()">查询</a>
     </div>
     <div class="menuBtn">
-        <a href="#" class="easyui-linkbutton" iconCls="icon-add">新增</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-edit">修改</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-remove">删除</a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-add'">新增</a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-edit'">修改</a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除</a>
     </div>
 </div>
 </body>
