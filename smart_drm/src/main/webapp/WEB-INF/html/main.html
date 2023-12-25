@@ -6,9 +6,10 @@
     <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.4.1/themes/bootstrap/easyui.css">
     <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.4.1/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.4.1/demo/demo.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
     <script type="text/javascript" src="../js/jquery-easyui-1.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <script type="text/javascript" src="../html/main.js"></script>
 </head>
 <body class="easyui-layout" id="layout" style="visibility:hidden;">
 
@@ -26,8 +27,8 @@
         <div title="指标体系">
             <ul class="navmenu">
 <!--                <li class="active"><a href="#">首页</a></li>-->
-                <li><a data-url="../userController/user">用户管理</a></li>
-                <li><a data-url="../roleController/role">角色管理</a></li>
+                <li><a data-url="userController/user">用户管理</a></li>
+                <li><a data-url="roleController/role">角色管理</a></li>
             </ul>
         </div>
         <div title="绩效考核"></div>
@@ -41,37 +42,14 @@
 <!--            <a data-url="user">用户管理</a>-->
 <!--        </div>-->
 
+
     </div>
 </div>
 
 <div region="south" id="footer">某某后台管理系统 V1.0</div>
 
 <script type="text/javascript">
-    $(function() {
-        //添加新的Tab页
-        $("#navmenu").on("click", "a[data-url]", function(e) {
-            e.preventDefault();
-            var tabTitle = $(this).text();
-            var tabUrl = $(this).data("url");
 
-            if($("#tt").tabs("exists", tabTitle)) { //判断该Tab页是否已经存在
-                $("#tt").tabs("select", tabTitle);
-            }else {
-                $("#tt").tabs("add", {
-                    title: tabTitle,
-                    href: tabUrl,
-                    closable: true
-                });
-            }
-            $("#navmenu .active").removeClass("active");
-            $(this).parent().addClass("active");
-        });
-
-        //解决闪屏的问题
-        window.setTimeout(function() {
-            $("#layout").css("visibility", "visible");
-        }, 800);
-    });
 </script>
 </body>
 </html>

@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 function loadGrid() {
    $('#index_dataGrid').datagrid({
-      title:'所在位置:系统管理/用户管理',
+      // title:'所在位置:系统管理/用户管理',
       // url:'../userController/query?date=' + new Date().getTime(),
       url:'../../js/jquery-easyui-1.4.1/demo/datagrid/datagrid_data1.json',
       fit:true,
