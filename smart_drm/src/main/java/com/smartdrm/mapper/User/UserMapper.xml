@@ -10,4 +10,8 @@
         where id = #{id};
     </select>
 
+    <select id="getUsers" parameterType="java.lang.String" resultType="com.smartdrm.entity.User">
+        select * from sys_user
+    </select>
+
 </mapper>

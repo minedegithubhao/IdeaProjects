@@ -46,7 +46,6 @@
     </form>
 </div>
 <script type="text/javascript">
-
     function submitForm(){
         console.log("submit");
         $('#login').form('submit', {
@@ -56,6 +55,7 @@
                 return $(this).form('validate');
             },
             success: function(){
+                // 登录成功，跳转主页面
                 window.location.href = "systemController/main";
             }
         });
