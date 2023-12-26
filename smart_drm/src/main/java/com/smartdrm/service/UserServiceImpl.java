@@ -27,4 +27,9 @@ public class UserServiceImpl implements UserService{
     public List<User> getUsers(UserParam param) {
         return userMapper.getUsers(param);
     }
+
+    @Override
+    public int getUserCount(UserParam param) {
+        return userMapper.getUserCount(param);
+    }
 }

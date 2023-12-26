@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>主页</title>
@@ -13,19 +13,19 @@
 </head>
 <body class="easyui-layout" id="layout" style="visibility:hidden;">
 
-<div region="north" id="header">
+<div data-options="region:'north'" id="header">
 <!--    <img src="img/logo.png" class="logo" />-->
-    <div class="top-btns">
+    <div class="top-buttons">
         <span>欢迎您，管理员</span>
         <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-lock'">修改密码</a>
         <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-clear'">退出系统</a>
     </div>
 </div>
 
-<div region="west" split="true" title="导航菜单" id="naver">
-    <div class="easyui-accordion" fit="true" id="navmenu">
+<div data-options="region:'west',split:true" title="导航菜单" id="navBar">
+    <div class="easyui-accordion" data-options="fit:true" id="navMenu">
         <div title="指标体系">
-            <ul class="navmenu">
+            <ul class="navMenu">
 <!--                <li class="active"><a href="#">首页</a></li>-->
                 <li><a data-url="userController/user">用户管理</a></li>
                 <li><a data-url="roleController/role">角色管理</a></li>
@@ -35,21 +35,9 @@
     </div>
 </div>
 
-<div region="center" id="content">
-    <div class="easyui-tabs" fit="true" id="tt">
-
-<!--        <div title="首页" iconCls="icon-ok">-->
-<!--            <a data-url="user">用户管理</a>-->
-<!--        </div>-->
-
-
-    </div>
+<div data-options="region:'center'" id="content">
+    <div id="tt" class="easyui-tabs" data-options="fit:true"></div>
 </div>
-
-<div region="south" id="footer">某某后台管理系统 V1.0</div>
-
-<script type="text/javascript">
-
-</script>
+<div id="footer" data-options="region:'south'">数据资源管理系统</div>
 </body>
 </html>

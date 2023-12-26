@@ -1,11 +1,13 @@
 package com.smartdrm.entity.user;
 
+import com.smartdrm.entity.common.CommonParam;
+
 /**
  * @author cxdpc
  * @date 2023/12/25 16:17
  * @description 用户管理查询条件
  */
-public class UserParam {
+public class UserParam extends CommonParam {
 
     /**用户id*/
     private String id;

@@ -9,12 +9,18 @@ public class User {
 
     /**主键*/
     private String id;
-    /**姓名*/
+    /**账户*/
     private String username;
     /**密码*/
     private String password;
     /**状态，1：有效，0：失效*/
     private String status;
+
+    /**名称*/
+    private String realname;
+
+    /**登录状态，1-已登录，0-未登录*/
+    private int loginStatus;
 
     public String getId() {
         return id;
@@ -46,5 +52,21 @@ public class User {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
+    }
+
+    public int getLoginStatus() {
+        return loginStatus;
+    }
+
+    public void setLoginStatus(int loginStatus) {
+        this.loginStatus = loginStatus;
     }
 }

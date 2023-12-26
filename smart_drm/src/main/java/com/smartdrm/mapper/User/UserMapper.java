@@ -15,9 +15,22 @@ public interface UserMapper {
 
     /**
      * 根据id查询用户
-     * @return User
+     * @param id 主键
+     * @return 用户信息
      */
     User getUserById(String id);
 
+    /**
+     * 分页查询用户信息
+     * @param param 查询条件
+     * @return List<用户信息>
+     */
     List<User> getUsers(UserParam param);
+
+    /**
+     * 分页查询用户数量
+     * @param param 查询条件
+     * @return 用户数量
+     */
+    int getUserCount(UserParam param);
 }

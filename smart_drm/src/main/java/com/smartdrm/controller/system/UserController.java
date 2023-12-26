@@ -33,6 +33,7 @@ public class UserController {
     @ResponseBody
     public AjaxResult query(UserParam param){
         List<User> users = userService.getUsers(param);
-        return AjaxResult.success(users, users.size());
+        int userCount = userService.getUserCount(param);
+        return AjaxResult.success(users, userCount);
     }
 }

@@ -24,7 +24,8 @@ function loadGrid() {
       columns:[[
          {field: '', align:'center', checkbox:true},
          {field: 'id', align: 'center', title: '用户名', width:fixWidth(0.1)},
-         {field: 'username', align: 'center', title: '真实姓名', width:fixWidth(0.1)},
+         {field: 'username', align: 'center', title: '账户', width:fixWidth(0.1)},
+         {field: 'realname', align: 'center', title: '名称', width:fixWidth(0.1)},
          {field: 'status', align: 'center', title: '状态', width:fixWidth(0.1), formatter:statusFormatter}
       ]],
       onBeforeLoad:function(param){
@@ -45,7 +46,6 @@ function getParams(){
 }
 
 function searchInfo(){
-   let url = '../userController/query?date=' + new Date().getTime();
-   $('#index_dataGrid').datagrid('options').url = url;
+   $('#index_dataGrid').datagrid('options').url = '../userController/query?date=' + new Date().getTime();
    $('#index_dataGrid').datagrid('load',getParams());
 }
