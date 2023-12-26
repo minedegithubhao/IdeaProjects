@@ -33,4 +33,17 @@ public interface UserMapper {
      * @return 用户数量
      */
     int getUserCount(UserParam param);
+
+    /**
+     * 新增用户
+     * @param user 用户信息
+     */
+    void insertUser(User user);
+
+    /**
+     * 根据id删除用户
+     * @param id id
+     * @return 无
+     */
+    int deleteUserById(String id);
 }

@@ -40,12 +40,135 @@ function loadGrid() {
 function getParams(){
    return {
       id: $('#id').val(),
-      username: $('#username').val(),
-      status: $('#status').val()
+      username: $('#usernameSearch').val(),
+      status: $('#statusSearch').val()
    };
 }
 
 function searchInfo(){
    $('#index_dataGrid').datagrid('options').url = '../userController/query?date=' + new Date().getTime();
    $('#index_dataGrid').datagrid('load',getParams());
+}
+
+let operateType = "";
+function addUser(){
+   $('#userForm').form('clear');
+   $('#editDialog').dialog('open').dialog('centre');
+}
+
+function saveUser(){
+   operateType = "add";
+   let user = {};
+
+   let username = $('#username').textbox('getValue');
+   if (username === '' || checkSpace(username)){
+      $.messager.alert('提醒', '用户编码不能为空!', 'warning');
+      return;
+   }else if (username.length > 30){
+      $.messager.alert('提醒', '用户编码不能超过30个字符!', 'warning');
+      return;
+   }
+   user['username'] = username;
+
+   let realname = $('#realname').textbox('getValue');
+   if (realname === '' || checkSpace(realname)){
+      $.messager.alert('提醒', '用户名称不能为空!', 'warning');
+      return;
+   }else if (realname.length > 30){
+      $.messager.alert('提醒', '用户名称不能超过30个字符!', 'warning');
+      return;
+   }
+   user['realname'] = realname;
+
+   let password = $('#password').textbox('getValue');
+   if (password === '' || checkSpace(password)){
+      $.messager.alert('提醒', '密码不能为空!', 'warning');
+      return;
+   }else if (password.length > 30){
+      $.messager.alert('提醒', '密码不能超过30个字符!', 'warning');
+      return;
+   }
+   user['password'] = password;
+
+   user['status'] = $('#status').combobox('getValue');
+
+   let postUrl = '';
+   if (operateType === 'add'){
+      postUrl = '../userController/add';
+      // let isRepeat = findUserByUsername(username);
+      // if (!isRepeat){
+      //    $.messager.alert('提醒', '该用户已存在，请重新输入!', 'warning');
+      //    return;
+      // }
+   }
+
+   $.ajax({
+      type: 'POST',
+      url:postUrl,
+      data:JSON.stringify(user),
+      contentType: 'application/json;charset=UTF-8',
+      async:false,
+      success: function(data){
+         if (data.success){
+            $.messager.alert('成功', data.message, 'info');
+            $('#editDialog').dialog('close');
+            $('#index_dataGrid').datagrid('reload');
+         }else {
+            $.messager.alert('失败', data.message, 'error');
+         }
+      },
+      error:function (data){
+         $.messager.alert('失败', data.message, 'error');
+      }
+   })
+}
+
+function findUserByUsername(username){
+   let flag = true;
+   $.ajax({
+      type:'GET',
+      url:'../userController/findUserByUsername',
+      data:{username:username},
+      dataType:'json',
+      contentType: 'application/json',
+      async:false,
+      success:function (data) {
+         if (data.rows === 0){
+            flag = false;
+         }
+      },
+      error:function (data) {
+         $.messager.alert('失败', data.message, 'error');
+         $('#editDialog').dialog('close');
+      }
+   })
+   return flag;
+}
+
+function deleteUser(){
+   $.messager.confirm('确认', '是否删除?', function (r){
+      if (r){
+         let row = $("#index_dataGrid").datagrid("getChecked");
+         let id = row[0].id;
+         $.ajax({
+            type:'GET',
+            url:'../userController/delete',
+            data:{id:id},
+            dataType:'json',
+            contentType: 'application/json',
+            async:false,
+            success:function (data) {
+               if (data.success){
+                  $.messager.alert('成功', data.message, 'info');
+                  $('#index_dataGrid').datagrid('reload');
+               }else {
+                  $.messager.alert('失败', data.message, 'error');
+               }
+            },
+            error:function (data) {
+               $.messager.alert('失败', data.message, 'error');
+            }
+         })
+      }
+   });
 }

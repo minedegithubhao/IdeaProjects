@@ -16,11 +16,11 @@
 <div id="index_dataGrid"></div>
 <div id="tb">
     <div>
-        <form id="userForm" style="float: left; margin-right: 5px">
+        <form style="float: left; margin-right: 5px">
             用户编号: <input id="id" class="easyui-textbox" style="width:80px">
-            用户姓名: <input id="username" class="easyui-textbox" style="width:80px">
+            用户姓名: <input id="usernameSearch" class="easyui-textbox" style="width:80px">
             状态:
-            <select id="status" class="easyui-combobox" data-options="panelHeight:'auto'" style="width:100px">
+            <select id="statusSearch" class="easyui-combobox" data-options="panelHeight:'auto'" style="width:100px">
                 <option value="1">正常</option>
                 <option value="0">锁定</option>
             </select>
@@ -28,10 +28,42 @@
         <a class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="searchInfo()">查询</a>
     </div>
     <div class="menuBtn">
-        <a class="easyui-linkbutton" data-options="iconCls:'icon-add'">新增</a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="addUser()">新增</a>
         <a class="easyui-linkbutton" data-options="iconCls:'icon-edit'">修改</a>
-        <a class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除</a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="deleteUser(this)">删除</a>
     </div>
+</div>
+<div id="editDialog" class="easyui-dialog" data-options="closed:true, title:'编辑信息', iconCls:'icon-edit', modal:true, buttons:'#editButton'"
+    style="width: 300px; height: 400px; padding: 5px 5px">
+    <form id="userForm" class="easyui-form" method="post">
+        <table cellpadding="2">
+            <tr>
+                <td align="right">用户编码<font color="red">*</font>:</td>
+                <td><input id="username" name="username" class="easyui-textbox" style="width:144px"></td>
+            </tr>
+            <tr>
+                <td align="right">用户名称<font color="red">*</font>:</td>
+                <td><input id="realname" name="realname" class="easyui-textbox" style="width:144px"></td>
+            </tr>
+            <tr>
+                <td align="right">密码<font color="red">*</font>:</td>
+                <td><input id="password" name="password" class="easyui-textbox" style="width:144px"></td>
+            </tr>
+            <tr>
+                <td align="right">状态:</td>
+                <td>
+                    <select id="status" name="status" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'" style="width: 144px">
+                        <option value="1">有效</option>
+                        <option value="0">失效</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div id="editButton" style="padding: 5px 5px">
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="saveUser()">保存</a>
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="$('#editDialog').dialog('close')">取消</a>
 </div>
 </body>
 </html>

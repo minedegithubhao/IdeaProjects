@@ -38,4 +38,13 @@
             </if>
         </where>
     </select>
+
+    <insert id="insertUser" parameterType="com.smartdrm.entity.user.User">
+        insert into sys_user(id,username,realname,password,status,LOGIN_STATUS)
+        values(#{id},#{username},#{realname},#{password},#{status},#{loginStatus})
+    </insert>
+
+    <delete id="deleteUserById" parameterType="java.lang.String">
+        delete from SYS_USER where ID = #{id}
+    </delete>
 </mapper>

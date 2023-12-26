@@ -46,3 +46,9 @@ function statusFormatter(value,row,index){
     }
     return result;
 }
+
+function checkSpace(val){
+    let regExpression = "^[ ]+$";
+    return new RegExp(regExpression).test(val);
+}
+

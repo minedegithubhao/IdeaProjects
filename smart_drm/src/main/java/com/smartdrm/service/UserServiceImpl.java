@@ -1,12 +1,16 @@
 package com.smartdrm.service;
 
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.smartdrm.entity.user.User;
 import com.smartdrm.entity.user.UserParam;
 import com.smartdrm.mapper.User.UserMapper;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author cxdpc
@@ -14,6 +18,7 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl implements UserService{
+
 
     @Autowired
     private UserMapper userMapper;
@@ -31,5 +36,26 @@ public class UserServiceImpl implements UserService{
     @Override
     public int getUserCount(UserParam param) {
         return userMapper.getUserCount(param);
+    }
+
+    @Override
+    public void addUser(HttpServletRequest request, User user) throws RuntimeException {
+        try {
+            user.setId(UUID.randomUUID().toString().replace("-", ""));
+            user.setLoginStatus(0);
+            userMapper.insertUser(user);
+        } catch (Exception e) {
+            throw new RuntimeException("新增用户异常");
+        }
+    }
+
+    @Override
+    public void deleteUserById(String id) {
+        try {
+            int result = userMapper.deleteUserById(id);
+        } catch (Exception e) {
+            throw new RuntimeException("删除用户异常");
+        }
+
     }
 }

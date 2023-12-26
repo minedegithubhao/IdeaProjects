@@ -1,8 +1,10 @@
 package com.smartdrm.service;
 
+import com.smartdrm.entity.common.AjaxResult;
 import com.smartdrm.entity.user.User;
 import com.smartdrm.entity.user.UserParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -31,4 +33,13 @@ public interface UserService {
      * @return 数量
      */
     int getUserCount(UserParam param);
+
+    /**
+     * 新增用户
+     * @param request request
+     * @param user 用户信息
+     */
+    void addUser(HttpServletRequest request, User user) throws RuntimeException;
+
+    void deleteUserById(String id);
 }
