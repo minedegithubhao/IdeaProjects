@@ -16,13 +16,13 @@ a {text-decoration:none;outline:none;}
 /********** global *********/
 #header {height:70px;overflow:hidden;}
 #header .logo {display:block;margin:5px;height:60px;}
-#header .top-btns {position:absolute;top:20px;right:15px;}
-#header .top-btns span {vertical-align:middle;}
-#header .top-btns .easyui-combobox {width:80px;}
+#header .top-buttons {position:absolute;top:20px;right:15px;}
+#header .top-buttons span {vertical-align:middle;}
+#header .top-buttons .easyui-combobox {width:80px;}
 
-#naver {width:220px;}
-#navmenu {border:none;}
-.navmenu li a {
+#navBar {width:220px;}
+#navMenu {border:none;}
+.navMenu li a {
     display:block;
     height:32px;
     line-height:32px;
@@ -35,8 +35,8 @@ a {text-decoration:none;outline:none;}
     background-position:10px center;
     /*background-image:url("../img/item-default.png");*/
 }
-.navmenu li.active a,
-.navmenu li a:hover {color:#1542a4;background-color:#e0ecff;border-color:#99bbe8;}
+.navMenu li.active a,
+.navMenu li a:hover {color:#1542a4;background-color:#e0ecff;border-color:#99bbe8;}
 
 #content {border:none;}
 .inner-header {padding:0px 0px 10px 0px;border:none;}

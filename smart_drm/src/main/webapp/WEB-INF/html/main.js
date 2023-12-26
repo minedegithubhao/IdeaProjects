@@ -1,6 +1,6 @@
 $(function() {
     //添加新的Tab页
-    $("#navmenu").on("click", "a[data-url]", function(e) {
+    $("#navMenu").on("click", "a[data-url]", function(e) {
         e.preventDefault();
         var tabTitle = $(this).text();
         var tabUrl = $(this).data("url");
@@ -15,7 +15,7 @@ $(function() {
                 closable: true
             });
         }
-        $("#navmenu .active").removeClass("active");
+        $("#navMenu .active").removeClass("active");
         $(this).parent().addClass("active");
     });
 
