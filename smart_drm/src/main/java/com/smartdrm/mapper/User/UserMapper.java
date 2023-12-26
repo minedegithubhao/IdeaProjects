@@ -46,4 +46,10 @@ public interface UserMapper {
      * @return 无
      */
     int deleteUserById(String id);
+
+    /**
+     * 更新用户信息
+     * @param user 用户信息
+     */
+    void updateUser(User user);
 }

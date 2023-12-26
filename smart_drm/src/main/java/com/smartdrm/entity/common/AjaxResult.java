@@ -80,6 +80,13 @@ public class AjaxResult implements Serializable {
         return success;
     }
 
+    public static AjaxResult success(String message, Object data){
+        AjaxResult success = success();
+        success.setRows(data);
+        success.setMessage(message);
+        return success;
+    }
+
     public static AjaxResult success(Object data, int total){
         AjaxResult success = success();
         success.setRows(data);

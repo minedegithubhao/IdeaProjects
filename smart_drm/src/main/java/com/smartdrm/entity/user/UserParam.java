@@ -9,22 +9,13 @@ import com.smartdrm.entity.common.CommonParam;
  */
 public class UserParam extends CommonParam {
 
-    /**用户id*/
-    private String id;
-
     /**用户名*/
     private String username;
 
+    private String realname;
+
     /**状态*/
     private String status;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -32,6 +23,14 @@ public class UserParam extends CommonParam {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
     }
 
     public String getStatus() {

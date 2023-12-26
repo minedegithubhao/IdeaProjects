@@ -50,12 +50,21 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void deleteUserById(String id) {
+    public void deleteUserById(String id) throws RuntimeException {
         try {
             int result = userMapper.deleteUserById(id);
         } catch (Exception e) {
             throw new RuntimeException("删除用户异常");
         }
 
+    }
+
+    @Override
+    public void updateUser(User user) throws RuntimeException {
+        try {
+            userMapper.updateUser(user);
+        } catch (Exception e) {
+            throw new RuntimeException("更新用户异常");
+        }
     }
 }

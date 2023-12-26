@@ -23,7 +23,6 @@ function loadGrid() {
       queryParams:getParams(),
       columns:[[
          {field: '', align:'center', checkbox:true},
-         {field: 'id', align: 'center', title: '用户名', width:fixWidth(0.1)},
          {field: 'username', align: 'center', title: '账户', width:fixWidth(0.1)},
          {field: 'realname', align: 'center', title: '名称', width:fixWidth(0.1)},
          {field: 'status', align: 'center', title: '状态', width:fixWidth(0.1), formatter:statusFormatter}
@@ -39,8 +38,8 @@ function loadGrid() {
 
 function getParams(){
    return {
-      id: $('#id').val(),
       username: $('#usernameSearch').val(),
+      realname: $('#realnameSearch').val(),
       status: $('#statusSearch').val()
    };
 }
@@ -52,12 +51,12 @@ function searchInfo(){
 
 let operateType = "";
 function addUser(){
+   operateType = "add";
    $('#userForm').form('clear');
-   $('#editDialog').dialog('open').dialog('centre');
+   $('#editDialog').dialog('open').dialog('center');
 }
 
 function saveUser(){
-   operateType = "add";
    let user = {};
 
    let username = $('#username').textbox('getValue');
@@ -91,8 +90,10 @@ function saveUser(){
    user['password'] = password;
 
    user['status'] = $('#status').combobox('getValue');
+   user['id'] = $('#id').val();
 
    let postUrl = '';
+   debugger
    if (operateType === 'add'){
       postUrl = '../userController/add';
       // let isRepeat = findUserByUsername(username);
@@ -100,6 +101,8 @@ function saveUser(){
       //    $.messager.alert('提醒', '该用户已存在，请重新输入!', 'warning');
       //    return;
       // }
+   } else if (operateType === 'update'){
+      postUrl = '../userController/update';
    }
 
    $.ajax({
@@ -148,8 +151,8 @@ function findUserByUsername(username){
 function deleteUser(){
    $.messager.confirm('确认', '是否删除?', function (r){
       if (r){
-         let row = $("#index_dataGrid").datagrid("getChecked");
-         let id = row[0].id;
+         let row = $("#index_dataGrid").datagrid("getSelected");
+         let id = row.id;
          $.ajax({
             type:'GET',
             url:'../userController/delete',
@@ -171,4 +174,44 @@ function deleteUser(){
          })
       }
    });
+}
+
+function updateUser(){
+   operateType = 'update';
+   let row = $("#index_dataGrid").datagrid("getSelected");
+   debugger
+   if (row === undefined || row == null){
+      $.messager.alert('提醒', '请选择一条记录!', 'warning');
+      return;
+   }
+   $('#userForm').form('clear');
+   $('#editDialog').dialog('open').dialog('center');
+   getUserById(row.id);
+}
+
+function getUserById(id){
+   $.ajax({
+      type:'GET',
+      url:'../userController/getUserById',
+      data:{id:id},
+      dataType:'json',
+      contentType: 'application/json',
+      async:false,
+      success:function (data) {
+         if (data.success){
+            let user = data.rows;
+            $('#id').val(user.id);
+            $('#username').textbox('setValue', user.username);
+            $('#realname').textbox('setValue', user.realname);
+            $('#password').textbox('setValue', user.password);
+            $('#status').combobox('setValue', user.status);
+         }else {
+            $('#editDialog').dialog('close');
+         }
+      },
+      error:function (data) {
+         $.messager.alert('失败', data.message, 'error');
+         $('#editDialog').dialog('close');
+      }
+   })
 }

@@ -11,11 +11,11 @@
     <select id="getUsers" parameterType="com.smartdrm.entity.user.UserParam" resultType="com.smartdrm.entity.user.User">
         select * from sys_user
         <where>
-            <if test="id != null and id != ''">
-                and id = #{id}
-            </if>
             <if test="username != null and username != ''">
                 and username = #{username}
+            </if>
+            <if test="realname != null and realname != ''">
+                and realname = #{realname}
             </if>
             <if test="status != null and status != ''">
                 and status = #{status}
@@ -27,11 +27,11 @@
     <select id="getUserCount" parameterType="com.smartdrm.entity.user.UserParam" resultType="java.lang.Integer">
         select count(*) from sys_user
         <where>
-            <if test="id != null and id != ''">
-                and id = #{id}
-            </if>
             <if test="username != null and username != ''">
                 and username = #{username}
+            </if>
+            <if test="realname != null and realname != ''">
+                and realname = #{realname}
             </if>
             <if test="status != null and status != ''">
                 and status = #{status}
@@ -47,4 +47,12 @@
     <delete id="deleteUserById" parameterType="java.lang.String">
         delete from SYS_USER where ID = #{id}
     </delete>
+
+    <update id="updateUser" parameterType="com.smartdrm.entity.user.User">
+        update SYS_USER
+        set USERNAME = #{username},
+            REALNAME = #{realname},
+            STATUS = #{status}
+        where ID = #{id}
+    </update>
 </mapper>

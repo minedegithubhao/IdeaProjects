@@ -41,5 +41,15 @@ public interface UserService {
      */
     void addUser(HttpServletRequest request, User user) throws RuntimeException;
 
-    void deleteUserById(String id);
+    /**
+     * 根据id删除用户
+     * @param id id
+     */
+    void deleteUserById(String id) throws RuntimeException;
+
+    /**
+     * 更新用户
+     * @param user 用户信息
+     */
+    void updateUser(User user) throws RuntimeException;
 }

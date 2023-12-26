@@ -4,7 +4,6 @@ import com.smartdrm.entity.common.AjaxResult;
 import com.smartdrm.entity.user.User;
 import com.smartdrm.entity.user.UserParam;
 import com.smartdrm.service.UserService;
-import org.aspectj.weaver.loadtime.Aj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -60,6 +59,28 @@ public class UserController {
             return AjaxResult.success("删除成功");
         } catch (Exception e) {
             return AjaxResult.error("删除失败");
+        }
+    }
+
+    @RequestMapping("/update")
+    @ResponseBody
+    public AjaxResult update(HttpServletRequest request, @RequestBody User user){
+        try {
+            userService.updateUser(user);
+            return AjaxResult.success("更新成功");
+        } catch (Exception e) {
+            return AjaxResult.error("更新失败");
+        }
+    }
+
+    @RequestMapping("/getUserById")
+    @ResponseBody
+    public AjaxResult getUserById(HttpServletRequest request, String id){
+        try {
+            User user = userService.getUserById(id);
+            return AjaxResult.success("获取成功", user);
+        } catch (Exception e) {
+            return AjaxResult.error("获取失败");
         }
     }
 }
