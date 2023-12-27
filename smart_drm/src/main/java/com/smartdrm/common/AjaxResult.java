@@ -1,4 +1,4 @@
-package com.smartdrm.entity.common;
+package com.smartdrm.common;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package com.smartdrm.entity.common;
+package com.smartdrm.common;
 
 import org.apache.commons.lang3.StringUtils;
 

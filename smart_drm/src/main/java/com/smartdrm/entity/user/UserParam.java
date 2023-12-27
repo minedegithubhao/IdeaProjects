@@ -1,6 +1,6 @@
 package com.smartdrm.entity.user;
 
-import com.smartdrm.entity.common.CommonParam;
+import com.smartdrm.common.CommonParam;
 
 /**
  * @author cxdpc

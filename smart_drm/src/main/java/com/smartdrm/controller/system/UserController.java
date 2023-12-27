@@ -1,6 +1,6 @@
 package com.smartdrm.controller.system;
 
-import com.smartdrm.entity.common.AjaxResult;
+import com.smartdrm.common.AjaxResult;
 import com.smartdrm.entity.user.User;
 import com.smartdrm.entity.user.UserParam;
 import com.smartdrm.service.UserService;

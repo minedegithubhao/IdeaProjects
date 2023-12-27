@@ -1,10 +1,8 @@
 package com.smartdrm.controller.system;
 
 import com.smartdrm.common.CommonConstants;
-import com.smartdrm.entity.common.AESUtils;
-import com.smartdrm.entity.common.AjaxResult;
-import com.smartdrm.entity.common.EncryptUtils;
-import com.smartdrm.entity.user.User;
+import com.smartdrm.common.AjaxResult;
+import com.smartdrm.common.EncryptUtils;
 import com.smartdrm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package com.smartdrm.entity.common;
+package com.smartdrm.common;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
