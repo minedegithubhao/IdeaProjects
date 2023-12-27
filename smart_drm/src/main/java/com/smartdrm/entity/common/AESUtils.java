@@ -2,16 +2,8 @@ package com.smartdrm.entity.common;
 
 import org.apache.commons.lang3.StringUtils;
 
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
 
 /**
  * @author cxdpc
@@ -20,39 +12,15 @@ import java.util.Base64;
  */
 public class AESUtils {
 
-    /**加解密算法/工作模式/填充方式*/
-    private static final String CIPHER_ALGORITHM = "AES/CBC/PKCS5Padding";
-    /**前端AES加密密钥*/
-    private static final String SMART_KCS_5_PADDING = "smartKCS5padding";
+    /**用户密码加密算法/工作模式/填充方式*/
+    private static final String CIPHER_PADDING = "AES/ECB/PKCS5Padding";
     /**用户密码密钥*/
     public static final String PASSWORD = "smartdrm5padding";
+
     /**编码*/
     private static final String ENCODING = "UTF-8";
     /**算法定义*/
     private static final String AES_ALGORITHM = "AES";
-    /**指定填充方式*/
-    private static final String CIPHER_PADDING = "AES/ECB/PKCS5Padding";
-
-    /**
-     * 针对前端AES加密进行解密
-     * @param encryptStr 加密串
-     * @return 解密后的字符串
-     */
-    public static String AESDecrypt(String encryptStr){
-
-        try {
-            byte[] encryptByte = Base64.getDecoder().decode(encryptStr);
-            SecretKeySpec key = new SecretKeySpec(SMART_KCS_5_PADDING.getBytes(), "AES");
-            IvParameterSpec iv = new IvParameterSpec(SMART_KCS_5_PADDING.getBytes());
-            Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
-            cipher.init(Cipher.DECRYPT_MODE, key, iv);
-            byte[] decryptBytes = cipher.doFinal(encryptByte);
-            return new String(decryptBytes);
-        } catch (NoSuchAlgorithmException | InvalidAlgorithmParameterException | NoSuchPaddingException |
-                 InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     /**
      * AES加密
@@ -75,8 +43,6 @@ public class AESUtils {
                 Cipher cipher = Cipher.getInstance(CIPHER_PADDING);
                 //选择加密
                 cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
-                //根据待加密内容生成字节数组
-                byte[] encrypted = cipher.doFinal(content.getBytes(ENCODING));
                 //返回base64字符串
                 return cipher.doFinal(content.getBytes(ENCODING));
             } catch (Exception e) {

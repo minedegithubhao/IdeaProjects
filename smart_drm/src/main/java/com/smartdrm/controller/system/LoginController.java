@@ -3,6 +3,7 @@ package com.smartdrm.controller.system;
 import com.smartdrm.common.CommonConstants;
 import com.smartdrm.entity.common.AESUtils;
 import com.smartdrm.entity.common.AjaxResult;
+import com.smartdrm.entity.common.EncryptUtils;
 import com.smartdrm.entity.user.User;
 import com.smartdrm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class LoginController {
     @ResponseBody
     public AjaxResult login(HttpServletRequest request, String username, String password, String randCode){
         //  User user = userService.getUserById(username);
-        String decryptPassword = AESUtils.AESDecrypt(password);
+        String decryptPassword = EncryptUtils.AESDecrypt(password);
         // 从session获取验证码
         String randCodeSession = String.valueOf(request.getSession().getAttribute(CommonConstants.RAND_CODE));
         if (!randCode.equalsIgnoreCase(randCodeSession)){
