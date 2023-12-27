@@ -1,9 +1,16 @@
 package com.smartdrm.controller.system;
 
+import com.smartdrm.common.CommonConstants;
+import com.smartdrm.entity.common.AESUtils;
+import com.smartdrm.entity.common.AjaxResult;
+import com.smartdrm.entity.user.User;
 import com.smartdrm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author ASUS
@@ -19,10 +26,16 @@ public class LoginController {
     UserService userService;
 
     @RequestMapping("/login")
-    public boolean login(String username){
-//        User user = userService.getUserById("001");
-        System.out.println("登陆成功");
-        return true;
+    @ResponseBody
+    public AjaxResult login(HttpServletRequest request, String username, String password, String randCode){
+        //  User user = userService.getUserById(username);
+        String decryptPassword = AESUtils.AESDecrypt(password);
+        // 从session获取验证码
+        String randCodeSession = String.valueOf(request.getSession().getAttribute(CommonConstants.RAND_CODE));
+        if (!randCode.equalsIgnoreCase(randCodeSession)){
+            return AjaxResult.error("验证码错误");
+        }
+        return AjaxResult.success("登录成功");
     }
 
 }

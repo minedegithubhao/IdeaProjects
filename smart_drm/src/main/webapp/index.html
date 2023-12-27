@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.4.1/demo/demo.css">
     <script type="text/javascript" src="js/jquery-easyui-1.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="js/crypto-js-4.1.1/crypto-js.js"></script>
     <style>
         /* 在这里编写CSS样式 */
         html, body {
@@ -25,12 +26,17 @@
         <div class="easyui-panel" style="width:400px;padding:30px 70px 20px 70px">
 
             <div style="margin-bottom:10px">
-                <input class="easyui-textbox" style="width:100%;height:40px;padding:12px"
-                       data-options="prompt:'username',iconCls:'icon-man',iconWidth:38">
+                <input id="username" name="username" class="easyui-textbox" style="width:100%;height:40px;padding:12px"
+                       data-options="prompt:'请输入用户名',iconCls:'icon-man',iconWidth:38">
+            </div>
+            <div style="margin-bottom:10px">
+                <input id="password" name="password" class="easyui-textbox" type="password" style="width:100%;height:40px;padding:12px"
+                       data-options="prompt:'请输入密码',iconCls:'icon-lock',iconWidth:38">
             </div>
             <div style="margin-bottom:20px">
-                <input class="easyui-textbox" type="password" style="width:100%;height:40px;padding:12px"
-                       data-options="prompt:'password',iconCls:'icon-lock',iconWidth:38">
+                <input id="randCode" name="randCode" class="easyui-textbox" style="width:50%;height:40px;padding:12px;float: left;margin-right: 20px"
+                       data-options="prompt:'请输入验证码'">
+                <a href="#" onclick="refreshRandCodeImage()"><img id="randCodeImage" src="systemController/getRandCodeImage" style="width:45%;height:40px;vertical-align: middle;"></a>
             </div>
             <div style="margin-bottom:20px">
                 <input type="checkbox" checked="checked">
@@ -46,19 +52,78 @@
     </form>
 </div>
 <script type="text/javascript">
+    //登录
     function submitForm(){
-        console.log("submit");
+        //数据加密
+        encryption();
+        //表单提交
         $('#login').form('submit', {
             url: "loginController/login?date="+ new Date().getTime(),
             onSubmit: function(){
                 // 表单校验
-                return $(this).form('validate');
+                return check();
             },
-            success: function(){
-                // 登录成功，跳转主页面
-                window.location.href = "systemController/main";
+            success: function(result){
+                let data = JSON.parse(result);
+                if (data.success){
+                    // 登录成功，跳转主页面
+                    window.location.href = "systemController/main";
+                }else {
+                    $.messager.alert('失败', data.message, 'error');
+                }
             }
         });
+    }
+
+    //表单校验
+    function check(){
+
+        let username = $('#username').textbox('getValue');
+        if (username === ''){
+            $.messager.alert('提醒', '请输入用户名', 'warning');
+            return false;
+        }
+
+        let password = $('#password').textbox('getValue');
+        if (password === ''){
+            $.messager.alert('提醒', '请输入密码', 'warning');
+            return false;
+        }
+
+        let randCode = $('#randCode').textbox('getValue');
+        if (randCode === ''){
+            $.messager.alert('提醒', '请输入验证码', 'warning');
+            return false;
+        }
+        return true;
+    }
+
+    // 加密函数
+    function encryption(){
+
+        // 密码加密
+        let password = $('#password').textbox('getValue');
+        //  密钥和初始化向量的基础
+        let verifyCode = 'smartKCS5padding';
+        // 密钥
+        let key = CryptoJS.enc.Utf8.parse(verifyCode);
+        //  初始化向量
+        let iv = CryptoJS.enc.Utf8.parse(verifyCode);
+        // 将用户输入的密码字符串转换为 UTF-8 编码的字节数组
+        let enPassword = CryptoJS.enc.Utf8.parse(password);
+        // 使用 AES 加密算法对密码进行加密，参数包括要加密的数据 (enPassword)、密钥 (key)、和一些加密选项（在这里包括初始化向量 iv、加密模式 mode 为 CBC、填充模式 padding 为 Pkcs7）。
+        let encryptedPassword = CryptoJS.AES.encrypt(enPassword, key, {
+                iv:iv,
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.Pkcs7
+            }
+        )
+        $('#password').textbox('setValue', encryptedPassword.toString());
+    }
+
+    //刷新验证码
+    function refreshRandCodeImage(){
+        document.getElementById('randCodeImage').src = 'systemController/getRandCodeImage?time=' + new Date().getTime();
     }
 </script>
 </body>
