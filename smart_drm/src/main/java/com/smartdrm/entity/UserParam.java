@@ -1,4 +1,4 @@
-package com.smartdrm.entity.user;
+package com.smartdrm.entity;
 
 import com.smartdrm.common.CommonParam;
 

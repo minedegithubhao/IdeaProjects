@@ -2,13 +2,17 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.smartdrm.mapper.User.UserMapper">
+<mapper namespace="com.smartdrm.mapper.UserMapper">
 
-    <select id="getUserById" parameterType="java.lang.String" resultType="com.smartdrm.entity.user.User">
+    <select id="getUserByLoginName" parameterType="java.lang.String" resultType="com.smartdrm.entity.SysUser">
+        select * from SYS_USER where LOGIN_NAME = #{loginName};
+    </select>
+
+    <select id="getUserById" parameterType="java.lang.String" resultType="com.smartdrm.entity.SysUser">
         select * from sys_user where id = #{id};
     </select>
 
-    <select id="getUsers" parameterType="com.smartdrm.entity.user.UserParam" resultType="com.smartdrm.entity.user.User">
+    <select id="getUsers" parameterType="com.smartdrm.entity.UserParam" resultType="com.smartdrm.entity.SysUser">
         select * from sys_user
         <where>
             <if test="username != null and username != ''">
@@ -24,7 +28,7 @@
         limit ${(page-1)*rows},${rows};
     </select>
 
-    <select id="getUserCount" parameterType="com.smartdrm.entity.user.UserParam" resultType="java.lang.Integer">
+    <select id="getUserCount" parameterType="com.smartdrm.entity.UserParam" resultType="java.lang.Integer">
         select count(*) from sys_user
         <where>
             <if test="username != null and username != ''">
@@ -39,7 +43,7 @@
         </where>
     </select>
 
-    <insert id="insertUser" parameterType="com.smartdrm.entity.user.User">
+    <insert id="insertUser" parameterType="com.smartdrm.entity.SysUser">
         insert into sys_user(id,username,realname,password,status,LOGIN_STATUS)
         values(#{id},#{username},#{realname},#{password},#{status},#{loginStatus})
     </insert>
@@ -48,7 +52,7 @@
         delete from SYS_USER where ID = #{id}
     </delete>
 
-    <update id="updateUser" parameterType="com.smartdrm.entity.user.User">
+    <update id="updateUser" parameterType="com.smartdrm.entity.SysUser">
         update SYS_USER
         set USERNAME = #{username},
             REALNAME = #{realname},
@@ -56,7 +60,5 @@
         where ID = #{id}
     </update>
 
-    <select id="getUserByName" parameterType="java.lang.String" resultType="com.smartdrm.entity.user.User">
-        select * from sys_user where USERNAME = #{username};
-    </select>
+
 </mapper>

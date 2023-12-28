@@ -1,7 +1,7 @@
-package com.smartdrm.mapper.User;
+package com.smartdrm.mapper;
 
-import com.smartdrm.entity.user.User;
-import com.smartdrm.entity.user.UserParam;
+import com.smartdrm.entity.SysUser;
+import com.smartdrm.entity.UserParam;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -14,18 +14,25 @@ import java.util.List;
 public interface UserMapper {
 
     /**
+     * 根据用户名查询用户
+     * @param loginName 用户名
+     * @return 用户信息
+     */
+    SysUser getUserByLoginName(String loginName);
+
+    /**
      * 根据id查询用户
      * @param id 主键
      * @return 用户信息
      */
-    User getUserById(String id);
+    SysUser getUserById(String id);
 
     /**
      * 分页查询用户信息
      * @param param 查询条件
      * @return List<用户信息>
      */
-    List<User> getUsers(UserParam param);
+    List<SysUser> getUsers(UserParam param);
 
     /**
      * 分页查询用户数量
@@ -36,9 +43,9 @@ public interface UserMapper {
 
     /**
      * 新增用户
-     * @param user 用户信息
+     * @param sysUser 用户信息
      */
-    void insertUser(User user);
+    void insertUser(SysUser sysUser);
 
     /**
      * 根据id删除用户
@@ -49,9 +56,9 @@ public interface UserMapper {
 
     /**
      * 更新用户信息
-     * @param user 用户信息
+     * @param sysUser 用户信息
      */
-    void updateUser(User user);
+    void updateUser(SysUser sysUser);
 
-    User getUserByName(String username);
+
 }

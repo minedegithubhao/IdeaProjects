@@ -26,7 +26,7 @@
         <div class="easyui-panel" style="width:400px;padding:30px 70px 20px 70px">
 
             <div style="margin-bottom:10px">
-                <input id="username" name="username" class="easyui-textbox" style="width:100%;height:40px;padding:12px"
+                <input id="loginName" name="loginName" class="easyui-textbox" style="width:100%;height:40px;padding:12px"
                        data-options="prompt:'请输入用户名',iconCls:'icon-man',iconWidth:38">
             </div>
             <div style="margin-bottom:10px">
@@ -78,7 +78,7 @@
     //表单校验
     function check(){
 
-        let username = $('#username').textbox('getValue');
+        let username = $('#loginName').textbox('getValue');
         if (username === ''){
             $.messager.alert('提醒', '请输入用户名', 'warning');
             return false;

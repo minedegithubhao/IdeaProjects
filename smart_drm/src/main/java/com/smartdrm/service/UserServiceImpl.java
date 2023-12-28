@@ -3,15 +3,15 @@ package com.smartdrm.service;
 import com.smartdrm.common.AESUtils;
 import com.smartdrm.common.EncryptUtils;
 import com.smartdrm.common.OurException;
-import com.smartdrm.entity.user.User;
-import com.smartdrm.entity.user.UserParam;
-import com.smartdrm.mapper.User.UserMapper;
+import com.smartdrm.entity.SysUser;
+import com.smartdrm.entity.UserParam;
+import com.smartdrm.mapper.UserMapper;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @author cxdpc
@@ -20,16 +20,18 @@ import java.util.UUID;
 @Service
 public class UserServiceImpl implements UserService{
 
+    static final Logger logger = Logger.getLogger(UserServiceImpl.class);
+
     @Autowired
     private UserMapper userMapper;
 
     @Override
-    public User getUserById(String id) {
+    public SysUser getUserById(String id) {
         return userMapper.getUserById(id);
     }
 
     @Override
-    public List<User> getUsers(UserParam param) {
+    public List<SysUser> getUsers(UserParam param) {
         return userMapper.getUsers(param);
     }
 
@@ -39,12 +41,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void addUser(HttpServletRequest request, User user) throws RuntimeException {
+    public void addUser(HttpServletRequest request, SysUser sysUser) throws RuntimeException {
         try {
-            user.setId(UUID.randomUUID().toString().replace("-", ""));
-            user.setLoginStatus(0);
-            user.setPassword(AESUtils.getEncryptString(user.getPassword()));
-            userMapper.insertUser(user);
+//            sysUser.setId(UUID.randomUUID().toString().replace("-", ""));
+//            sysUser.setLoginStatus(0);
+//            sysUser.setPassword(AESUtils.getEncryptString(sysUser.getPassword()));
+            userMapper.insertUser(sysUser);
         } catch (Exception e) {
             throw new RuntimeException("新增用户异常");
         }
@@ -57,28 +59,27 @@ public class UserServiceImpl implements UserService{
         } catch (Exception e) {
             throw new RuntimeException("删除用户异常");
         }
-
     }
 
     @Override
-    public void updateUser(User user) throws RuntimeException {
+    public void updateUser(SysUser sysUser) throws RuntimeException {
         try {
-            userMapper.updateUser(user);
+            userMapper.updateUser(sysUser);
         } catch (Exception e) {
             throw new RuntimeException("更新用户异常");
         }
     }
 
     @Override
-    public void login(String username, String password) {
-        User user = userMapper.getUserByName(username);
-        if (user == null){
-            System.out.println("该用不存在");
+    public void login(String loginName, String password) {
+        SysUser sysUser = userMapper.getUserByLoginName(loginName);
+        if (sysUser == null){
+            logger.error("该用不存在");
             throw new OurException("请输入正确的账户/密码");
         }
         String decryptPassword = EncryptUtils.AESDecrypt(password);
-        if (!AESUtils.getEncryptString(decryptPassword).equals(user.getPassword())){
-            System.out.println("密码错误");
+        if (!AESUtils.getEncryptString(decryptPassword).equals(sysUser.getPassword())){
+            logger.error("密码错误");
             throw new OurException("请输入正确的账户/密码");
         }
     }

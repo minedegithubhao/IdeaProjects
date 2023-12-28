@@ -1,8 +1,8 @@
 package com.smartdrm.controller.system;
 
 import com.smartdrm.common.AjaxResult;
-import com.smartdrm.entity.user.User;
-import com.smartdrm.entity.user.UserParam;
+import com.smartdrm.entity.SysUser;
+import com.smartdrm.entity.UserParam;
 import com.smartdrm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,16 +34,16 @@ public class UserController {
     @RequestMapping("/query")
     @ResponseBody
     public AjaxResult query(UserParam param){
-        List<User> users = userService.getUsers(param);
+        List<SysUser> sysUsers = userService.getUsers(param);
         int userCount = userService.getUserCount(param);
-        return AjaxResult.success(users, userCount);
+        return AjaxResult.success(sysUsers, userCount);
     }
 
     @RequestMapping(value = "/add")
     @ResponseBody
-    public AjaxResult add(HttpServletRequest request, @RequestBody User user){
+    public AjaxResult add(HttpServletRequest request, @RequestBody SysUser sysUser){
         try {
-            userService.addUser(request, user);
+            userService.addUser(request, sysUser);
             return AjaxResult.success("保存成功");
 
         } catch (RuntimeException e) {
@@ -64,9 +64,9 @@ public class UserController {
 
     @RequestMapping("/update")
     @ResponseBody
-    public AjaxResult update(HttpServletRequest request, @RequestBody User user){
+    public AjaxResult update(HttpServletRequest request, @RequestBody SysUser sysUser){
         try {
-            userService.updateUser(user);
+            userService.updateUser(sysUser);
             return AjaxResult.success("更新成功");
         } catch (Exception e) {
             return AjaxResult.error("更新失败");
@@ -77,8 +77,8 @@ public class UserController {
     @ResponseBody
     public AjaxResult getUserById(HttpServletRequest request, String id){
         try {
-            User user = userService.getUserById(id);
-            return AjaxResult.success("获取成功", user);
+            SysUser sysUser = userService.getUserById(id);
+            return AjaxResult.success("获取成功", sysUser);
         } catch (Exception e) {
             return AjaxResult.error("获取失败");
         }
