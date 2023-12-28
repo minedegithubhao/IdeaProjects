@@ -19,9 +19,9 @@ import java.util.List;
  * @description 用户管理
  *
  */
-@RequestMapping("/userController")
+@RequestMapping("/sysUserController")
 @Controller
-public class UserController {
+public class SysUserController {
 
     @Autowired
     UserService userService;
