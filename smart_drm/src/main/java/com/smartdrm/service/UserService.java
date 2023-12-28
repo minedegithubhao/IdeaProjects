@@ -51,4 +51,6 @@ public interface UserService {
      * @param user 用户信息
      */
     void updateUser(User user) throws RuntimeException;
+
+    void login(String username, String password);
 }

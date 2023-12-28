@@ -52,4 +52,6 @@ public interface UserMapper {
      * @param user 用户信息
      */
     void updateUser(User user);
+
+    User getUserByName(String username);
 }

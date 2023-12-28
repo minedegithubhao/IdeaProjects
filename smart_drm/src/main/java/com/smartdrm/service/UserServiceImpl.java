@@ -1,10 +1,11 @@
 package com.smartdrm.service;
 
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.smartdrm.common.AESUtils;
+import com.smartdrm.common.EncryptUtils;
+import com.smartdrm.common.OurException;
 import com.smartdrm.entity.user.User;
 import com.smartdrm.entity.user.UserParam;
 import com.smartdrm.mapper.User.UserMapper;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,6 @@ import java.util.UUID;
  */
 @Service
 public class UserServiceImpl implements UserService{
-
 
     @Autowired
     private UserMapper userMapper;
@@ -43,6 +43,7 @@ public class UserServiceImpl implements UserService{
         try {
             user.setId(UUID.randomUUID().toString().replace("-", ""));
             user.setLoginStatus(0);
+            user.setPassword(AESUtils.getEncryptString(user.getPassword()));
             userMapper.insertUser(user);
         } catch (Exception e) {
             throw new RuntimeException("新增用户异常");
@@ -65,6 +66,20 @@ public class UserServiceImpl implements UserService{
             userMapper.updateUser(user);
         } catch (Exception e) {
             throw new RuntimeException("更新用户异常");
+        }
+    }
+
+    @Override
+    public void login(String username, String password) {
+        User user = userMapper.getUserByName(username);
+        if (user == null){
+            System.out.println("该用不存在");
+            throw new OurException("请输入正确的账户/密码");
+        }
+        String decryptPassword = EncryptUtils.AESDecrypt(password);
+        if (!AESUtils.getEncryptString(decryptPassword).equals(user.getPassword())){
+            System.out.println("密码错误");
+            throw new OurException("请输入正确的账户/密码");
         }
     }
 }

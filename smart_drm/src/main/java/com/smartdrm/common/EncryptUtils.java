@@ -27,7 +27,7 @@ public class EncryptUtils {
      * @param encryptStr 加密串
      * @return 解密后的字符串
      */
-    public static String AESDecrypt(String encryptStr){
+    public static String AESDecrypt(String encryptStr) throws OurException{
 
         try {
             byte[] encryptByte = Base64.getDecoder().decode(encryptStr);
@@ -39,7 +39,7 @@ public class EncryptUtils {
             return new String(decryptBytes);
         } catch (NoSuchAlgorithmException | InvalidAlgorithmParameterException | NoSuchPaddingException |
                  InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
-            throw new RuntimeException(e);
+            throw new OurException("解密失败!");
         }
     }
 }
