@@ -2,8 +2,8 @@ package com.smartdrm.controller.system;
 
 import com.smartdrm.common.AjaxResult;
 import com.smartdrm.entity.SysUser;
-import com.smartdrm.entity.UserParam;
-import com.smartdrm.service.UserService;
+import com.smartdrm.entity.SysUserParam;
+import com.smartdrm.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,18 +24,18 @@ import java.util.List;
 public class SysUserController {
 
     @Autowired
-    UserService userService;
+    SysUserService sysUserService;
 
-    @RequestMapping("/user")
+    @RequestMapping("/sysUser")
     public String user(){
-        return "user/user";
+        return "sysUser/sysUser";
     }
 
     @RequestMapping("/query")
     @ResponseBody
-    public AjaxResult query(UserParam param){
-        List<SysUser> sysUsers = userService.getUsers(param);
-        int userCount = userService.getUserCount(param);
+    public AjaxResult query(SysUserParam param){
+        List<SysUser> sysUsers = sysUserService.getUsers(param);
+        int userCount = sysUserService.getUserCount(param);
         return AjaxResult.success(sysUsers, userCount);
     }
 
@@ -43,7 +43,7 @@ public class SysUserController {
     @ResponseBody
     public AjaxResult add(HttpServletRequest request, @RequestBody SysUser sysUser){
         try {
-            userService.addUser(request, sysUser);
+            sysUserService.addUser(request, sysUser);
             return AjaxResult.success("保存成功");
 
         } catch (RuntimeException e) {
@@ -55,7 +55,7 @@ public class SysUserController {
     @ResponseBody
     public AjaxResult delete(HttpServletRequest request, String id){
         try {
-            userService.deleteUserById(id);
+            sysUserService.deleteUserById(id);
             return AjaxResult.success("删除成功");
         } catch (Exception e) {
             return AjaxResult.error("删除失败");
@@ -66,7 +66,7 @@ public class SysUserController {
     @ResponseBody
     public AjaxResult update(HttpServletRequest request, @RequestBody SysUser sysUser){
         try {
-            userService.updateUser(sysUser);
+            sysUserService.updateUser(sysUser);
             return AjaxResult.success("更新成功");
         } catch (Exception e) {
             return AjaxResult.error("更新失败");
@@ -77,7 +77,7 @@ public class SysUserController {
     @ResponseBody
     public AjaxResult getUserById(HttpServletRequest request, String id){
         try {
-            SysUser sysUser = userService.getUserById(id);
+            SysUser sysUser = sysUserService.getUserById(id);
             return AjaxResult.success("获取成功", sysUser);
         } catch (Exception e) {
             return AjaxResult.error("获取失败");

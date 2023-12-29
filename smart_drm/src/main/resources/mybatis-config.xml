@@ -21,7 +21,7 @@
         <!--1. 接口类方式（对应dao层的接口类）-->
 <!--        <mapper class="com.smartdrm.mapper.User.UserMapper"/>-->
         <!--2. 资源文件方式-->
-<!--        <mapper resource="com/smartdrm/mapper/User/UserMapper.xml"/>-->
+<!--        <mapper resource="com/smartdrm/mapper/User/SysUserMapper.xml"/>-->
         <!--3. 扫描包方式-->
         <package name="com.smartdrm.mapper"/>
     </mappers>

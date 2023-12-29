@@ -5,7 +5,7 @@ $(document).ready(function(){
 function loadGrid() {
    $('#index_dataGrid').datagrid({
       // title:'所在位置:系统管理/用户管理',
-      url:'../userController/query?date=' + new Date().getTime(),
+      url:'../sysUserController/query?date=' + new Date().getTime(),
       fit:true,
       nowrap:false,
       pagination:true,
@@ -23,9 +23,12 @@ function loadGrid() {
       queryParams:getParams(),
       columns:[[
          {field: '', align:'center', checkbox:true},
-         {field: 'username', align: 'center', title: '账户', width:fixWidth(0.1)},
-         {field: 'realname', align: 'center', title: '名称', width:fixWidth(0.1)},
-         {field: 'status', align: 'center', title: '状态', width:fixWidth(0.1), formatter:statusFormatter}
+         {field: 'userId', align: 'center', title: '用户ID', width:fixWidth(0.1)},
+         {field: 'loginName', align: 'center', title: '登录名称', width:fixWidth(0.1)},
+         {field: 'userName', align: 'center', title: '用户名称', width:fixWidth(0.1)},
+         {field: 'status', align: 'center', title: '状态', width:fixWidth(0.1), formatter:statusFormatter},
+         {field: 'phonenumber', align: 'center', title: '手机', width:fixWidth(0.1)},
+         {field: 'createTime', align: 'center', title: '创建时间', width:fixWidth(0.2), formatter:dateTimeFormatter}
       ]],
       onBeforeLoad:function(param){
 
@@ -38,14 +41,14 @@ function loadGrid() {
 
 function getParams(){
    return {
-      username: $('#usernameSearch').val(),
-      realname: $('#realnameSearch').val(),
+      loginName: $('#loginNameSearch').val(),
+      userName: $('#userNameSearch').val(),
       status: $('#statusSearch').val()
    };
 }
 
 function searchInfo(){
-   $('#index_dataGrid').datagrid('options').url = '../userController/query?date=' + new Date().getTime();
+   $('#index_dataGrid').datagrid('options').url = '../sysUserController/query?date=' + new Date().getTime();
    $('#index_dataGrid').datagrid('load',getParams());
 }
 

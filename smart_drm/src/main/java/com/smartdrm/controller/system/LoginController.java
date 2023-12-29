@@ -3,7 +3,7 @@ package com.smartdrm.controller.system;
 import com.smartdrm.common.CommonConstants;
 import com.smartdrm.common.AjaxResult;
 import com.smartdrm.common.OurException;
-import com.smartdrm.service.UserService;
+import com.smartdrm.service.SysUserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +25,7 @@ public class LoginController {
     private static final Logger logger =  Logger.getLogger(LoginController.class);
 
     @Autowired
-    UserService userService;
+    SysUserService userService;
 
     @RequestMapping("/login")
     @ResponseBody
@@ -38,10 +38,9 @@ public class LoginController {
         try {
             userService.login(loginName, password);
         } catch (OurException e) {
-            logger.error(e.getMessage());
             return AjaxResult.error(e.getMessage());
         } catch (Exception e){
-            logger.error(e.getMessage());
+            logger.error("登录异常", e);
             return AjaxResult.error("服务异常，请联系管理员");
         }
         return AjaxResult.success("登录成功");

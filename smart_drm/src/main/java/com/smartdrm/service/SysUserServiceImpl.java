@@ -4,8 +4,8 @@ import com.smartdrm.common.AESUtils;
 import com.smartdrm.common.EncryptUtils;
 import com.smartdrm.common.OurException;
 import com.smartdrm.entity.SysUser;
-import com.smartdrm.entity.UserParam;
-import com.smartdrm.mapper.UserMapper;
+import com.smartdrm.entity.SysUserParam;
+import com.smartdrm.mapper.SysUserMapper;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,12 +18,12 @@ import java.util.List;
  * @date 2023-12-15 14:54
  */
 @Service
-public class UserServiceImpl implements UserService{
+public class SysUserServiceImpl implements SysUserService {
 
-    static final Logger logger = Logger.getLogger(UserServiceImpl.class);
+    static final Logger logger = Logger.getLogger(SysUserServiceImpl.class);
 
     @Autowired
-    private UserMapper userMapper;
+    private SysUserMapper userMapper;
 
     @Override
     public SysUser getUserById(String id) {
@@ -31,12 +31,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<SysUser> getUsers(UserParam param) {
+    public List<SysUser> getUsers(SysUserParam param) {
         return userMapper.getUsers(param);
     }
 
     @Override
-    public int getUserCount(UserParam param) {
+    public int getUserCount(SysUserParam param) {
         return userMapper.getUserCount(param);
     }
 

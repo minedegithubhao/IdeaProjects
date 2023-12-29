@@ -1,7 +1,7 @@
 package com.smartdrm.mapper;
 
 import com.smartdrm.entity.SysUser;
-import com.smartdrm.entity.UserParam;
+import com.smartdrm.entity.SysUserParam;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
  * @date 2023-12-15 13:43
  */
 @Mapper
-public interface UserMapper {
+public interface SysUserMapper {
 
     /**
      * 根据用户名查询用户
@@ -32,14 +32,14 @@ public interface UserMapper {
      * @param param 查询条件
      * @return List<用户信息>
      */
-    List<SysUser> getUsers(UserParam param);
+    List<SysUser> getUsers(SysUserParam param);
 
     /**
      * 分页查询用户数量
      * @param param 查询条件
      * @return 用户数量
      */
-    int getUserCount(UserParam param);
+    int getUserCount(SysUserParam param);
 
     /**
      * 新增用户

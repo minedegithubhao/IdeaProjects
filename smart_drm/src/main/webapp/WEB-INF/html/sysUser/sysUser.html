@@ -17,12 +17,13 @@
 <div id="tb">
     <div>
         <form style="float: left; margin-right: 5px">
-            用户编号: <input id="usernameSearch" class="easyui-textbox" style="width:80px">
-            用户姓名: <input id="realnameSearch" class="easyui-textbox" style="width:80px">
+            登录名称: <input id="loginNameSearch" class="easyui-textbox" style="width:80px">
+            用户名称: <input id="userNameSearch" class="easyui-textbox" style="width:80px">
             状态:
             <select id="statusSearch" class="easyui-combobox" data-options="panelHeight:'auto'" style="width:100px">
-                <option value="1">正常</option>
-                <option value="0">锁定</option>
+                <option value="">全部</option>
+                <option value="0">正常</option>
+                <option value="1">停用</option>
             </select>
         </form>
         <a class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="searchInfo()">查询</a>

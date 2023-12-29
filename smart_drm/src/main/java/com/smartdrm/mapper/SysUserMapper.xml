@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.smartdrm.mapper.UserMapper">
+<mapper namespace="com.smartdrm.mapper.SysUserMapper">
 
     <select id="getUserByLoginName" parameterType="java.lang.String" resultType="com.smartdrm.entity.SysUser">
         select * from SYS_USER where LOGIN_NAME = #{loginName};
@@ -12,14 +12,14 @@
         select * from sys_user where id = #{id};
     </select>
 
-    <select id="getUsers" parameterType="com.smartdrm.entity.UserParam" resultType="com.smartdrm.entity.SysUser">
+    <select id="getUsers" parameterType="com.smartdrm.entity.SysUserParam" resultType="com.smartdrm.entity.SysUser">
         select * from sys_user
         <where>
-            <if test="username != null and username != ''">
-                and username = #{username}
+            <if test="loginName != null and loginName != ''">
+                and LOGIN_NAME = #{loginName}
             </if>
-            <if test="realname != null and realname != ''">
-                and realname = #{realname}
+            <if test="userName != null and userName != ''">
+                and USER_NAME = #{userName}
             </if>
             <if test="status != null and status != ''">
                 and status = #{status}
@@ -28,14 +28,14 @@
         limit ${(page-1)*rows},${rows};
     </select>
 
-    <select id="getUserCount" parameterType="com.smartdrm.entity.UserParam" resultType="java.lang.Integer">
+    <select id="getUserCount" parameterType="com.smartdrm.entity.SysUserParam" resultType="java.lang.Integer">
         select count(*) from sys_user
         <where>
-            <if test="username != null and username != ''">
-                and username = #{username}
+            <if test="loginName != null and loginName != ''">
+                and LOGIN_NAME = #{loginName}
             </if>
-            <if test="realname != null and realname != ''">
-                and realname = #{realname}
+            <if test="userName != null and userName != ''">
+                and USER_NAME = #{userName}
             </if>
             <if test="status != null and status != ''">
                 and status = #{status}
