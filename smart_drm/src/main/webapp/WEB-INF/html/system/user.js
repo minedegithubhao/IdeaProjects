@@ -98,7 +98,7 @@ function saveUser(){
    let postUrl = '';
 
    if (operateType === 'add'){
-      postUrl = '../../system/user/add';
+      postUrl = '../../system/user/save';
       // let isRepeat = findUserByUsername(loginName);
       // if (!isRepeat){
       //    $.messager.alert('提醒', '该用户已存在，请重新输入!', 'warning');
@@ -129,35 +129,13 @@ function saveUser(){
    })
 }
 
-function findUserByUsername(username){
-   let flag = true;
-   $.ajax({
-      type:'GET',
-      url:'../../system/user/findUserByUsername',
-      data:{username:username},
-      dataType:'json',
-      contentType: 'application/json',
-      async:false,
-      success:function (data) {
-         if (data.rows === 0){
-            flag = false;
-         }
-      },
-      error:function (data) {
-         $.messager.alert('失败', data.message, 'error');
-         $('#editDialog').dialog('close');
-      }
-   })
-   return flag;
-}
-
 function deleteUser(){
    $.messager.confirm('确认', '是否删除?', function (r){
       if (r){
          let row = $("#index_dataGrid").datagrid("getSelected");
          $.ajax({
             type:'GET',
-            url:'../../system/user/delete',
+            url:'../../system/user/remove',
             data:{userId:row.userId},
             dataType:'json',
             contentType: 'application/json',

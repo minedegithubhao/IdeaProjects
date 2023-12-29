@@ -38,19 +38,19 @@ public interface SysUserService {
      * @param request request
      * @param sysUser 用户信息
      */
-    void addUser(HttpServletRequest request, SysUser sysUser) throws RuntimeException;
+    void save(HttpServletRequest request, SysUser sysUser) throws RuntimeException;
 
     /**
      * 根据id删除用户
      * @param id id
      */
-    void deleteUserById(String id) throws RuntimeException;
+    void remove(String id) throws RuntimeException;
 
     /**
      * 更新用户
      * @param sysUser 用户信息
      */
-    void updateUser(SysUser sysUser) throws RuntimeException;
+    void update(SysUser sysUser) throws RuntimeException;
 
     void login(String loginName, String password);
 }

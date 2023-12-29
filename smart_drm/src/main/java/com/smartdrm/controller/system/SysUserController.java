@@ -42,11 +42,11 @@ public class SysUserController {
         return AjaxResult.success(sysUsers, userCount);
     }
 
-    @RequestMapping(value = "/add")
+    @RequestMapping(value = "/save")
     @ResponseBody
-    public AjaxResult add(HttpServletRequest request, @RequestBody SysUser sysUser){
+    public AjaxResult save(HttpServletRequest request, @RequestBody SysUser sysUser){
         try {
-            sysUserService.addUser(request, sysUser);
+            sysUserService.save(request, sysUser);
             return AjaxResult.success("保存成功");
 
         } catch (RuntimeException e) {
@@ -54,11 +54,11 @@ public class SysUserController {
         }
     }
 
-    @RequestMapping("/delete")
+    @RequestMapping("/remove")
     @ResponseBody
-    public AjaxResult delete(HttpServletRequest request, String userId){
+    public AjaxResult remove(HttpServletRequest request, String userId){
         try {
-            sysUserService.deleteUserById(userId);
+            sysUserService.remove(userId);
             return AjaxResult.success("删除成功");
         } catch (Exception e) {
             return AjaxResult.error("删除失败");
@@ -69,7 +69,7 @@ public class SysUserController {
     @ResponseBody
     public AjaxResult update(HttpServletRequest request, @RequestBody SysUser sysUser){
         try {
-            sysUserService.updateUser(sysUser);
+            sysUserService.update(sysUser);
             return AjaxResult.success("更新成功");
         } catch (Exception e) {
             return AjaxResult.error("更新失败");

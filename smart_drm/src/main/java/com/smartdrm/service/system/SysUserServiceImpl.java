@@ -43,10 +43,10 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public void addUser(HttpServletRequest request, SysUser sysUser) throws RuntimeException {
+    public void save(HttpServletRequest request, SysUser sysUser) throws RuntimeException {
         try {
             sysUser.setPassword(AESUtils.getEncryptString(sysUser.getPassword()));
-            userMapper.insertUser(sysUser);
+            userMapper.save(sysUser);
         } catch (Exception e) {
             logger.error(e);
             throw new RuntimeException("新增用户异常");
@@ -54,9 +54,9 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public void deleteUserById(String userId) throws RuntimeException {
+    public void remove(String userId) throws RuntimeException {
         try {
-            int result = userMapper.deleteUserById(userId);
+            int result = userMapper.remove(userId);
         } catch (Exception e) {
             logger.error(e);
             throw new RuntimeException("删除用户异常");
@@ -64,10 +64,10 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public void updateUser(SysUser sysUser) throws RuntimeException {
+    public void update(SysUser sysUser) throws RuntimeException {
         try {
             sysUser.setPassword(AESUtils.getEncryptString(sysUser.getPassword()));
-            userMapper.updateUser(sysUser);
+            userMapper.update(sysUser);
         } catch (Exception e) {
             logger.error(e);
             throw new RuntimeException("更新用户异常");

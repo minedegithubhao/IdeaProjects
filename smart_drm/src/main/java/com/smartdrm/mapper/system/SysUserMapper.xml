@@ -43,16 +43,16 @@
         </where>
     </select>
 
-    <insert id="insertUser" parameterType="com.smartdrm.entity.system.SysUser">
+    <insert id="save" parameterType="com.smartdrm.entity.system.SysUser">
         insert into sys_user(login_name,user_name,password,status,create_time)
         values(#{loginName},#{userName},#{password},#{status},now())
     </insert>
 
-    <delete id="deleteUserById" parameterType="java.lang.String">
+    <delete id="remove" parameterType="java.lang.String">
         delete from SYS_USER where user_id = #{userId}
     </delete>
 
-    <update id="updateUser" parameterType="com.smartdrm.entity.system.SysUser">
+    <update id="update" parameterType="com.smartdrm.entity.system.SysUser">
         update SYS_USER
         set login_name = #{loginName},
             user_name = #{userName},

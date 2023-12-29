@@ -45,20 +45,20 @@ public interface SysUserMapper {
      * 新增用户
      * @param sysUser 用户信息
      */
-    void insertUser(SysUser sysUser);
+    void save(SysUser sysUser);
 
     /**
      * 根据id删除用户
      * @param id id
      * @return 无
      */
-    int deleteUserById(String id);
+    int remove(String id);
 
     /**
      * 更新用户信息
      * @param sysUser 用户信息
      */
-    void updateUser(SysUser sysUser);
+    void update(SysUser sysUser);
 
 
 }
