@@ -5,7 +5,7 @@ $(document).ready(function(){
 function loadGrid() {
    $('#index_dataGrid').datagrid({
       // title:'所在位置:系统管理/用户管理',
-      url:'../sysUserController/query?date=' + new Date().getTime(),
+      url:'../../system/user/getDataGrid?date=' + new Date().getTime(),
       fit:true,
       nowrap:false,
       pagination:true,
@@ -48,7 +48,7 @@ function getParams(){
 }
 
 function searchInfo(){
-   $('#index_dataGrid').datagrid('options').url = '../sysUserController/query?date=' + new Date().getTime();
+   $('#index_dataGrid').datagrid('options').url = '../../system/user/getDataGrid?date=' + new Date().getTime();
    $('#index_dataGrid').datagrid('load',getParams());
 }
 
@@ -98,14 +98,14 @@ function saveUser(){
    let postUrl = '';
 
    if (operateType === 'add'){
-      postUrl = '../sysUserController/add';
+      postUrl = '../../system/user/add';
       // let isRepeat = findUserByUsername(loginName);
       // if (!isRepeat){
       //    $.messager.alert('提醒', '该用户已存在，请重新输入!', 'warning');
       //    return;
       // }
    } else if (operateType === 'update'){
-      postUrl = '../sysUserController/update';
+      postUrl = '../../system/user/update';
    }
 
    $.ajax({
@@ -133,7 +133,7 @@ function findUserByUsername(username){
    let flag = true;
    $.ajax({
       type:'GET',
-      url:'../sysUserController/findUserByUsername',
+      url:'../../system/user/findUserByUsername',
       data:{username:username},
       dataType:'json',
       contentType: 'application/json',
@@ -157,7 +157,7 @@ function deleteUser(){
          let row = $("#index_dataGrid").datagrid("getSelected");
          $.ajax({
             type:'GET',
-            url:'../sysUserController/delete',
+            url:'../../system/user/delete',
             data:{userId:row.userId},
             dataType:'json',
             contentType: 'application/json',
@@ -195,7 +195,7 @@ function updateUser(){
 function getUserById(userId){
    $.ajax({
       type:'GET',
-      url:'../sysUserController/getUserById',
+      url:'../../system/user/getUserById',
       data:{userId:userId},
       dataType:'json',
       contentType: 'application/json',

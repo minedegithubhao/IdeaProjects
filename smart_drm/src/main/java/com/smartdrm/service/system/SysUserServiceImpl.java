@@ -1,17 +1,16 @@
-package com.smartdrm.service;
+package com.smartdrm.service.system;
 
 import com.smartdrm.common.AESUtils;
 import com.smartdrm.common.EncryptUtils;
 import com.smartdrm.common.OurException;
-import com.smartdrm.entity.SysUser;
-import com.smartdrm.entity.SysUserParam;
-import com.smartdrm.mapper.SysUserMapper;
+import com.smartdrm.entity.system.SysUser;
+import com.smartdrm.entity.system.SysUserParam;
+import com.smartdrm.mapper.system.SysUserMapper;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -34,13 +33,13 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public List<SysUser> getUsers(SysUserParam param) {
-        return userMapper.getUsers(param);
+    public List<SysUser> getDataGrid(SysUserParam param) {
+        return userMapper.getDataGrid(param);
     }
 
     @Override
-    public int getUserCount(SysUserParam param) {
-        return userMapper.getUserCount(param);
+    public int getDataGridCount(SysUserParam param) {
+        return userMapper.getDataGridCount(param);
     }
 
     @Override

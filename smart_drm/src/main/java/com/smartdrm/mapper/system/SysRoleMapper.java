@@ -1,4 +1,4 @@
-package com.smartdrm.mapper;
+package com.smartdrm.mapper.system;
 
 import com.smartdrm.entity.system.SysRole;
 import com.smartdrm.entity.system.SysRoleParam;

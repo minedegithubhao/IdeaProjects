@@ -3,7 +3,7 @@ package com.smartdrm.controller.system;
 import com.smartdrm.common.CommonConstants;
 import com.smartdrm.common.AjaxResult;
 import com.smartdrm.common.OurException;
-import com.smartdrm.service.SysUserService;
+import com.smartdrm.service.system.SysUserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

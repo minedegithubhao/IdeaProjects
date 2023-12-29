@@ -2,7 +2,7 @@ package com.smartdrm.service.system;
 
 import com.smartdrm.entity.system.SysRole;
 import com.smartdrm.entity.system.SysRoleParam;
-import com.smartdrm.mapper.SysRoleMapper;
+import com.smartdrm.mapper.system.SysRoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

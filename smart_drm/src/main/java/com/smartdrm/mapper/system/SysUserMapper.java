@@ -1,7 +1,7 @@
-package com.smartdrm.mapper;
+package com.smartdrm.mapper.system;
 
-import com.smartdrm.entity.SysUser;
-import com.smartdrm.entity.SysUserParam;
+import com.smartdrm.entity.system.SysUser;
+import com.smartdrm.entity.system.SysUserParam;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -32,14 +32,14 @@ public interface SysUserMapper {
      * @param param 查询条件
      * @return List<用户信息>
      */
-    List<SysUser> getUsers(SysUserParam param);
+    List<SysUser> getDataGrid(SysUserParam param);
 
     /**
      * 分页查询用户数量
      * @param param 查询条件
      * @return 用户数量
      */
-    int getUserCount(SysUserParam param);
+    int getDataGridCount(SysUserParam param);
 
     /**
      * 新增用户

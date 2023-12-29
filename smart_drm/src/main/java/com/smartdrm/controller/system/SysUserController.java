@@ -1,9 +1,9 @@
 package com.smartdrm.controller.system;
 
 import com.smartdrm.common.AjaxResult;
-import com.smartdrm.entity.SysUser;
-import com.smartdrm.entity.SysUserParam;
-import com.smartdrm.service.SysUserService;
+import com.smartdrm.entity.system.SysUser;
+import com.smartdrm.entity.system.SysUserParam;
+import com.smartdrm.service.system.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author cxdpc
@@ -21,7 +20,7 @@ import java.util.Map;
  * @description 用户管理
  *
  */
-@RequestMapping("/sysUserController")
+@RequestMapping("/system/user")
 @Controller
 public class SysUserController {
 
@@ -30,16 +29,16 @@ public class SysUserController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @RequestMapping("/sysUser")
+    @RequestMapping("/index")
     public String user(){
-        return "sysUser/sysUser";
+        return "system/user";
     }
 
-    @RequestMapping("/query")
+    @RequestMapping("/getDataGrid")
     @ResponseBody
-    public AjaxResult query(SysUserParam param){
-        List<SysUser> sysUsers = sysUserService.getUsers(param);
-        int userCount = sysUserService.getUserCount(param);
+    public AjaxResult getDataGrid(SysUserParam param){
+        List<SysUser> sysUsers = sysUserService.getDataGrid(param);
+        int userCount = sysUserService.getDataGridCount(param);
         return AjaxResult.success(sysUsers, userCount);
     }
 

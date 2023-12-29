@@ -1,7 +1,7 @@
-package com.smartdrm.service;
+package com.smartdrm.service.system;
 
-import com.smartdrm.entity.SysUser;
-import com.smartdrm.entity.SysUserParam;
+import com.smartdrm.entity.system.SysUser;
+import com.smartdrm.entity.system.SysUserParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -24,14 +24,14 @@ public interface SysUserService {
      * @param param 查询条件
      * @return List<用户信息>
      */
-    List<SysUser> getUsers(SysUserParam param);
+    List<SysUser> getDataGrid(SysUserParam param);
 
     /**
      * 分页查询用户数量
      * @param param 查询条件
      * @return 数量
      */
-    int getUserCount(SysUserParam param);
+    int getDataGridCount(SysUserParam param);
 
     /**
      * 新增用户

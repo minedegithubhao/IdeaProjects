@@ -6,7 +6,6 @@ import com.smartdrm.entity.system.SysRole;
 import com.smartdrm.entity.system.SysRoleParam;
 import com.smartdrm.service.system.SysRoleService;
 import org.apache.log4j.Logger;
-import org.aspectj.weaver.loadtime.Aj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +19,7 @@ import java.util.List;
  * @author cxdpc
  * @date 2023-12-22 14:52
  */
-@RequestMapping("/sysRoleController")
+@RequestMapping("/system/role")
 @Controller
 public class SysRoleController {
 
@@ -29,14 +28,14 @@ public class SysRoleController {
     @Autowired
     SysRoleService sysRoleService;
 
-    @RequestMapping("/sysRole")
+    @RequestMapping("/index")
     public String role(){
-        return "sysRole/sysRole";
+        return "system/role";
     }
 
     @RequestMapping("/dataGrid")
     @ResponseBody
-    public AjaxResult getDataGrid(HttpServletRequest request, SysRoleParam param){
+    public AjaxResult getDataGrid(SysRoleParam param){
         List<SysRole> sysRoleList = sysRoleService.getDataGrid(param);
         int dataGridCount = sysRoleService.getDataGridCount(param);
         return AjaxResult.success(sysRoleList, dataGridCount);
