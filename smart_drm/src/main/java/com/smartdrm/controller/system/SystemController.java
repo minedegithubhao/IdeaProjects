@@ -14,7 +14,7 @@ import java.io.IOException;
  * @author cxdpc
  * @date 2023-12-22 13:23
  */
-@RequestMapping("/systemController")
+@RequestMapping("/system")
 @Controller
 public class SystemController {
 

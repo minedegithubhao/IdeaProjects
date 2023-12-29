@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
  * @description: TODO
  * @date 2023/11/13 21:11
  */
-@RequestMapping("/loginController")
+@RequestMapping("/login")
 @Controller
 public class LoginController {
 
