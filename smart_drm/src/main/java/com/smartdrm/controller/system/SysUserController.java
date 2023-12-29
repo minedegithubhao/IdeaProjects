@@ -56,7 +56,7 @@ public class SysUserController {
 
     @RequestMapping("/remove")
     @ResponseBody
-    public AjaxResult remove(HttpServletRequest request, String userId){
+    public AjaxResult remove(String userId){
         try {
             sysUserService.remove(userId);
             return AjaxResult.success("删除成功");
@@ -67,7 +67,7 @@ public class SysUserController {
 
     @RequestMapping("/update")
     @ResponseBody
-    public AjaxResult update(HttpServletRequest request, @RequestBody SysUser sysUser){
+    public AjaxResult update(@RequestBody SysUser sysUser){
         try {
             sysUserService.update(sysUser);
             return AjaxResult.success("更新成功");
@@ -78,7 +78,7 @@ public class SysUserController {
 
     @RequestMapping("/getUserById")
     @ResponseBody
-    public AjaxResult getUserById(HttpServletRequest request, String userId){
+    public AjaxResult getUserById(String userId){
         try {
             SysUser sysUser = sysUserService.getUserById(userId);
             return AjaxResult.success("获取成功", sysUser);
