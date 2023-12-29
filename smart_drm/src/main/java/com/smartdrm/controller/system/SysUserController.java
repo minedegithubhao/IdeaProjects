@@ -5,6 +5,7 @@ import com.smartdrm.entity.SysUser;
 import com.smartdrm.entity.SysUserParam;
 import com.smartdrm.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author cxdpc
@@ -25,6 +27,8 @@ public class SysUserController {
 
     @Autowired
     SysUserService sysUserService;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @RequestMapping("/sysUser")
     public String user(){

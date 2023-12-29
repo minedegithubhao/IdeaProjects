@@ -64,5 +64,10 @@
 <!--    <aop:aspectj-autoproxy/>-->
 <!--    &lt;!&ndash; 启用注解事务 &ndash;&gt;-->
 <!--    <tx:annotation-driven transaction-manager="txManager"/>-->
+
+    <!--jdbc模板对象-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
 </beans>
 
