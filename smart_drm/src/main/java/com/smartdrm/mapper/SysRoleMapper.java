@@ -19,6 +19,13 @@ public interface SysRoleMapper {
     List<SysRole> getDataGrid(SysRoleParam param);
 
     /**
+     * dataGrid数量
+     * @param param 查询条件
+     * @return 数量
+     */
+    int getDataGridCount(SysRoleParam param);
+
+    /**
      * 保存角色
      * @param sysRole 角色信息
      */
@@ -32,9 +39,14 @@ public interface SysRoleMapper {
     SysRole getSysRoleById(int roleId);
 
     /**
-     * dataGrid数量
-     * @param param 查询条件
-     * @return 数量
+     * 更新
+     * @param sysRole 角色信息
      */
-    int getDataGridCount(SysRoleParam param);
+    void update(SysRole sysRole);
+
+    /**
+     * 根据id删除
+     * @param roleId
+     */
+    void remove(int roleId);
 }

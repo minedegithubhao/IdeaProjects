@@ -131,14 +131,14 @@ function update(){
    getSysRoleById(row.roleId);
 }
 
-function deleteUser(){
+function remove(){
    $.messager.confirm('确认', '是否删除?', function (r){
       if (r){
          let row = $("#index_dataGrid").datagrid("getSelected");
          $.ajax({
             type:'GET',
-            url:'../sysUserController/delete',
-            data:{userId:row.userId},
+            url:'../sysRoleController/remove',
+            data:{roleId:row.roleId},
             dataType:'json',
             contentType: 'application/json',
             async:false,

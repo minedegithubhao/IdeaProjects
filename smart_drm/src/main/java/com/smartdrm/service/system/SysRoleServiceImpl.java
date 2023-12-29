@@ -24,6 +24,11 @@ public class SysRoleServiceImpl implements SysRoleService{
     }
 
     @Override
+    public int getDataGridCount(SysRoleParam param) {
+        return sysRoleMapper.getDataGridCount(param);
+    }
+
+    @Override
     public void save(SysRole sysRole) {
         sysRoleMapper.save(sysRole);
     }
@@ -34,7 +39,12 @@ public class SysRoleServiceImpl implements SysRoleService{
     }
 
     @Override
-    public int getDataGridCount(SysRoleParam param) {
-        return sysRoleMapper.getDataGridCount(param);
+    public void update(SysRole sysRole) {
+        sysRoleMapper.update(sysRole);
+    }
+
+    @Override
+    public void remove(int roleId) {
+        sysRoleMapper.remove(roleId);
     }
 }

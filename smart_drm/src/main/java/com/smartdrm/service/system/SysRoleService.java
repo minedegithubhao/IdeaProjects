@@ -20,6 +20,13 @@ public interface SysRoleService {
     List<SysRole> getDataGrid(SysRoleParam param);
 
     /**
+     * dataGrid查询count
+     * @param param 查询参数
+     * @return 数量
+     */
+    int getDataGridCount(SysRoleParam param);
+
+    /**
      * 保存
      * @param sysRole 角色
      */
@@ -33,9 +40,14 @@ public interface SysRoleService {
     SysRole getSysRoleById(int roleId);
 
     /**
-     * dataGrid查询count
-     * @param param 查询参数
-     * @return 数量
+     * 更新
+     * @param sysRole 更新角色
      */
-    int getDataGridCount(SysRoleParam param);
+    void update(SysRole sysRole);
+
+    /**
+     * 根据id删除
+     * @param roleId id
+     */
+    void remove(int roleId);
 }

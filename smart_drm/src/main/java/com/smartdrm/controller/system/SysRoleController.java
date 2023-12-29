@@ -6,6 +6,7 @@ import com.smartdrm.entity.system.SysRole;
 import com.smartdrm.entity.system.SysRoleParam;
 import com.smartdrm.service.system.SysRoleService;
 import org.apache.log4j.Logger;
+import org.aspectj.weaver.loadtime.Aj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -60,6 +61,36 @@ public class SysRoleController {
         try {
             SysRole sysRole = sysRoleService.getSysRoleById(roleId);
             return AjaxResult.success("查询成功", sysRole);
+        } catch (OurException e) {
+            logger.error(e);
+            return AjaxResult.error(e.getMessage());
+        } catch (Exception e){
+            logger.error(e);
+            return AjaxResult.error("服务异常，请联系管理员!");
+        }
+    }
+
+    @RequestMapping("/update")
+    @ResponseBody
+    public AjaxResult update(@RequestBody SysRole sysRole){
+        try {
+            sysRoleService.update(sysRole);
+            return AjaxResult.success();
+        } catch (OurException e) {
+            logger.error(e);
+            return AjaxResult.error(e.getMessage());
+        } catch (Exception e){
+            logger.error(e);
+            return AjaxResult.error("服务异常，请联系管理员!");
+        }
+    }
+
+    @RequestMapping("/remove")
+    @ResponseBody
+    public AjaxResult remove(int roleId){
+        try {
+            sysRoleService.remove(roleId);
+            return AjaxResult.success();
         } catch (OurException e) {
             logger.error(e);
             return AjaxResult.error(e.getMessage());
