@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -26,8 +27,10 @@ public class SysUserServiceImpl implements SysUserService {
     private SysUserMapper userMapper;
 
     @Override
-    public SysUser getUserById(String id) {
-        return userMapper.getUserById(id);
+    public SysUser getUserById(String userId) {
+        SysUser sysUser = userMapper.getUserById(userId);
+        sysUser.setPassword(AESUtils.getDecryptString(sysUser.getPassword()));
+        return sysUser;
     }
 
     @Override
@@ -43,20 +46,20 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public void addUser(HttpServletRequest request, SysUser sysUser) throws RuntimeException {
         try {
-//            sysUser.setId(UUID.randomUUID().toString().replace("-", ""));
-//            sysUser.setLoginStatus(0);
-//            sysUser.setPassword(AESUtils.getEncryptString(sysUser.getPassword()));
+            sysUser.setPassword(AESUtils.getEncryptString(sysUser.getPassword()));
             userMapper.insertUser(sysUser);
         } catch (Exception e) {
+            logger.error(e);
             throw new RuntimeException("新增用户异常");
         }
     }
 
     @Override
-    public void deleteUserById(String id) throws RuntimeException {
+    public void deleteUserById(String userId) throws RuntimeException {
         try {
-            int result = userMapper.deleteUserById(id);
+            int result = userMapper.deleteUserById(userId);
         } catch (Exception e) {
+            logger.error(e);
             throw new RuntimeException("删除用户异常");
         }
     }
@@ -64,8 +67,10 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public void updateUser(SysUser sysUser) throws RuntimeException {
         try {
+            sysUser.setPassword(AESUtils.getEncryptString(sysUser.getPassword()));
             userMapper.updateUser(sysUser);
         } catch (Exception e) {
+            logger.error(e);
             throw new RuntimeException("更新用户异常");
         }
     }

@@ -53,9 +53,9 @@ public class SysUserController {
 
     @RequestMapping("/delete")
     @ResponseBody
-    public AjaxResult delete(HttpServletRequest request, String id){
+    public AjaxResult delete(HttpServletRequest request, String userId){
         try {
-            sysUserService.deleteUserById(id);
+            sysUserService.deleteUserById(userId);
             return AjaxResult.success("删除成功");
         } catch (Exception e) {
             return AjaxResult.error("删除失败");
@@ -75,9 +75,9 @@ public class SysUserController {
 
     @RequestMapping("/getUserById")
     @ResponseBody
-    public AjaxResult getUserById(HttpServletRequest request, String id){
+    public AjaxResult getUserById(HttpServletRequest request, String userId){
         try {
-            SysUser sysUser = sysUserService.getUserById(id);
+            SysUser sysUser = sysUserService.getUserById(userId);
             return AjaxResult.success("获取成功", sysUser);
         } catch (Exception e) {
             return AjaxResult.error("获取失败");

@@ -62,25 +62,25 @@ function addUser(){
 function saveUser(){
    let user = {};
 
-   let username = $('#username').textbox('getValue');
-   if (username === '' || checkSpace(username)){
-      $.messager.alert('提醒', '用户编码不能为空!', 'warning');
-      return;
-   }else if (username.length > 30){
-      $.messager.alert('提醒', '用户编码不能超过30个字符!', 'warning');
-      return;
-   }
-   user['username'] = username;
-
-   let realname = $('#realname').textbox('getValue');
-   if (realname === '' || checkSpace(realname)){
+   let loginName = $('#loginName').textbox('getValue');
+   if (loginName === '' || checkSpace(loginName)){
       $.messager.alert('提醒', '用户名称不能为空!', 'warning');
       return;
-   }else if (realname.length > 30){
+   }else if (loginName.length > 30){
       $.messager.alert('提醒', '用户名称不能超过30个字符!', 'warning');
       return;
    }
-   user['realname'] = realname;
+   user['loginName'] = loginName;
+
+   let userName = $('#userName').textbox('getValue');
+   if (userName === '' || checkSpace(userName)){
+      $.messager.alert('提醒', '登录账户不能为空!', 'warning');
+      return;
+   }else if (userName.length > 30){
+      $.messager.alert('提醒', '登录账户不能超过30个字符!', 'warning');
+      return;
+   }
+   user['userName'] = userName;
 
    let password = $('#password').textbox('getValue');
    if (password === '' || checkSpace(password)){
@@ -93,19 +93,19 @@ function saveUser(){
    user['password'] = password;
 
    user['status'] = $('#status').combobox('getValue');
-   user['id'] = $('#id').val();
+   user['userId'] = $('#userId').val();
 
    let postUrl = '';
-   debugger
+
    if (operateType === 'add'){
-      postUrl = '../userController/add';
-      // let isRepeat = findUserByUsername(username);
+      postUrl = '../sysUserController/add';
+      // let isRepeat = findUserByUsername(loginName);
       // if (!isRepeat){
       //    $.messager.alert('提醒', '该用户已存在，请重新输入!', 'warning');
       //    return;
       // }
    } else if (operateType === 'update'){
-      postUrl = '../userController/update';
+      postUrl = '../sysUserController/update';
    }
 
    $.ajax({
@@ -133,7 +133,7 @@ function findUserByUsername(username){
    let flag = true;
    $.ajax({
       type:'GET',
-      url:'../userController/findUserByUsername',
+      url:'../sysUserController/findUserByUsername',
       data:{username:username},
       dataType:'json',
       contentType: 'application/json',
@@ -155,11 +155,10 @@ function deleteUser(){
    $.messager.confirm('确认', '是否删除?', function (r){
       if (r){
          let row = $("#index_dataGrid").datagrid("getSelected");
-         let id = row.id;
          $.ajax({
             type:'GET',
-            url:'../userController/delete',
-            data:{id:id},
+            url:'../sysUserController/delete',
+            data:{userId:row.userId},
             dataType:'json',
             contentType: 'application/json',
             async:false,
@@ -189,23 +188,25 @@ function updateUser(){
    }
    $('#userForm').form('clear');
    $('#editDialog').dialog('open').dialog('center');
-   getUserById(row.id);
+   debugger
+   getUserById(row.userId);
 }
 
-function getUserById(id){
+function getUserById(userId){
    $.ajax({
       type:'GET',
-      url:'../userController/getUserById',
-      data:{id:id},
+      url:'../sysUserController/getUserById',
+      data:{userId:userId},
       dataType:'json',
       contentType: 'application/json',
       async:false,
       success:function (data) {
          if (data.success){
             let user = data.rows;
-            $('#id').val(user.id);
-            $('#username').textbox('setValue', user.username);
-            $('#realname').textbox('setValue', user.realname);
+            debugger
+            $('#userId').val(user.userId);
+            $('#loginName').textbox('setValue', user.loginName);
+            $('#userName').textbox('setValue', user.userName);
             $('#password').textbox('setValue', user.password);
             $('#status').combobox('setValue', user.status);
          }else {

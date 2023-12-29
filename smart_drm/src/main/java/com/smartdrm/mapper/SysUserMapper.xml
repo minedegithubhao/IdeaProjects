@@ -9,7 +9,7 @@
     </select>
 
     <select id="getUserById" parameterType="java.lang.String" resultType="com.smartdrm.entity.SysUser">
-        select * from sys_user where id = #{id};
+        select * from sys_user where user_id = #{userId};
     </select>
 
     <select id="getUsers" parameterType="com.smartdrm.entity.SysUserParam" resultType="com.smartdrm.entity.SysUser">
@@ -44,20 +44,22 @@
     </select>
 
     <insert id="insertUser" parameterType="com.smartdrm.entity.SysUser">
-        insert into sys_user(id,username,realname,password,status,LOGIN_STATUS)
-        values(#{id},#{username},#{realname},#{password},#{status},#{loginStatus})
+        insert into sys_user(login_name,user_name,password,status,create_time)
+        values(#{loginName},#{userName},#{password},#{status},now())
     </insert>
 
     <delete id="deleteUserById" parameterType="java.lang.String">
-        delete from SYS_USER where ID = #{id}
+        delete from SYS_USER where user_id = #{userId}
     </delete>
 
     <update id="updateUser" parameterType="com.smartdrm.entity.SysUser">
         update SYS_USER
-        set USERNAME = #{username},
-            REALNAME = #{realname},
+        set login_name = #{loginName},
+            user_name = #{userName},
+            password = #{password},
+            update_time = now(),
             STATUS = #{status}
-        where ID = #{id}
+        where user_id = #{userId}
     </update>
 
 

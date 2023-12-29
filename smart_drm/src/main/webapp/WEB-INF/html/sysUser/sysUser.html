@@ -37,20 +37,36 @@
 <div id="editDialog" class="easyui-dialog" data-options="closed:true, title:'编辑信息', iconCls:'icon-edit', modal:true, buttons:'#editButton'"
     style="width: 300px; height: 400px; padding: 5px 5px">
     <form id="userForm" class="easyui-form" method="post">
-        <input id="id" name="id" type="hidden">
+        <input id="userId" name="userId" type="hidden">
         <table cellpadding="2">
             <tr>
-                <td align="right">用户编码<font color="red">*</font>:</td>
-                <td><input id="username" name="username" class="easyui-textbox" style="width:144px"></td>
+                <td align="right">用户名称<font color="red">*</font>:</td>
+                <td><input id="loginName" name="loginName" class="easyui-textbox" style="width:144px"></td>
             </tr>
             <tr>
-                <td align="right">用户名称<font color="red">*</font>:</td>
-                <td><input id="realname" name="realname" class="easyui-textbox" style="width:144px"></td>
+                <td align="right">登录账户<font color="red">*</font>:</td>
+                <td><input id="userName" name="userName" class="easyui-textbox" style="width:144px"></td>
             </tr>
             <tr>
                 <td align="right">密码<font color="red">*</font>:</td>
                 <td><input id="password" name="password" class="easyui-textbox" style="width:144px"></td>
             </tr>
+<!--            <tr>-->
+<!--                <td align="right">手机号码:</td>-->
+<!--                <td><input id="phonenumber" name="phonenumber" class="easyui-textbox" style="width:144px"></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td align="right">所属部门:</td>-->
+<!--                <td><input id="deptId" name="deptId" class="easyui-textbox" style="width:144px"></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td align="right">邮箱:</td>-->
+<!--                <td><input id="email" name="email" class="easyui-textbox" style="width:144px"></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td align="right">性别:</td>-->
+<!--                <td><input id="sex" name="sex" class="easyui-textbox" style="width:144px"></td>-->
+<!--            </tr>-->
             <tr>
                 <td align="right">状态:</td>
                 <td>

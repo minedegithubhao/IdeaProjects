@@ -25,7 +25,7 @@ public interface SysUserMapper {
      * @param id 主键
      * @return 用户信息
      */
-    SysUser getUserById(String id);
+    SysUser getUserById(String userId);
 
     /**
      * 分页查询用户信息
