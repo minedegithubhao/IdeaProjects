@@ -37,7 +37,7 @@ public interface SysRoleService {
      * @param roleId roleId
      * @return 角色信息
      */
-    SysRole getSysRoleById(int roleId);
+    SysRole getRoleById(int roleId);
 
     /**
      * 更新

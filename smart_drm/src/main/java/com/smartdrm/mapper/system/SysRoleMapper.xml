@@ -41,7 +41,7 @@
         values (#{roleName}, #{roleKey}, #{roleSort}, #{status}, now());
     </insert>
 
-    <select id="getSysRoleById" parameterType="int" resultType="com.smartdrm.entity.system.SysRole">
+    <select id="getRoleById" parameterType="int" resultType="com.smartdrm.entity.system.SysRole">
         select *
         from sys_role
         where role_id = #{roleId}

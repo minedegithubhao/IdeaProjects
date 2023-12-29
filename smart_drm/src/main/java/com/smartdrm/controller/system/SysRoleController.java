@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -41,7 +40,7 @@ public class SysRoleController {
         return AjaxResult.success(sysRoleList, dataGridCount);
     }
 
-    @RequestMapping("/add")
+    @RequestMapping("/save")
     @ResponseBody
     public AjaxResult save(@RequestBody SysRole sysRole){
         try {
@@ -54,11 +53,11 @@ public class SysRoleController {
         }
     }
 
-    @RequestMapping("/getSysRoleById")
+    @RequestMapping("/getRoleById")
     @ResponseBody
-    public AjaxResult getSysRoleById(int roleId){
+    public AjaxResult getRoleById(int roleId){
         try {
-            SysRole sysRole = sysRoleService.getSysRoleById(roleId);
+            SysRole sysRole = sysRoleService.getRoleById(roleId);
             return AjaxResult.success("查询成功", sysRole);
         } catch (OurException e) {
             logger.error(e);

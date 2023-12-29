@@ -34,7 +34,7 @@ public class SysUserController {
         return "system/user";
     }
 
-    @RequestMapping("/getDataGrid")
+    @RequestMapping("/dataGrid")
     @ResponseBody
     public AjaxResult getDataGrid(SysUserParam param){
         List<SysUser> sysUsers = sysUserService.getDataGrid(param);

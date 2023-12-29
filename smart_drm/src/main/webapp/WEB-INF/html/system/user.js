@@ -5,7 +5,7 @@ $(document).ready(function(){
 function loadGrid() {
    $('#index_dataGrid').datagrid({
       // title:'所在位置:系统管理/用户管理',
-      url:'../../system/user/getDataGrid?date=' + new Date().getTime(),
+      url:'../../system/user/dataGrid?date=' + new Date().getTime(),
       fit:true,
       nowrap:false,
       pagination:true,
@@ -48,18 +48,18 @@ function getParams(){
 }
 
 function searchInfo(){
-   $('#index_dataGrid').datagrid('options').url = '../../system/user/getDataGrid?date=' + new Date().getTime();
+   $('#index_dataGrid').datagrid('options').url = '../../system/user/dataGrid?date=' + new Date().getTime();
    $('#index_dataGrid').datagrid('load',getParams());
 }
 
 let operateType = "";
-function addUser(){
+function add(){
    operateType = "add";
    $('#userForm').form('clear');
    $('#editDialog').dialog('open').dialog('center');
 }
 
-function saveUser(){
+function save(){
    let user = {};
 
    let loginName = $('#loginName').textbox('getValue');
@@ -129,7 +129,7 @@ function saveUser(){
    })
 }
 
-function deleteUser(){
+function remove(){
    $.messager.confirm('确认', '是否删除?', function (r){
       if (r){
          let row = $("#index_dataGrid").datagrid("getSelected");
@@ -156,7 +156,7 @@ function deleteUser(){
    });
 }
 
-function updateUser(){
+function update(){
    operateType = 'update';
    let row = $("#index_dataGrid").datagrid("getSelected");
    debugger

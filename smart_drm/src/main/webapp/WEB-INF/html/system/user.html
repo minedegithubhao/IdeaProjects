@@ -29,9 +29,9 @@
         <a class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="searchInfo()">查询</a>
     </div>
     <div class="menuBtn">
-        <a class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="addUser()">新增</a>
-        <a class="easyui-linkbutton" data-options="iconCls:'icon-edit'" onclick="updateUser()">修改</a>
-        <a class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="deleteUser(this)">删除</a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="add()">新增</a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-edit'" onclick="update()">修改</a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="remove(this)">删除</a>
     </div>
 </div>
 <div id="editDialog" class="easyui-dialog" data-options="closed:true, title:'编辑信息', iconCls:'icon-edit', modal:true, buttons:'#editButton'"
@@ -51,22 +51,6 @@
                 <td align="right">密码<font color="red">*</font>:</td>
                 <td><input id="password" name="password" class="easyui-textbox" style="width:144px"></td>
             </tr>
-<!--            <tr>-->
-<!--                <td align="right">手机号码:</td>-->
-<!--                <td><input id="phonenumber" name="phonenumber" class="easyui-textbox" style="width:144px"></td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td align="right">所属部门:</td>-->
-<!--                <td><input id="deptId" name="deptId" class="easyui-textbox" style="width:144px"></td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td align="right">邮箱:</td>-->
-<!--                <td><input id="email" name="email" class="easyui-textbox" style="width:144px"></td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td align="right">性别:</td>-->
-<!--                <td><input id="sex" name="sex" class="easyui-textbox" style="width:144px"></td>-->
-<!--            </tr>-->
             <tr>
                 <td align="right">状态:</td>
                 <td>
@@ -80,7 +64,7 @@
     </form>
 </div>
 <div id="editButton" style="padding: 5px 5px">
-    <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="saveUser()">保存</a>
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="save()">保存</a>
     <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="$('#editDialog').dialog('close')">取消</a>
 </div>
 </body>

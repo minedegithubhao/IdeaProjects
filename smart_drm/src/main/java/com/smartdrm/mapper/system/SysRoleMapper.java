@@ -36,7 +36,7 @@ public interface SysRoleMapper {
      * @param roleId 角色id
      * @return 角色信息
      */
-    SysRole getSysRoleById(int roleId);
+    SysRole getRoleById(int roleId);
 
     /**
      * 更新

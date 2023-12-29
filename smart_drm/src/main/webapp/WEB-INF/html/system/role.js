@@ -93,7 +93,7 @@ function save(){
 
    let postUrl = '';
    if (operateType === 'add'){
-      postUrl = '../../system/role/add';
+      postUrl = '../../system/role/save';
    } else if (operateType === 'update'){
       postUrl = '../../system/role/update';
    }
