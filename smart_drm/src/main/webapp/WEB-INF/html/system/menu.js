@@ -237,3 +237,14 @@ function initMenu(){
       // }
    })
 }
+
+function menuTypeChange(){
+   let menuType = $('#menuType').combobox('getValue');
+   console.log(menuType)
+   debugger
+   if (menuType === 'M'){
+      $('#parentId').prop('hidden', true);
+   } else {
+      $('#parentId').prop('hidden', false);
+   }
+}
