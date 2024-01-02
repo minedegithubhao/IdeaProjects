@@ -126,7 +126,7 @@ function update(){
       $.messager.alert('提醒', '请选择一条记录!', 'warning');
       return;
    }
-   $('#userForm').form('clear');
+   $('#editForm').form('clear');
    $('#editDialog').dialog('open').dialog('center');
    getSysRoleById(row.roleId);
 }
@@ -162,7 +162,7 @@ function remove(){
 function getSysRoleById(roleId){
    $.ajax({
       type:'GET',
-      url:'../../system/role/getSysRoleById',
+      url:'../../system/role/getRoleById',
       data:{roleId:roleId},
       dataType:'json',
       contentType: 'application/json',
