@@ -7,6 +7,7 @@ function loadGrid() {
       // title:'所在位置:系统管理/用户管理',
       url:'../../system/role/dataGrid?date=' + new Date().getTime(),
       fit:true,
+      fitColumns: true,
       nowrap:false,
       pagination:true,
       singleSelect:true,
