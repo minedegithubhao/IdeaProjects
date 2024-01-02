@@ -12,4 +12,6 @@ public interface SysMenuMapper {
     List<SysMenu> getDataGrid();
 
     int getDataGridCount();
+
+    List<SysMenu> getMenu(String menuType);
 }

@@ -5,7 +5,7 @@ $(document).ready(function(){
 function loadGrid() {
    $('#index_dataGrid').treegrid({
       // title:'所在位置:系统管理/用户管理',
-      url:'../../system/menu/dataGrid?date=' + new Date().getTime(),
+      url:'../../system/menu/dataGrid?noCache=' + new Date().getTime(),
       fit:true,
       fitColumns: true,
       nowrap:false,
@@ -35,7 +35,7 @@ function loadGrid() {
          for (let i = 0; i < rows.length; i++) {
             rows[i].id = rows[i].menuId;
             rows[i]._parentId = rows[i].parentId;
-            if (rows[i].menuType !== 'F'){
+            if (rows[i].menuType === 'M'){
                rows[i].state = 'closed';
             }
          }
@@ -53,7 +53,7 @@ function getParams(){
 }
 
 function searchInfo(){
-   $('#index_dataGrid').datagrid('options').url = '../../system/role/dataGrid?date=' + new Date().getTime();
+   $('#index_dataGrid').datagrid('options').url = '../../system/role/dataGrid?noCache=' + new Date().getTime();
    $('#index_dataGrid').datagrid('load',getParams());
 }
 
@@ -61,6 +61,7 @@ let operateType = "";
 function add(){
    operateType = "add";
    $('#editForm').form('clear');
+   initMenu();
    $('#editDialog').dialog('open').dialog('center');
 }
 
@@ -222,4 +223,17 @@ function visualFormatter(value,row,index){
          result = "未定义";
    }
    return result;
+}
+
+function initMenu(){
+   $('#parentId').combobox({
+      url:'../../system/menu/getMenu?noCache=' + new Date().getTime(),
+      editable:false,
+      panelHeight:'auto',
+      valueField:'menuId',
+      textField:'menuName'
+      // loadFilter: function (data){
+      //    data.unshift({'menuId':'', 'menuName':'全部'})
+      // }
+   })
 }

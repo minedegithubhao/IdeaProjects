@@ -26,4 +26,9 @@ public class SysMenuServiceImpl implements SysMenuService{
     public int getDataGridCount() {
         return sysMenuMapper.getDataGridCount();
     }
+
+    @Override
+    public List<SysMenu> getMenu() {
+        return sysMenuMapper.getMenu("M");
+    }
 }

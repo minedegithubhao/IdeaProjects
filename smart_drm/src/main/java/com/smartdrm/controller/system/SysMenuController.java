@@ -35,14 +35,11 @@ public class SysMenuController {
 
     @RequestMapping("/dataGrid")
     @ResponseBody
-    public Object dataGrid(){
+    public AjaxResult dataGrid(){
         try {
             List<SysMenu> list = sysMenuService.getDataGrid();
             int count = sysMenuService.getDataGridCount();
-            Map<String ,Object> hashMap = new HashMap<>();
-            hashMap.put("rows",list);
-            hashMap.put("total", count);
-            return hashMap;
+            return AjaxResult.success(list, count);
         } catch (OurException e){
             logger.error(e.getMessage());
             return AjaxResult.error(e.getMessage());
@@ -51,4 +48,20 @@ public class SysMenuController {
             return AjaxResult.error("查询失败!");
         }
     }
+
+    @RequestMapping("/getMenu")
+    @ResponseBody
+    public Object getMenu(){
+        try {
+            List<SysMenu> list = sysMenuService.getMenu();
+            return list;
+        } catch (OurException e){
+            logger.error(e.getMessage());
+            return AjaxResult.error(e.getMessage());
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return AjaxResult.error("查询失败!");
+        }
+    }
+
 }

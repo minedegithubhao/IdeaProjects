@@ -5,7 +5,7 @@ $(document).ready(function(){
 function loadGrid() {
    $('#index_dataGrid').datagrid({
       // title:'所在位置:系统管理/用户管理',
-      url:'../../system/user/dataGrid?date=' + new Date().getTime(),
+      url:'../../system/user/dataGrid?noCache=' + new Date().getTime(),
       fit:true,
       fitColumns: true,
       nowrap:false,
@@ -49,7 +49,7 @@ function getParams(){
 }
 
 function searchInfo(){
-   $('#index_dataGrid').datagrid('options').url = '../../system/user/dataGrid?date=' + new Date().getTime();
+   $('#index_dataGrid').datagrid('options').url = '../../system/user/dataGrid?noCache=' + new Date().getTime();
    $('#index_dataGrid').datagrid('load',getParams());
 }
 

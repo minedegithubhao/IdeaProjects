@@ -11,4 +11,8 @@
     <select id="getDataGridCount" resultType="int">
         select count(*) from sys_menu;
     </select>
+
+    <select id="getMenu" resultType="com.smartdrm.entity.system.SysMenu">
+        select * from sys_menu where menu_type = #{menuType};
+    </select>
 </mapper>

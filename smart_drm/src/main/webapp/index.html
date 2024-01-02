@@ -58,7 +58,7 @@
         encryption();
         //表单提交
         $('#login').form('submit', {
-            url: "login/login?date="+ new Date().getTime(),
+            url: "login/login?noCache="+ new Date().getTime(),
             onSubmit: function(){
                 // 表单校验
                 return check();
@@ -123,7 +123,7 @@
 
     //刷新验证码
     function refreshRandCodeImage(){
-        document.getElementById('randCodeImage').src = 'system/getRandCodeImage?time=' + new Date().getTime();
+        document.getElementById('randCodeImage').src = 'system/getRandCodeImage?noCache=' + new Date().getTime();
     }
 </script>
 </body>
