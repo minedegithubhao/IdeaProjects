@@ -27,29 +27,32 @@
         <input id="id" name="id" type="hidden">
         <table cellpadding="2">
             <tr>
-                <td align="right">角色名称<font color="red">*</font>:</td>
-                <td><input id="roleName" name="roleName" class="easyui-textbox" style="width:144px"></td>
+                <td align="right">上级菜单<font color="red">*</font>:</td>
+                <td><input id="parentId" name="parentId" class="easyui-textbox" style="width:144px"></td>
             </tr>
             <tr>
-                <td align="right">角色编码<font color="red">*</font>:</td>
-                <td><input id="roleKey" name="roleKey" class="easyui-textbox" style="width:144px"></td>
+                <td align="right">菜单类型<font color="red">*</font>:</td>
+                <td><input id="menuType" name="menuType" class="easyui-textbox" style="width:144px"></td>
+            </tr>
+            <tr>
+                <td align="right">菜单名称<font color="red">*</font>:</td>
+                <td><input id="menuName" name="menuName" class="easyui-textbox" style="width:144px"></td>
+            </tr>
+            <tr>
+                <td align="right">请求地址:</td>
+                <td><input id="url" name="url" class="easyui-textbox" style="width:144px"></td>
+            </tr>
+            <tr>
+                <td align="right">权限标识:</td>
+                <td><input id="perms" name="perms" class="easyui-textbox" style="width:144px"></td>
             </tr>
             <tr>
                 <td align="right">显示顺序<font color="red">*</font>:</td>
-                <td><input id="roleSort" name="roleSort" class="easyui-textbox" style="width:144px"></td>
+                <td><input id="orderNum" name="orderNum" class="easyui-textbox" style="width:144px"></td>
             </tr>
             <tr>
-                <td align="right">状态:</td>
-                <td>
-                    <select id="status" name="status" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'" style="width: 144px">
-                        <option value="0">正常</option>
-                        <option value="1">停用</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">备注:</td>
-                <td><input id="remark" name="remark" class="easyui-textbox" style="width:144px"></td>
+                <td align="right">菜单状态:</td>
+                <td><input id="visible" name="visible" class="easyui-textbox" style="width:144px"></td>
             </tr>
         </table>
     </form>

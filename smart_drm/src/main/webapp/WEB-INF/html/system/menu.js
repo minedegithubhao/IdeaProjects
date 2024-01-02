@@ -14,9 +14,10 @@ function loadGrid() {
       toolbar:'#tb',
       method:'GET',
       columns:[[
-         {field: '', align:'center', checkbox:true},
+         {field: '', align:'left', checkbox:true},
          {field: 'menuId', align: 'center', title: '菜单编号', width:fixWidth(0.05)},
-         {field: 'menuName', align: 'left', title: '菜单名称', width:fixWidth(0.10)},
+         {field: 'menuName', halign:'center', align: 'left', title: '菜单名称', width:fixWidth(0.10)},
+         {field: 'url', halign:'center', align: 'left', title: '菜单地址', width:fixWidth(0.10)},
          {field: 'orderNum', align: 'center', title: '排序', width:fixWidth(0.05)},
          {field: 'menuType', align: 'center', title: '类型', width:fixWidth(0.05), formatter:typeFormatter},
          {field: 'visible', align: 'center', title: '可见', width:fixWidth(0.05), formatter:visualFormatter},
