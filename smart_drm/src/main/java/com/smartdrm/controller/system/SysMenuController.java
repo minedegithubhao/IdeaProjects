@@ -3,10 +3,12 @@ package com.smartdrm.controller.system;
 import com.smartdrm.common.AjaxResult;
 import com.smartdrm.common.OurException;
 import com.smartdrm.entity.system.SysMenu;
+import com.smartdrm.entity.system.SysRole;
 import com.smartdrm.service.system.SysMenuService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -61,6 +63,21 @@ public class SysMenuController {
         } catch (Exception e) {
             logger.error(e.getMessage());
             return AjaxResult.error("查询失败!");
+        }
+    }
+
+    @RequestMapping("/save")
+    @ResponseBody
+    public AjaxResult save(@RequestBody SysMenu sysMenu){
+        try {
+            sysMenuService.save(sysMenu);
+            return AjaxResult.success("保存成功");
+        } catch (OurException e){
+            logger.error(e.getMessage());
+            return AjaxResult.error(e.getMessage());
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return AjaxResult.error("保存失败!");
         }
     }
 

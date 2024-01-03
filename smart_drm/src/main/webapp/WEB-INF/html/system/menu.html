@@ -33,13 +33,13 @@
             <tr>
                 <td align="right">菜单类型<font color="red">*</font>:</td>
                 <td>
-                    <select id="menuType" name="menuType" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'" style="width:144px" onclick="menuTypeChange()">
+                    <select id="menuType" name="menuType" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'" style="width:144px">
                         <option value="M">一级菜单</option>
                         <option value="C">下级菜单</option>
                     </select>
                 </td>
             </tr>
-            <tr>
+            <tr id="parentIdTr">
                 <td align="right">上级菜单<font color="red">*</font>:</td>
                 <td><input id="parentId" name="parentId" class="easyui-combobox" style="width:144px"></td>
             </tr>
@@ -57,7 +57,10 @@
             </tr>
             <tr>
                 <td align="right">菜单状态:</td>
-                <td><input id="visible" name="visible" class="easyui-textbox" style="width:144px"></td>
+                <td>
+                    显示<input type="radio" name="visible" value="0">
+                    隐藏<input type="radio" name="visible" value="1">
+                </td>
             </tr>
         </table>
     </form>

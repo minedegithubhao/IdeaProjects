@@ -15,4 +15,13 @@
     <select id="getMenu" resultType="com.smartdrm.entity.system.SysMenu">
         select * from sys_menu where menu_type = #{menuType};
     </select>
+
+    <insert id="save" parameterType="com.smartdrm.entity.system.SysMenu">
+        insert into sys_menu(MENU_ID, MENU_NAME, PARENT_ID, ORDER_NUM, url, menu_type, visible, perms, create_by, create_time)
+        values(#{menuId}, #{menuName}, #{parentId}, #{orderNum}, #{url},  #{menuType}, #{visible}, #{perms}, #{createBy}, now())
+    </insert>
+
+    <select id="getMaxMenuIdParentId" parameterType="int" resultType="java.lang.Integer">
+        select max(MENU_ID) from sys_menu where PARENT_ID = #{parentId};
+    </select>
 </mapper>

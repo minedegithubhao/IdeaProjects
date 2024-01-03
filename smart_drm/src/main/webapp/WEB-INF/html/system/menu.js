@@ -66,55 +66,54 @@ function add(){
 }
 
 function save(){
-   let sysRole = {};
+   let sysMenu = {};
 
-   let roleName = $('#roleName').textbox('getValue');
-   if (roleName === '' || checkSpace(roleName)){
-      $.messager.alert('提醒', '角色名称不能为空!', 'warning');
+   let menuName = $('#menuName').textbox('getValue');
+   if (menuName === '' || checkSpace(menuName)){
+      $.messager.alert('提醒', '菜单名称不能为空!', 'warning');
       return;
    }
-   sysRole['roleName'] = roleName;
+   sysMenu['menuName'] = menuName;
 
-   let roleKey = $('#roleKey').textbox('getValue');
-   if (roleKey === '' || checkSpace(roleKey)){
-      $.messager.alert('提醒', '登录账户不能为空!', 'warning');
+   let menuType = $('#menuType').combobox('getValue');
+   if (menuType === '' || checkSpace(menuType)){
+      $.messager.alert('提醒', '菜单类型不能为空!', 'warning');
       return;
    }
-   sysRole['roleKey'] = roleKey;
+   sysMenu['menuType'] = menuType;
 
-   let roleSort = $('#roleSort').textbox('getValue');
-   if (roleSort === '' || checkSpace(roleSort)){
-      $.messager.alert('提醒', '显示顺序不能为空!', 'warning');
-      return;
+   if (!$("#parentIdTr").is(":hidden")){
+      let parentId = $('#parentId').combobox('getValue');
+      if (parentId === '' || checkSpace(parentId)){
+         $.messager.alert('提醒', '上级菜单不能为空!', 'warning');
+         return;
+      }
+      sysMenu['parentId'] = parentId;
    }
-   let numRegExp = /^[0-9]\d*$/;
-   if (!numRegExp.test(roleSort)){
-      $.messager.alert('提醒', '显示顺序必须为数字!', 'warning');
-      return;
-   }
-   sysRole['roleSort'] = roleSort;
 
-   sysRole['status'] = $('#status').combobox('getValue');
-   sysRole['roleId'] = $('#id').val();
+   sysMenu['url'] = $('#url').textbox('getValue');
+   sysMenu['perms'] = $('#perms').textbox('getValue');
+   sysMenu['orderNum'] = $('#orderNum').textbox('getValue');
+   sysMenu['visible'] = $('input[name="visible"]:checked').val();
 
    let postUrl = '';
    if (operateType === 'add'){
-      postUrl = '../../system/role/save';
+      postUrl = '../../system/menu/save';
    } else if (operateType === 'update'){
-      postUrl = '../../system/role/update';
+      postUrl = '../../system/menu/update';
    }
 
    $.ajax({
       type: 'POST',
       url:postUrl,
-      data:JSON.stringify(sysRole),
+      data:JSON.stringify(sysMenu),
       contentType: 'application/json;charset=UTF-8',
       async:false,
       success: function(data){
          if (data.success){
             $.messager.alert('成功', data.message, 'info');
             $('#editDialog').dialog('close');
-            $('#index_dataGrid').datagrid('reload');
+            $('#index_dataGrid').treegrid('reload');
          }else {
             $.messager.alert('失败', data.message, 'error');
          }
@@ -151,7 +150,7 @@ function remove(){
             success:function (data) {
                if (data.success){
                   $.messager.alert('成功', data.message, 'info');
-                  $('#index_dataGrid').datagrid('reload');
+                  $('#index_dataGrid').treegrid('reload');
                }else {
                   $.messager.alert('失败', data.message, 'error');
                }
@@ -226,6 +225,19 @@ function visualFormatter(value,row,index){
 }
 
 function initMenu(){
+
+   $('#menuType').combobox({
+      onChange:function (newValue,oldValue) {
+         if (newValue === 'M'){
+            $('#parentIdTr').prop('hidden', true)
+         } else {
+            $('#parentIdTr').prop('hidden', false)
+         }
+      }
+   });
+   $('#menuType').combobox('setValue', 'M');
+   $('#parentIdTr').prop('hidden', true)
+
    $('#parentId').combobox({
       url:'../../system/menu/getMenu?noCache=' + new Date().getTime(),
       editable:false,
@@ -236,15 +248,7 @@ function initMenu(){
       //    data.unshift({'menuId':'', 'menuName':'全部'})
       // }
    })
-}
 
-function menuTypeChange(){
-   let menuType = $('#menuType').combobox('getValue');
-   console.log(menuType)
-   debugger
-   if (menuType === 'M'){
-      $('#parentId').prop('hidden', true);
-   } else {
-      $('#parentId').prop('hidden', false);
-   }
+   //菜单状态：默认显示
+   $('input[name="visible"][value="0"]').prop('checked', true);
 }

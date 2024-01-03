@@ -14,4 +14,6 @@ public interface SysMenuService {
     int getDataGridCount();
 
     List<SysMenu> getMenu();
+
+    void save(SysMenu sysMenu);
 }

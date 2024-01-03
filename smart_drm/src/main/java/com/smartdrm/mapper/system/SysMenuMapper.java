@@ -14,4 +14,9 @@ public interface SysMenuMapper {
     int getDataGridCount();
 
     List<SysMenu> getMenu(String menuType);
+
+    void save(SysMenu sysMenu);
+
+    Integer getMaxMenuIdParentId(int parentId);
+
 }

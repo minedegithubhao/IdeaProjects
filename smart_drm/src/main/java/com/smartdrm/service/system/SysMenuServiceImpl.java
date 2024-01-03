@@ -31,4 +31,17 @@ public class SysMenuServiceImpl implements SysMenuService{
     public List<SysMenu> getMenu() {
         return sysMenuMapper.getMenu("M");
     }
+
+    @Override
+    public void save(SysMenu sysMenu) {
+        Integer maxMenuIdParentId = sysMenuMapper.getMaxMenuIdParentId(sysMenu.getParentId());
+        if (maxMenuIdParentId == null){
+            maxMenuIdParentId = sysMenu.getParentId() * 100;
+        } else {
+            maxMenuIdParentId = maxMenuIdParentId + 1;
+        }
+        sysMenu.setMenuId(maxMenuIdParentId);
+        sysMenu.setCreateBy("admin");
+        sysMenuMapper.save(sysMenu);
+    }
 }
