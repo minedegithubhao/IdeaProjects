@@ -1,38 +1,90 @@
-$(function() {
-    //添加新的Tab页
-    $("#navMenu").on("click", "a[data-url]", function(e) {
-        e.preventDefault();
-        var tabTitle = $(this).text();
-        var tabUrl = $(this).data("url");
-
-        if($("#tt").tabs("exists", tabTitle)) { //判断该Tab页是否已经存在
-            $("#tt").tabs("select", tabTitle);
-        }else {
-            var content = '<iframe scrolling="no" frameborder="0" src="../'+tabUrl+'" width="99%" height="99%"></iframe>';
-            $("#tt").tabs("add", {
-                title: tabTitle,
-                content: content,
-                closable: true
-            });
-        }
-        $("#navMenu .active").removeClass("active");
-        $(this).parent().addClass("active");
+$(function () {
+    $('#LeftMenu').sidemenu({
+        data: [{
+            text: '系统管理',
+            iconCls: 'fa fa-cog',
+            state: 'open',
+            children: [{
+                text: '用户管理',
+                iconCls : 'fa-user',
+                url: 'system/user/index'
+            }, {
+                text: 'Option2',
+                iconCls : 'fa-user'
+            }, {
+                text: 'Option3',
+                iconCls: 'fa-user',
+                children: [{
+                    text: 'Option31',
+                    iconCls: 'fa-user'
+                }, {
+                    text: 'Option32',
+                    iconCls: 'fa-user'
+                }]
+            }]
+        }, {
+            text: '日志管理',
+            iconCls: 'icon-more',
+            children: [{
+                text: 'Option4',
+                iconCls: 'fa-user'
+            }, {
+                text: 'Option5',
+                iconCls: 'fa-user'
+            }, {
+                text: 'Option6',
+                iconCls: 'fa-user'
+            }]
+        }],
+        onSelect: onSideMenuSelect,
+        border: false
     });
-
-    //解决闪屏的问题
-    window.setTimeout(function() {
-        $("#layout").css("visibility", "visible");
-    }, 800);
 });
+
+function onSideMenuSelect(item) {
+    if (!$('#mainTab').tabs('exists', item.text)) {
+        $('#mainTab').tabs('add', {
+            title: item.text,
+            content: '<iframe scrolling="auto" frameborder="0"  src="../' + item.url + '" width="100%" height="99%"></iframe>',
+            closable: true,
+            icon: item.iconCls,
+            id: item.id
+        });
+    } else {
+        $('#mainTab').tabs('select', item.text);
+    }
+    addTabMenu();
+}
+
+function addTabMenu() {
+    /* 双击关闭TAB选项卡 */
+    $(".tabs-inner").dblclick(function () {
+        var subtitle = $(this).children(".tabs-closable").text();
+        $('#mainTab').tabs('close', subtitle);
+    });
+    /* 为选项卡绑定右键 */
+    // $(".tabs-inner").bind('contextmenu', function (e) {
+    //     $('#tab_menu').menu('show', {
+    //         left: e.pageX,
+    //         top: e.pageY
+    //     });
+    //
+    //     var subtitle = $(this).children(".tabs-closable").text();
+    //
+    //     $('#tab_menu').data("currtab", subtitle);
+    //     $('#mainTab').tabs('select', subtitle);
+    //     return false;
+    // });
+}
 
 /**
  *  根据百分比展示宽度
  */
-function fixWidth(percent){
+function fixWidth(percent) {
     return (document.body.clientWidth) * percent;
 }
 
-function statusFormatter(value,row,index){
+function statusFormatter(value, row, index) {
     let result;
     switch (value) {
         case "1":
@@ -52,11 +104,11 @@ function statusFormatter(value,row,index){
  * @param value
  * @returns {String} yyyy-MM-dd
  */
-function dateFormatter(value){
+function dateFormatter(value) {
     let y = value.year;
     let m = value.monthValue;
     let d = value.dayOfMonth;
-    return y + "-" + (m<10 ? ('0'+m) : m) + "-" + (d<10 ? ('0'+d) : d);
+    return y + "-" + (m < 10 ? ('0' + m) : m) + "-" + (d < 10 ? ('0' + d) : d);
 }
 
 /**
@@ -64,16 +116,15 @@ function dateFormatter(value){
  * @param value
  * @returns {string} yyyy-MM-dd hh:mm:ss
  */
-function dateTimeFormatter(value){
+function dateTimeFormatter(value) {
     let date = dateFormatter(value);
     let h = value.hour;
     let mi = value.minute;
     let s = value.second;
-    return date + ' ' + (h<10 ? ('0'+h) : h) + ":" + (mi<10 ? ('0'+mi) : mi) + ':' + (s<10 ? ('0'+s) : s);
+    return date + ' ' + (h < 10 ? ('0' + h) : h) + ":" + (mi < 10 ? ('0' + mi) : mi) + ':' + (s < 10 ? ('0' + s) : s);
 }
 
-function checkSpace(val){
+function checkSpace(val) {
     let regExpression = "^[ ]+$";
     return new RegExp(regExpression).test(val);
 }
-
