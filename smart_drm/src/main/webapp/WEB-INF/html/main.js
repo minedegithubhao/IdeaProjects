@@ -14,7 +14,6 @@ function getMenu(){
         contentType: 'application/json;charset=UTF-8',
         async:false,
         success: function(data){
-            debugger
             if (data.success){
                 result = data.rows;
             }
@@ -24,7 +23,6 @@ function getMenu(){
 }
 
 function onSideMenuSelect(item) {
-    debugger
     if (!$('#mainTab').tabs('exists', item.text)) {
         $('#mainTab').tabs('add', {
             title: item.text,
