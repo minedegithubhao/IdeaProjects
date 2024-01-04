@@ -8,6 +8,7 @@ function loadGrid() {
       url:'../../system/menu/dataGrid?noCache=' + new Date().getTime(),
       fit:true,
       fitColumns: true,
+      rownumbers:true,
       nowrap:false,
       idField:'menuId',
       treeField:'menuName',
