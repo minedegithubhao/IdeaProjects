@@ -52,5 +52,5 @@ public interface SysUserService {
      */
     void update(SysUser sysUser) throws RuntimeException;
 
-    void login(String loginName, String password);
+    SysUser getUserByLoginName(String loginName);
 }

@@ -36,7 +36,7 @@ public class SysUserController {
 
     @RequestMapping("/dataGrid")
     @ResponseBody
-    public AjaxResult getDataGrid(SysUserParam param){
+    public AjaxResult getDataGrid(HttpServletRequest request, SysUserParam param){
         List<SysUser> sysUsers = sysUserService.getDataGrid(param);
         int userCount = sysUserService.getDataGridCount(param);
         return AjaxResult.success(sysUsers, userCount);

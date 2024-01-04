@@ -75,16 +75,12 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public void login(String loginName, String password) {
-        SysUser sysUser = userMapper.getUserByLoginName(loginName);
-        if (sysUser == null){
-            logger.error("该用不存在");
-            throw new OurException("请输入正确的账户/密码");
-        }
-        String decryptPassword = EncryptUtils.AESDecrypt(password);
-        if (!AESUtils.getEncryptString(decryptPassword).equals(sysUser.getPassword())){
-            logger.error("密码错误");
-            throw new OurException("请输入正确的账户/密码");
+    public SysUser getUserByLoginName(String loginName) {
+        try {
+            return userMapper.getUserByLoginName(loginName);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            throw new OurException("登录失败");
         }
     }
 }

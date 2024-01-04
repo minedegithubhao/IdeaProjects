@@ -1,8 +1,7 @@
 package com.smartdrm.controller.system;
 
-import com.smartdrm.common.CommonConstants;
-import com.smartdrm.common.AjaxResult;
-import com.smartdrm.common.OurException;
+import com.smartdrm.common.*;
+import com.smartdrm.entity.system.SysUser;
 import com.smartdrm.service.system.SysUserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author ASUS
@@ -36,7 +36,18 @@ public class LoginController {
             return AjaxResult.error("验证码错误");
         }
         try {
-            userService.login(loginName, password);
+            SysUser loginUser = userService.getUserByLoginName(loginName);
+            String decryptPassword = EncryptUtils.AESDecrypt(password);
+            HttpSession session = request.getSession();
+            session.setAttribute("userInfo",  loginUser);
+            if (loginUser == null){
+                logger.error("用户不存在");
+                throw new OurException("用户不存在");
+            }
+            if (!AESUtils.getEncryptString(decryptPassword).equals(loginUser.getPassword())){
+                logger.error("密码错误");
+                throw new OurException("请输入正确的账户/密码");
+            }
         } catch (OurException e) {
             return AjaxResult.error(e.getMessage());
         } catch (Exception e){
