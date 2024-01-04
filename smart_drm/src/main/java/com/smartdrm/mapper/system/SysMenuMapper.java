@@ -19,4 +19,5 @@ public interface SysMenuMapper {
 
     Integer getMaxMenuIdParentId(int parentId);
 
+    List<SysMenu> getMenuByParentId(int parentId);
 }

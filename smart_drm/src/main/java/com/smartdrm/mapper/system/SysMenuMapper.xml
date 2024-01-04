@@ -24,4 +24,8 @@
     <select id="getMaxMenuIdParentId" parameterType="int" resultType="java.lang.Integer">
         select max(MENU_ID) from sys_menu where PARENT_ID = #{parentId};
     </select>
+
+    <select id="getMenuByParentId" parameterType="int" resultType="com.smartdrm.entity.system.SysMenu">
+        select * from sys_menu where PARENT_ID = #{parentId};
+    </select>
 </mapper>

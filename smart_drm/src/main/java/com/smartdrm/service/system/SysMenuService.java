@@ -1,6 +1,7 @@
 package com.smartdrm.service.system;
 
 import com.smartdrm.entity.system.SysMenu;
+import com.smartdrm.entity.system.SysMenuTree;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface SysMenuService {
 
     int getDataGridCount();
 
-    List<SysMenu> getMenu();
+    List<SysMenuTree> getMenu();
 
     void save(SysMenu sysMenu);
 }

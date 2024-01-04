@@ -3,7 +3,7 @@ package com.smartdrm.controller.system;
 import com.smartdrm.common.AjaxResult;
 import com.smartdrm.common.OurException;
 import com.smartdrm.entity.system.SysMenu;
-import com.smartdrm.entity.system.SysRole;
+import com.smartdrm.entity.system.SysMenuTree;
 import com.smartdrm.service.system.SysMenuService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author cxdpc
@@ -53,10 +51,10 @@ public class SysMenuController {
 
     @RequestMapping("/getMenu")
     @ResponseBody
-    public Object getMenu(){
+    public AjaxResult getMenu(){
         try {
-            List<SysMenu> list = sysMenuService.getMenu();
-            return list;
+            List<SysMenuTree> list = sysMenuService.getMenu();
+            return AjaxResult.success("查询成功",list);
         } catch (OurException e){
             logger.error(e.getMessage());
             return AjaxResult.error(e.getMessage());

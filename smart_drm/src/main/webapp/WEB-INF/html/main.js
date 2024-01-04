@@ -1,51 +1,34 @@
 $(function () {
     $('#LeftMenu').sidemenu({
-        data: [{
-            text: '系统管理',
-            iconCls: 'fa fa-cog',
-            state: 'open',
-            children: [{
-                text: '用户管理',
-                iconCls : 'fa-user',
-                url: 'system/user/index'
-            }, {
-                text: 'Option2',
-                iconCls : 'fa-user'
-            }, {
-                text: 'Option3',
-                iconCls: 'fa-user',
-                children: [{
-                    text: 'Option31',
-                    iconCls: 'fa-user'
-                }, {
-                    text: 'Option32',
-                    iconCls: 'fa-user'
-                }]
-            }]
-        }, {
-            text: '日志管理',
-            iconCls: 'icon-more',
-            children: [{
-                text: 'Option4',
-                iconCls: 'fa-user'
-            }, {
-                text: 'Option5',
-                iconCls: 'fa-user'
-            }, {
-                text: 'Option6',
-                iconCls: 'fa-user'
-            }]
-        }],
+        data: getMenu(),
         onSelect: onSideMenuSelect,
         border: false
     });
 });
 
+function getMenu(){
+    let result;
+    $.ajax({
+        type: 'POST',
+        url:'../system/menu/getMenu?noCache=' + new Date().getTime(),
+        contentType: 'application/json;charset=UTF-8',
+        async:false,
+        success: function(data){
+            debugger
+            if (data.success){
+                result = data.rows;
+            }
+        }
+    })
+    return result;
+}
+
 function onSideMenuSelect(item) {
+    debugger
     if (!$('#mainTab').tabs('exists', item.text)) {
         $('#mainTab').tabs('add', {
             title: item.text,
-            content: '<iframe scrolling="auto" frameborder="0"  src="../' + item.url + '" width="100%" height="99%"></iframe>',
+            content: '<iframe scrolling="auto" frameborder="0"  src="..' + item.url + '" width="100%" height="99%"></iframe>',
             closable: true,
             icon: item.iconCls,
             id: item.id
@@ -53,28 +36,6 @@ function onSideMenuSelect(item) {
     } else {
         $('#mainTab').tabs('select', item.text);
     }
-    addTabMenu();
-}
-
-function addTabMenu() {
-    /* 双击关闭TAB选项卡 */
-    $(".tabs-inner").dblclick(function () {
-        var subtitle = $(this).children(".tabs-closable").text();
-        $('#mainTab').tabs('close', subtitle);
-    });
-    /* 为选项卡绑定右键 */
-    // $(".tabs-inner").bind('contextmenu', function (e) {
-    //     $('#tab_menu').menu('show', {
-    //         left: e.pageX,
-    //         top: e.pageY
-    //     });
-    //
-    //     var subtitle = $(this).children(".tabs-closable").text();
-    //
-    //     $('#tab_menu').data("currtab", subtitle);
-    //     $('#mainTab').tabs('select', subtitle);
-    //     return false;
-    // });
 }
 
 /**
