@@ -57,4 +57,11 @@ public class LoginController {
         return AjaxResult.success("登录成功");
     }
 
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.removeAttribute("userInfo");
+        return "redirect:/system/login";
+    }
+
 }

@@ -8,4 +8,18 @@
     <import resource="spring/spring-dao.xml"/>
     <import resource="spring/spring-service.xml"/>
     <import resource="spring/spring-mvc.xml"/>
+
+    <!--登录拦截-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/**/system/login"/>
+            <mvc:exclude-mapping path="/**/system/getRandCodeImage"/>
+            <mvc:exclude-mapping path="/**/login/login"/>
+            <mvc:exclude-mapping path="/**/js/**"/>
+            <mvc:exclude-mapping path="/**/html/**"/>
+            <mvc:exclude-mapping path="/**/css/**"/>
+            <bean class="com.smartdrm.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

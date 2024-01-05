@@ -18,7 +18,7 @@ import java.io.IOException;
 @Controller
 public class SystemController {
 
-    @RequestMapping("/index")
+    @RequestMapping("/login")
     public String index(){
         return "login";
     }
