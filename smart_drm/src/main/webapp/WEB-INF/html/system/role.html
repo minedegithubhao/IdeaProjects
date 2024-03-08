@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>角色管理</title>
+    <link rel="stylesheet" type="text/css" href="../../js/jquery-easyui-1.8.6/themes/bootstrap/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../js/jquery-easyui-1.8.6/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="../../js/jquery-easyui-1.8.6/demo/demo.css">
+    <link rel="stylesheet" type="text/css" href="../../css/common.css">
+    <script type="text/javascript" src="../../js/jquery-easyui-1.8.6/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery-easyui-1.8.6/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../html/system/role.js"></script>
+    <script type="text/javascript" src="../../html/main.js"></script>
+    <script type="text/javascript" src="../../html/commonFormatter.js"></script>
+</head>
+<body>
+<div id="index_dataGrid"></div>
+<div id="tb">
+    <div>
+        <form style="float: left; margin-right: 5px">
+            角色名称: <input id="roleNameSearch" class="easyui-textbox" style="width:80px">
+            角色编码: <input id="roleKeySearch" class="easyui-textbox" style="width:80px">
+            状态:
+            <select id="statusSearch" class="easyui-combobox" data-options="panelHeight:'auto'" style="width:100px">
+                <option value="">全部</option>
+                <option value="0">正常</option>
+                <option value="1">停用</option>
+            </select>
+        </form>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="searchInfo()">查询</a>
+    </div>
+    <div class="menuBtn">
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add()">新增</a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" onclick="update()">修改</a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="remove(this)">删除</a>
+    </div>
+</div>
+<div id="editDialog" class="easyui-dialog" data-options="closed:true, title:'编辑信息', iconCls:'icon-edit', modal:true, buttons:'#editButton'"
+    style="width: 300px; height: 400px; padding: 5px 5px">
+    <form id="editForm" class="easyui-form" method="post">
+        <input id="id" name="id" type="hidden">
+        <table cellpadding="2">
+            <tr>
+                <td align="right">角色名称<font color="red">*</font>:</td>
+                <td><input id="roleName" name="roleName" class="easyui-textbox" style="width:144px"></td>
+            </tr>
+            <tr>
+                <td align="right">角色编码<font color="red">*</font>:</td>
+                <td><input id="roleKey" name="roleKey" class="easyui-textbox" style="width:144px"></td>
+            </tr>
+            <tr>
+                <td align="right">显示顺序<font color="red">*</font>:</td>
+                <td><input id="roleSort" name="roleSort" class="easyui-textbox" style="width:144px"></td>
+            </tr>
+            <tr>
+                <td align="right">状态:</td>
+                <td>
+                    <select id="status" name="status" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'" style="width: 144px">
+                        <option value="0">正常</option>
+                        <option value="1">停用</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">备注:</td>
+                <td><input id="remark" name="remark" class="easyui-textbox" style="width:144px"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div id="editButton" style="padding: 5px 5px">
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="save()">保存</a>
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="$('#editDialog').dialog('close')">取消</a>
+</div>
+</body>
+</html>

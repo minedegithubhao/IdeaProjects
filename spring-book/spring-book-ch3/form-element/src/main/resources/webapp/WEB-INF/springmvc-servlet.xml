@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       	xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       					   http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+       					   http://www.springframework.org/schema/context
+       					   http://www.springframework.org/schema/context/spring-context-4.0.xsd
+       					   http://www.springframework.org/schema/mvc 
+       					   http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+    <context:component-scan base-package="org.example" />
+    <!--<context:annotation-config>用于启用 Spring 容器中基本注解处理功能如 @Autowired、@Resource、@Value 等注解，以便进行依赖注入、属性注入等操作-->
+    <context:annotation-config />
+    <!--<mvc:annotation-driven> 用于启用 Spring MVC 中的注解驱动功能。它使 Spring MVC 能够处理如 @Controller、@RequestMapping、@PathVariable 等注解，以便支持基于注解的 MVC 控制器和请求映射。-->
+    <mvc:annotation-driven />
+ 
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+</beans>

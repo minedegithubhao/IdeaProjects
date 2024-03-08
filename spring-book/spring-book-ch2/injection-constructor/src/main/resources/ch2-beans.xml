@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="accountService" class="org.example.AccountServiceImpl">
+		<constructor-arg ref="accountDao"/>
+	</bean>
+
+	<bean id="accountDao" class="org.example.AccountDaoInMemoryImpl">
+	</bean>
+
+	<bean id="bar" class="org.example.Bar"/>
+
+	<bean id="baz" class="org.example.Baz"/>
+
+	<!--不推荐使用！！！  如果时这样，那么Spring将无法识别使用的是哪个构造器，虽然spring不报错-->
+<!--	<bean id="foo" class="org.example.Foo">-->
+<!--		<constructor-arg ref="bar"/>-->
+<!--		<constructor-arg ref="baz"/>-->
+<!--	</bean>-->
+
+	<!--通过这种方式，我们就告诉了spring到底使用的是那种构造器-->
+<!--	<bean id="foo" class="org.example.Foo">-->
+<!--		<constructor-arg ref="bar" index="0"/>-->
+<!--		<constructor-arg ref="baz" index="1"/>-->
+<!--	</bean>-->
+
+	<!--通过这种方式，我们就可以告诉了spring如何构建对象-->
+	<bean id="foo2" class="org.example.Foo">
+		<constructor-arg ref="bar"/>
+		<property name="baz" ref="baz"/>
+	</bean>
+
+	<!--循环依赖-->
+<!--	<bean id="a" class="org.example.A">-->
+<!--		<constructor-arg ref="b"/>-->
+<!--	</bean>-->
+
+<!--	<bean id="b" class="org.example.B">-->
+<!--		<constructor-arg ref="a"/>-->
+<!--	</bean>-->
+
+</beans>

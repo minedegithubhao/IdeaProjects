@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/jdbc
+       http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- 配置开启扫描注解事务 -->
+    <tx:annotation-driven/>
+    <!-- 配置 SpringIOC 注解扫描 -->
+    <context:component-scan base-package="com.canbe.dao"/>
+
+    <!-- 关联数据库文件：通过spring读取 -->
+    <context:property-placeholder location="classpath:database.properties"/>
+
+    <!-- 创建 sessionFactory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <!-- 注入数据源 -->
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 配置 hibernate 相关 -->
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>
+        </property>
+        <!-- 扫描实体所在的包 -->
+        <property name="packagesToScan">
+            <list>
+                <value>com.canbe.domain</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 4. 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <!-- hibernateTemplate和jdbcTemplate 共享事务，需使用同一数据源 -->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 7. 配置 hibernateTemplate-->
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!--jdbc模板对象-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 创建连接池 -->
+    <beans profile="dev">
+        <jdbc:embedded-database id="dataSource" type="H2">
+            <jdbc:script location="classpath:schema.sql" />
+            <jdbc:script location="classpath:test-data.sql" />
+        </jdbc:embedded-database>
+    </beans>
+    <beans profile="qa">
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <property name="driverClassName" value="${jdbc.driverClassName}"/>
+            <property name="url" value="${jdbc.url}"/>
+            <property name="username" value="${jdbc.username}"/>
+            <property name="password" value="${jdbc.password}"/>
+        </bean>
+    </beans>
+</beans>

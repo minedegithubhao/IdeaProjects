@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--个人理解：之所以使用interface的名称来作为其实现类的id，是因为即使实现类变了，我们也不用区修改代码-->
+	<bean id="accountService" class="org.example.AccountServiceImpl">
+		<property name="accountDao" ref="accountDao"/>
+	</bean>
+	
+	<bean id="accountDao" class="org.example.AccountDaoInJDBCImpl">
+	
+	</bean>
+
+</beans>

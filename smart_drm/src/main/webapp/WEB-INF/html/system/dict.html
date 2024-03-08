@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>数据字典</title>
+    <link rel="stylesheet" type="text/css" href="../../js/jquery-easyui-1.8.6/themes/bootstrap/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../js/jquery-easyui-1.8.6/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="../../js/jquery-easyui-1.8.6/demo/demo.css">
+    <link rel="stylesheet" type="text/css" href="../../css/common.css">
+    <script type="text/javascript" src="../../js/jquery-easyui-1.8.6/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery-easyui-1.8.6/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../html/system/dict.js"></script>
+    <script type="text/javascript" src="../../html/main.js"></script>
+    <script type="text/javascript" src="../../html/commonFormatter.js"></script>
+</head>
+<body>
+<div id="index_dataGrid"></div>
+<div id="tb">
+    <div>
+        <form style="float: left; margin-right: 5px">
+            字典名称: <input id="loginNameSearch" class="easyui-textbox" style="width:80px">
+            字典Code: <input id="userNameSearch" class="easyui-textbox" style="width:80px">
+            状态:
+            <select id="statusSearch" class="easyui-combobox" data-options="panelHeight:'auto'" style="width:100px">
+                <option value="">全部</option>
+                <option value="0">正常</option>
+                <option value="1">停用</option>
+            </select>
+        </form>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="searchInfo()">查询</a>
+    </div>
+    <div class="menuBtn">
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add()">新增</a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" onclick="update()">修改</a>
+    </div>
+</div>
+<div id="editDialog" class="easyui-dialog" data-options="closed:true, title:'编辑信息', iconCls:'icon-edit', modal:true, buttons:'#editButton'"
+    style="width: 300px; height: 400px; padding: 5px 5px">
+    <form id="userForm" class="easyui-form" method="post">
+        <input id="userId" name="userId" type="hidden">
+        <table cellpadding="2">
+            <tr>
+                <td align="right">用户名称<font color="red">*</font>:</td>
+                <td><input id="loginName" name="loginName" class="easyui-textbox" style="width:144px"></td>
+            </tr>
+            <tr>
+                <td align="right">登录账户<font color="red">*</font>:</td>
+                <td><input id="userName" name="userName" class="easyui-textbox" style="width:144px"></td>
+            </tr>
+            <tr>
+                <td align="right">密码<font color="red">*</font>:</td>
+                <td><input id="password" name="password" class="easyui-textbox" style="width:144px"></td>
+            </tr>
+            <tr>
+                <td align="right">状态:</td>
+                <td>
+                    <select id="status" name="status" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'" style="width: 144px">
+                        <option value="1">有效</option>
+                        <option value="0">失效</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div id="editButton" style="padding: 5px 5px">
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="save()">保存</a>
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="$('#editDialog').dialog('close')">取消</a>
+</div>
+<div id="detail_dialog" style="width:80%;height:200px;">
+    <div id="detail_dataGrid" ></div>
+</div>
+</body>
+</html>

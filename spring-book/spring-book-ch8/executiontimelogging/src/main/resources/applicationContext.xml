@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       					   http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+       					   http://www.springframework.org/schema/context
+       					   http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+    <!--包扫描-->
+    <context:component-scan base-package="org.example" />
+    <!--注解驱动，用来识别@Service、@Component、@AutoWired等注解-->
+    <context:annotation-config />
+
+    <!--ExecutionTimeLoggingSpringAOP就是一个通知（类）-->
+    <bean id="executionTimeLoggingSpringAop" class="org.example.aspect.ExecutionTimeLoggingSpringAOP" />
+
+    <aop:config>
+        <!--定义切入点-->
+        <aop:pointcut id="executionTimeLoggingPointcut" expression="execution(public * *(..))" />
+
+        <!--织入：这里的作用就是将切入点和通知进行匹配-->
+        <aop:advisor id="executionTimeLoggingAdvisor"
+                     advice-ref="executionTimeLoggingSpringAop"
+                     pointcut-ref="executionTimeLoggingPointcut" />
+    </aop:config>
+
+</beans>

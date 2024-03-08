@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--1. 标准日志（可更换其它日志）-->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!-- 使用驼峰命名法 -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!--2. 设置别名：扫描包的方式-->
+    <typeAliases>
+        <!--实体类的包名称-->
+        <package name="com.smartdrm.entity"/>
+    </typeAliases>
+
+    <!--3. 注册 Mapper.xml-->
+    <mappers>
+        <package name="com.smartdrm.mapper"/>
+    </mappers>
+</configuration>

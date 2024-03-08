@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--1. 关联数据库文件：通过spring读取-->
+    <context:property-placeholder location="classpath:database.properties"/>
+
+    <!--2. mysql数据库连接池
+        dbcp：半自动化操作，不能自动连接
+        c3p0：自动化操作（自动的加载配置文件，并且设置到对象里面）
+        druid、hikari
+    -->
+<!--    <bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource">-->
+<!--    <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+<!--        <property name="username" value="${jdbc.username}"/>-->
+<!--        <property name="password" value="${jdbc.password}"/>-->
+<!--        <property name="url" value="${jdbc.url}"/>-->
+<!--        <property name="driverClassName" value="${jdbc.driverClassName}"/>-->
+<!--    </bean>-->
+
+    <!--h2-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!--整合mybatis-->
+    <!--3. 配置SqlSessionFactory对象，并交给spring容器管理-->
+    <bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--注入数据源-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--绑定Mybatis配置文件(spring整合Mybatis) 注意 value后面加classpath:-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+
+    <!--4. 配置扫描Dao接口包，动态实现Dao接口注入到spring容器中（不需要创建dao接口的实现类），bean的id是mapper的类名（首字母小写）-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--配置mapper接口所在的包,如果有多个包，可以用逗号或分号分隔-->
+        <property name="basePackage" value="com.smartdrm.mapper"/>
+        <!--注入会话工厂,如果工厂中只有一个SqlSessionFactory的bean，此配置可省略。-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+    <!--整合hibernate-->
+<!--    &lt;!&ndash;通过数据源初始化sessionFactory&ndash;&gt;-->
+<!--    <bean id="hibernateSqlSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">-->
+<!--        &lt;!&ndash;注入连接池&ndash;&gt;-->
+<!--        <property name="dataSource" ref="dataSource"/>-->
+<!--        <property name="packagesToScan" value="com.smartdrm.entity" />-->
+<!--        <property name="hibernateProperties">-->
+<!--            <props>-->
+<!--                &lt;!&ndash;配置Hibernate的方言&ndash;&gt;-->
+<!--                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>-->
+<!--                <prop key="hibernate.hbm2ddl.auto">update</prop>-->
+<!--                <prop key="hibernate.connection.autocommit">true</prop>-->
+<!--                &lt;!&ndash;格式化输出sql语句&ndash;&gt;-->
+<!--                <prop key="hibernate.show_sql">true</prop>-->
+<!--                <prop key="hibernate.format_sql">true</prop>-->
+<!--                <prop key="hibernate.use_sql_comments">false</prop>-->
+<!--            </props>-->
+<!--        </property>-->
+<!--    </bean>-->
+
+<!--    &lt;!&ndash;配置HibernateTemplate对象&ndash;&gt;-->
+<!--    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">-->
+<!--        &lt;!&ndash; 注入 SessionFactory 对象 &ndash;&gt;-->
+<!--        <property name="sessionFactory" ref="hibernateSqlSessionFactory"/>-->
+<!--    </bean>-->
+
+    <!--jdbc模板对象-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 配置事务控制 -->
+    <!-- 配置事务管理器。其中依赖DataSource对象，借此以获得连接，进而控制事务逻辑。 -->
+    <bean name="txManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--注入数据源-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- aop注解生效 -->
+    <aop:aspectj-autoproxy/>
+    <!-- 启用注解事务 -->
+    <tx:annotation-driven transaction-manager="txManager"/>
+</beans>
+

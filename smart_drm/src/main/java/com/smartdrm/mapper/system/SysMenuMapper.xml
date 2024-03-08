@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smartdrm.mapper.system.SysMenuMapper">
+
+    <select id="getAllMenu" resultType="com.smartdrm.entity.system.SysMenu">
+        select *
+        from SYS_MENU SM
+    </select>
+
+    <select id="getMenu" resultType="com.smartdrm.entity.system.SysMenu">
+        select *
+        from SYS_MENU SM
+                 right join SYS_ROLE_MENU SRM on SM.MENU_ID = SRM.MENU_ID
+                 right join SYS_USER_ROLE SUR on SRM.ROLE_ID = SUR.ROLE_ID
+                 right join SYS_USER SU on SUR.USER_ID = SU.USER_ID
+        where SU.LOGIN_NAME = #{loginName};
+    </select>
+
+    <select id="getDataGrid" resultType="com.smartdrm.entity.system.SysMenu">
+        select *
+        from sys_menu;
+    </select>
+
+    <select id="getDataGridCount" resultType="int">
+        select count(*)
+        from sys_menu;
+    </select>
+
+    <insert id="save" parameterType="com.smartdrm.entity.system.SysMenu">
+        insert into sys_menu(MENU_ID, MENU_NAME, PARENT_ID, ORDER_NUM, url, menu_type, visible, perms, create_by,
+                             create_time)
+        values (#{menuId}, #{menuName}, #{parentId}, #{orderNum}, #{url}, #{menuType}, #{visible}, #{perms},
+                #{createBy}, now())
+    </insert>
+
+    <select id="getMaxMenuIdParentId" parameterType="int" resultType="java.lang.Integer">
+        select max(MENU_ID)
+        from sys_menu
+        where PARENT_ID = #{parentId};
+    </select>
+
+    <select id="getMenuByParentId" parameterType="int" resultType="com.smartdrm.entity.system.SysMenu">
+        select *
+        from sys_menu
+        where PARENT_ID = #{parentId};
+    </select>
+</mapper>

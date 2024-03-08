@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>菜单管理</title>
+    <link rel="stylesheet" type="text/css" href="../../js/jquery-easyui-1.8.6/themes/bootstrap/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../js/jquery-easyui-1.8.6/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="../../js/jquery-easyui-1.8.6/demo/demo.css">
+    <link rel="stylesheet" type="text/css" href="../../css/common.css">
+    <script type="text/javascript" src="../../js/jquery-easyui-1.8.6/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery-easyui-1.8.6/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../html/system/menu.js"></script>
+    <script type="text/javascript" src="../../html/commonFormatter.js"></script>
+    <script type="text/javascript" src="../../html/main.js"></script>
+</head>
+<body>
+<div id="index_dataGrid"></div>
+<div id="tb">
+    <div class="menuBtn">
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add()">新增</a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" onclick="update()">修改</a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="remove(this)">删除</a>
+    </div>
+</div>
+<div id="editDialog" class="easyui-dialog" data-options="closed:true, title:'编辑信息', iconCls:'icon-edit', modal:true, buttons:'#editButton'"
+    style="width: 300px; height: 400px; padding: 5px 5px">
+    <form id="editForm" class="easyui-form" method="post">
+        <input id="id" name="id" type="hidden">
+        <table cellpadding="2">
+            <tr>
+                <td align="right">菜单名称<font color="red">*</font>:</td>
+                <td><input id="menuName" name="menuName" class="easyui-textbox" style="width:144px"></td>
+            </tr>
+            <tr>
+                <td align="right">菜单类型<font color="red">*</font>:</td>
+                <td>
+                    <select id="menuType" name="menuType" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'" style="width:144px">
+                        <option value="M">一级菜单</option>
+                        <option value="C">下级菜单</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="parentIdTr">
+                <td align="right">上级菜单<font color="red">*</font>:</td>
+                <td><input id="parentId" name="parentId" class="easyui-combobox" style="width:144px"></td>
+            </tr>
+            <tr>
+                <td align="right">请求地址:</td>
+                <td><input id="url" name="url" class="easyui-textbox" style="width:144px"></td>
+            </tr>
+            <tr>
+                <td align="right">权限标识:</td>
+                <td><input id="perms" name="perms" class="easyui-textbox" style="width:144px"></td>
+            </tr>
+            <tr>
+                <td align="right">显示顺序<font color="red">*</font>:</td>
+                <td><input id="orderNum" name="orderNum" class="easyui-textbox" style="width:144px"></td>
+            </tr>
+            <tr>
+                <td align="right">菜单状态:</td>
+                <td>
+                    显示<input type="radio" name="visible" value="0">
+                    隐藏<input type="radio" name="visible" value="1">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div id="editButton" style="padding: 5px 5px">
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="save()">保存</a>
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="$('#editDialog').dialog('close')">取消</a>
+</div>
+</body>
+</html>

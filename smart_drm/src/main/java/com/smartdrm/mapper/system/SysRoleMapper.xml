@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smartdrm.mapper.system.SysRoleMapper">
+
+    <select id="getDataGrid" parameterType="com.smartdrm.entity.system.SysRoleParam"
+            resultType="com.smartdrm.entity.system.SysRole">
+        select * from sys_role
+        <where>
+            <if test="roleName != null and roleName != ''">
+                and role_name = #{roleName}
+            </if>
+            <if test="roleKey != null and roleKey != ''">
+                and role_key = #{roleKey}
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+        </where>
+        limit ${(page-1)*rows},${rows};
+    </select>
+
+    <select id="getDataGridCount" parameterType="com.smartdrm.entity.system.SysRoleParam" resultType="int">
+        select count(*) from sys_role
+        <where>
+            <if test="roleName != null and roleName != ''">
+                and role_name = #{roleName}
+            </if>
+            <if test="roleKey != null and roleKey != ''">
+                and role_key = #{roleKey}
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.smartdrm.entity.system.SysRole">
+        insert into sys_role(role_name, role_key, role_sort, status, create_time)
+        values (#{roleName}, #{roleKey}, #{roleSort}, #{status}, now());
+    </insert>
+
+    <select id="getRoleById" parameterType="int" resultType="com.smartdrm.entity.system.SysRole">
+        select *
+        from sys_role
+        where role_id = #{roleId}
+    </select>
+
+    <update id="update" parameterType="com.smartdrm.entity.system.SysRole">
+        update sys_role
+        set role_name   = #{roleName},
+            role_key    = #{roleKey},
+            role_sort   = #{roleSort},
+            status      = #{status},
+            remark      = #{remark},
+            update_time = now()
+        where role_id = #{roleId}
+    </update>
+
+    <delete id="remove" parameterType="int">
+        delete from sys_role where role_id = #{roleId}
+    </delete>
+</mapper>

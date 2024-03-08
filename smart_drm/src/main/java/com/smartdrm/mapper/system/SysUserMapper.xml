@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smartdrm.mapper.system.SysUserMapper">
+
+    <select id="getUserByLoginName" parameterType="java.lang.String" resultType="com.smartdrm.entity.system.SysUser">
+        select * from SYS_USER where LOGIN_NAME = #{loginName};
+    </select>
+
+    <select id="getUserById" parameterType="java.lang.String" resultType="com.smartdrm.entity.system.SysUser">
+        select * from sys_user where user_id = #{userId};
+    </select>
+
+    <select id="getDataGrid" parameterType="com.smartdrm.entity.system.SysUserParam" resultType="com.smartdrm.entity.system.SysUser">
+        select * from sys_user
+        <where>
+            <if test="loginName != null and loginName != ''">
+                and LOGIN_NAME = #{loginName}
+            </if>
+            <if test="userName != null and userName != ''">
+                and USER_NAME = #{userName}
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+        </where>
+        limit ${(page-1)*rows},${rows};
+    </select>
+
+    <select id="getDataGridCount" parameterType="com.smartdrm.entity.system.SysUserParam" resultType="java.lang.Integer">
+        select count(*) from sys_user
+        <where>
+            <if test="loginName != null and loginName != ''">
+                and LOGIN_NAME = #{loginName}
+            </if>
+            <if test="userName != null and userName != ''">
+                and USER_NAME = #{userName}
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.smartdrm.entity.system.SysUser">
+        insert into sys_user(login_name,user_name,password,status,create_time)
+        values(#{loginName},#{userName},#{password},#{status},now())
+    </insert>
+
+    <delete id="remove" parameterType="java.lang.String">
+        delete from SYS_USER where user_id = #{userId}
+    </delete>
+
+    <update id="update" parameterType="com.smartdrm.entity.system.SysUser">
+        update SYS_USER
+        set login_name = #{loginName},
+            user_name = #{userName},
+            password = #{password},
+            update_time = now(),
+            STATUS = #{status}
+        where user_id = #{userId}
+    </update>
+
+
+</mapper>
