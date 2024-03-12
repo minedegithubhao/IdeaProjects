@@ -1,3 +1,9 @@
+canbe:
+  name: 禅师弟
+  title: 要成为火影的男人
+  url: https://github.com/minedegithubhao
+  image_url: https://github.com/minedegithubhao.png
+
 endi:
   name: Endilie Yacop Sucipto
   title: Maintainer of Docusaurus
@@ -15,3 +21,10 @@ slorber:
   title: Docusaurus maintainer
   url: https://sebastienlorber.com
   image_url: https://github.com/slorber.png
+
+jmarcey:
+  name: Joel Marcey
+  title: Co-creator of Docusaurus 1
+  url: https://github.com/JoelMarcey
+  image_url: https://github.com/JoelMarcey.png
+  email: jimarcey@gmail.com

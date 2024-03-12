@@ -29,4 +29,8 @@ public class SysUserServiceImplTest {
         System.out.println(userDao.findById(3));
         System.out.println(userDao.findById(4));
     }
+
+    public static void main(String[] args) {
+        System.out.println("中1235".matches("[0-9A-Za-z]{1,5}"));
+    }
 }
