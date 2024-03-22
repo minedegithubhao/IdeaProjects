@@ -4,9 +4,9 @@
 drop table if exists s_user;
 create table s_user
 (
-    id         int  not null auto_increment comment '用户ID',
-    no      varchar(30) not null comment '账号',
-    name       varchar(30) not null comment '名字',
+    id              int  not null auto_increment comment '用户ID',
+    no              varchar(30) not null comment '账号',
+    name            varchar(30) not null comment '名字',
     password        varchar(50) not null comment '密码',
     age             int comment '年龄',
     sex             int comment '性别， 0-男，1-女',
