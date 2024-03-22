@@ -123,6 +123,7 @@ public class CodeGenerator {
                                 .controllerBuilder()
                                 .enableRestStyle() //开启生成@RestController控制器
                                 .entityBuilder()
+                                .enableTableFieldAnnotation() // 开启生成实体时生成字段注解
                                 .enableLombok() // 启用lombok，添加@Getter和@Setter注解
                                 .mapperBuilder()
                                 .enableMapperAnnotation() //添加@Mapper注解
