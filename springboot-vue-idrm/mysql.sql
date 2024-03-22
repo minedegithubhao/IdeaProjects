@@ -25,7 +25,7 @@ create table s_user
 -- 角色信息表
 -- ----------------------------
 drop table if exists sys_role;
-create table sys_role
+create table s_role
 (
     role_id     int   not null auto_increment comment '角色ID',
     role_name   varchar(30)  not null comment '角色名称',
