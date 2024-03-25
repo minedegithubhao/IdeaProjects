@@ -1,6 +1,8 @@
 package com.example.idrm.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.idrm.common.QueryPageParam;
 import com.example.idrm.entity.User;
 import com.example.idrm.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +35,19 @@ public class UserController {
         return userService.getById(id);
     }
 
-    @PostMapping("listCondition")
+    @PostMapping("/listCondition")
     public List<User> listCondition(@RequestBody User user){
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.like(User::getName,user.getName());
         return userService.list(queryWrapper);
+    }
+
+    @PostMapping("/pageCondition")
+    public Page<User> pageCondition(@RequestBody QueryPageParam<User> queryParam){
+        Page<User> page = new Page<>(queryParam.getPageSize(), queryParam.getPageNumber());
+        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.like(User::getName,queryParam.getParams().getName());
+        return userService.page(page, queryWrapper);
     }
 
     @PostMapping("/save")
