@@ -1,8 +1,8 @@
 package com.example.idrm.service.impl;
 
-import com.example.idrm.entity.User;
-import com.example.idrm.mapper.UserMapper;
-import com.example.idrm.service.IUserService;
+import com.example.idrm.entity.Role;
+import com.example.idrm.mapper.RoleMapper;
+import com.example.idrm.service.IRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2024-03-25
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {
 
 }

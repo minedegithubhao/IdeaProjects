@@ -19,64 +19,52 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@TableName("s_user")
-public class User implements Serializable {
+@TableName("s_role")
+public class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户ID
+     * 角色ID
      */
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    @TableId(value = "role_id", type = IdType.AUTO)
+    private Integer roleId;
 
     /**
-     * 账号
+     * 角色名称
      */
-    @TableField("no")
-    private String no;
+    @TableField("role_name")
+    private String roleName;
 
     /**
-     * 名字
+     * 角色权限字符串
      */
-    @TableField("name")
-    private String name;
+    @TableField("role_key")
+    private String roleKey;
 
     /**
-     * 密码
+     * 显示顺序
      */
-    @TableField("password")
-    private String password;
+    @TableField("role_sort")
+    private Integer roleSort;
 
     /**
-     * 年龄
+     * 数据范围（1：全部数据权限 2：自定数据权限 3：本部门数据权限 4：本部门及以下数据权限）
      */
-    @TableField("age")
-    private Integer age;
+    @TableField("data_scope")
+    private String dataScope;
 
     /**
-     * 性别， 0-男，1-女
-     */
-    @TableField("sex")
-    private Integer sex;
-
-    /**
-     * 帐号状态（0正常 1停用）
+     * 角色状态（0正常 1停用）
      */
     @TableField("status")
-    private Integer status;
-
-    /**
-     * 角色id
-     */
-    @TableField("role_id")
-    private Integer roleId;
+    private String status;
 
     /**
      * 删除标志（0代表存在 2代表删除）
      */
     @TableField("del_flag")
-    private Integer delFlag;
+    private String delFlag;
 
     /**
      * 创建者
