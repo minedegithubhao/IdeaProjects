@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.idrm.common.QueryPageParam;
 import com.example.idrm.entity.User;
 import com.example.idrm.service.IUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -47,8 +46,23 @@ public class UserController {
     public Page<User> pageCondition(@RequestBody QueryPageParam<User> queryParam){
         Page<User> page = new Page<>(queryParam.getPageNumber(), queryParam.getPageSize());
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.like(User::getName,queryParam.getParams().getName());
+        User queryParams = queryParam.getParams();
+        queryWrapper.like(User::getName,queryParams.getName());
         return userService.page(page, queryWrapper);
+    }
+
+    /**
+     * 自定义方法，使用Wrapper
+     * @param queryParam 请求参数
+     * @return
+     */
+    @PostMapping("/pageConditionC")
+    public Page<User> pageConditionC(@RequestBody QueryPageParam<User> queryParam){
+        Page<User> page = new Page<>(queryParam.getPageNumber(), queryParam.getPageSize());
+        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+        User queryParams = queryParam.getParams();
+        queryWrapper.like(User::getName,queryParams.getName());
+        return userService.pageC(page, queryWrapper);
     }
 
     @PostMapping("/save")
