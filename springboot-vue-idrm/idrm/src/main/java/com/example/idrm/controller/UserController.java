@@ -45,7 +45,7 @@ public class UserController {
 
     @PostMapping("/pageCondition")
     public Page<User> pageCondition(@RequestBody QueryPageParam<User> queryParam){
-        Page<User> page = new Page<>(queryParam.getPageSize(), queryParam.getPageNumber());
+        Page<User> page = new Page<>(queryParam.getPageNumber(), queryParam.getPageSize());
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.like(User::getName,queryParam.getParams().getName());
         return userService.page(page, queryWrapper);
