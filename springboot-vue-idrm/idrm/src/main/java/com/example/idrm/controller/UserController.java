@@ -3,6 +3,7 @@ package com.example.idrm.controller;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.idrm.common.QueryPageParam;
+import com.example.idrm.common.Result;
 import com.example.idrm.entity.User;
 import com.example.idrm.service.IUserService;
 import org.springframework.web.bind.annotation.*;
@@ -63,6 +64,21 @@ public class UserController {
         User queryParams = queryParam.getParams();
         queryWrapper.like(User::getName,queryParams.getName());
         return userService.pageC(page, queryWrapper);
+    }
+
+    /**
+     * 使用result
+     * @param queryParam
+     * @return
+     */
+    @PostMapping("/pageConditionCC")
+    public Result pageConditionCC(@RequestBody QueryPageParam<User> queryParam){
+        Page<User> page = new Page<>(queryParam.getPageNumber(), queryParam.getPageSize());
+        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+        User queryParams = queryParam.getParams();
+        queryWrapper.like(User::getName,queryParams.getName());
+        Page<User> userPage = userService.pageC(page, queryWrapper);
+        return Result.suc(userPage.getTotal(), userPage.getRecords());
     }
 
     @PostMapping("/save")
