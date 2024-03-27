@@ -1,12 +1,19 @@
 <script>
 export default {
   name: "Header",
+  props: {
+    collapse_icon: String
+  },
   methods:{
     toUser(){
       console.log("toUser")
     },
     logout(){
       console.log("logout")
+    },
+    collapse(){
+      // 组件提交到父组件
+      this.$emit('doCollapse')
     }
   }
 }
@@ -15,7 +22,7 @@ export default {
 <template>
   <div style="display: flex; line-height: 60px">
     <div>
-      <i class="el-icon-s-fold" style="font-size: 20px"></i>
+      <i :class="collapse_icon" style="cursor: pointer;font-size: 20px" @click="collapse"></i>
     </div>
     <div style="flex: 1; text-align: center;font-size: 20px">
       <span>欢迎来到资源管理系统</span>
