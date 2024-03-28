@@ -6,6 +6,7 @@ import com.example.idrm.common.QueryPageParam;
 import com.example.idrm.common.Result;
 import com.example.idrm.entity.User;
 import com.example.idrm.service.IUserService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -77,6 +78,9 @@ public class UserController {
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
         User queryParams = queryParam.getParams();
         queryWrapper.like(User::getName,queryParams.getName());
+        if (null != queryParams.getSex()){
+            queryWrapper.eq(User::getSex, queryParams.getSex());
+        }
         Page<User> userPage = userService.pageC(page, queryWrapper);
         return Result.suc(userPage.getTotal(), userPage.getRecords());
     }
