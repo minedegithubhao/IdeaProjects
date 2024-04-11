@@ -6,7 +6,6 @@ import com.example.idrm.common.QueryPageParam;
 import com.example.idrm.common.Result;
 import com.example.idrm.entity.User;
 import com.example.idrm.service.IUserService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -35,6 +34,12 @@ public class UserController {
     @GetMapping("/getUserById/{id}")
     public User getUserById(@PathVariable Integer id){
         return userService.getById(id);
+    }
+
+    @GetMapping("/getUserByNo")
+    public Result getUserByNo(@RequestParam String no){
+        User user = userService.lambdaQuery().eq(User::getNo, no).one();
+        return user == null ? Result.fail() : Result.suc(user);
     }
 
     @PostMapping("/listCondition")
@@ -86,8 +91,8 @@ public class UserController {
     }
 
     @PostMapping("/save")
-    public boolean save(@RequestBody User user){
-        return  userService.save(user);
+    public Result save(@RequestBody User user){
+        return userService.save(user) ? Result.suc() : Result.fail();
     }
 
     @PostMapping("/update")
