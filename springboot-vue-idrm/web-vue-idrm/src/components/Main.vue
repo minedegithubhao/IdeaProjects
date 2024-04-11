@@ -1,4 +1,6 @@
 <script xmlns="http://www.w3.org/1999/html">
+import {del} from "vue";
+
 export default {
   name: "Main",
   data() {
@@ -41,6 +43,7 @@ export default {
       }],
       dialogFormVisible: false,
       form: {
+        id: '',
         no: '',
         password: '',
         name: '',
@@ -106,22 +109,63 @@ export default {
         this.resetForm()
       });
     },
+    edit(row){
+      this.dialogFormVisible = true
+      this.$nextTick(() => {
+        // 赋值到表单
+        this.form.id = row.id;
+        this.form.no = row.no
+        this.form.sex = row.sex + '' // 将int转为String
+        this.form.name = row.name
+        this.form.age = row.age + ''
+        this.form.password = ''
+      });
+    },
+    del(id){
+      console.log(id)
+      this.$axios.delete(this.$httpUrl + "/user/delete?id=" + id).then(res => res.data).then(res=>{
+        if (res.code === 200) {
+          this.$message.success(res.msg)
+          this.loadPost();
+        } else {
+          this.$message.error(res.msg)
+        }
+      })
+    },
     save() {
       this.$refs.form.validate((valid) => {
         if (valid) {
-          this.$axios.post(this.$httpUrl + '/user/save', this.form).then(res => res.data).then(res => {
-            if (res.code === 200) {
-              this.$message.success(res.msg)
-              this.loadPost();
-            } else {
-              this.$message.error(res.msg)
-            }
-            this.dialogFormVisible = false;
-          })
+          if (this.form.id){
+            this.doUpdate();
+          }else {
+            this.doSave();
+          }
         } else {
           return false;
         }
       });
+    },
+    doSave(){
+      this.$axios.post(this.$httpUrl + '/user/save', this.form).then(res => res.data).then(res => {
+        if (res.code === 200) {
+          this.$message.success(res.msg)
+          this.loadPost();
+        } else {
+          this.$message.error(res.msg)
+        }
+        this.dialogFormVisible = false;
+      })
+    },
+    doUpdate(){
+      this.$axios.post(this.$httpUrl + '/user/update', this.form).then(res => res.data).then(res => {
+        if (res.code === 200) {
+          this.$message.success(res.msg)
+          this.loadPost();
+        } else {
+          this.$message.error(res.msg)
+        }
+        this.dialogFormVisible = false;
+      })
     },
     resetForm() {
       this.$refs.form.resetFields();
@@ -178,8 +222,16 @@ export default {
       </el-table-column>
       <el-table-column prop="status" label="状态" width="180"></el-table-column>
       <el-table-column prop="operate" label="操作">
-        <el-button size="small" type="success">编辑</el-button>
-        <el-button size="small" type="danger">删除</el-button>
+        <template slot-scope="scope">
+          <el-button size="small" type="success" @click="edit(scope.row)">编辑</el-button>
+          <el-popconfirm
+              title="确定删除吗？"
+              @confirm="del(scope.row.id)"
+              style="margin-left: 5px"
+          >
+            <el-button slot="reference" size="small" type="danger">删除</el-button>
+          </el-popconfirm>
+        </template>
       </el-table-column>
     </el-table>
 

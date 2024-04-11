@@ -21,7 +21,7 @@ export default {
       default-active="Home"
       :collapse="isCollapse"
       :collapse-transition="false"
-      style="height: 100vh; margin-left: -1px">
+      style="height: 100%; margin-left: -1px">
     <el-menu-item index="Home">
       <i class="el-icon-s-home"></i>
       <span slot="title">首页</span>

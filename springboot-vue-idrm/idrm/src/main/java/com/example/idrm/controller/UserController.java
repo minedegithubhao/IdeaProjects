@@ -96,8 +96,8 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public boolean update(@RequestBody User user){
-        return userService.updateById(user);
+    public Result update(@RequestBody User user){
+        return userService.updateById(user) ? Result.suc() : Result.fail();
     }
 
     @PostMapping("/saveOrUpdate")
@@ -105,9 +105,9 @@ public class UserController {
         return userService.saveOrUpdate(user);
     }
 
-    @DeleteMapping("delete/{id}")
-    public boolean delete(@PathVariable Integer id){
-        return userService.removeById(id);
+    @DeleteMapping("/delete")
+    public Result delete(@RequestParam Integer id){
+        return userService.removeById(id) ? Result.suc() : Result.fail();
     }
 
 }
