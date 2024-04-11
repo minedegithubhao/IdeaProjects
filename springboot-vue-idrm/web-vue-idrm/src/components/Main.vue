@@ -122,15 +122,23 @@ export default {
       });
     },
     del(id){
-      console.log(id)
-      this.$axios.delete(this.$httpUrl + "/user/delete?id=" + id).then(res => res.data).then(res=>{
-        if (res.code === 200) {
-          this.$message.success(res.msg)
-          this.loadPost();
-        } else {
-          this.$message.error(res.msg)
-        }
-      })
+      this.$confirm('确定删除吗？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$axios.delete(this.$httpUrl + "/user/delete?id=" + id).then(res => res.data).then(res=>{
+          if (res.code === 200) {
+            this.$message.success('删除成功!');
+            this.loadPost();
+          } else {
+            this.$message.error(res.msg)
+          }
+        })
+      }).catch(() => {
+
+      });
+
     },
     save() {
       this.$refs.form.validate((valid) => {
@@ -224,13 +232,7 @@ export default {
       <el-table-column prop="operate" label="操作">
         <template slot-scope="scope">
           <el-button size="small" type="success" @click="edit(scope.row)">编辑</el-button>
-          <el-popconfirm
-              title="确定删除吗？"
-              @confirm="del(scope.row.id)"
-              style="margin-left: 5px"
-          >
-            <el-button slot="reference" size="small" type="danger">删除</el-button>
-          </el-popconfirm>
+          <el-button size="small" type="danger" @click="del(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
