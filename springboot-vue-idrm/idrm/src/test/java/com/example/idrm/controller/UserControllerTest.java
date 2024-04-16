@@ -13,6 +13,11 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -125,5 +130,47 @@ class UserControllerTest extends IdrmApplicationTestBase {
     mockMvc.perform(fileUpload("/user/{id}/icon", 1L).file("icon", bytes))
             .andExpect(model().attribute("icon", bytes)) //验证属性相等性
             .andExpect(view().name("success")); //验证视图*/
+
+    //大批量插入数据
+    @Test
+    void testBatchInsert() throws Exception {
+
+        //url=jdbc:mysql://localhost:3306/test01?characterEncoding=utf8&serverTimezone=UTC&useSSL=false&rewriteBatchedStatements=true
+        //批量导入设置rewriteBatchedStatements=true
+        String url = "jdbc:mysql://127.0.0.1:3306/idrm?useUnicode=true&characterEncoding=UTF-8&useSSL=false&rewriteBatchedStatements=true&serverTimezone=Asia/Shanghai";
+        String username = "root";
+        String password = "root";
+        String sql = "INSERT INTO s_user(`no`, `name`, `password`, `age`, `sex`, `status`, `role_id`, `del_flag`, `remark`) VALUES ('admin', '超级管理员', 'admin', 29, 0, 0, 0, 1, ?)";
+
+
+        long start = System.currentTimeMillis();
+        Connection conn = DriverManager.getConnection(url, username, password);//获取数据库连接
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement(sql);
+            conn.setAutoCommit(false);//取消自动提交
+            for (int i = 1; i <= 1000000; i++) {
+                ps.setObject(1, i);
+                ps.addBatch();
+                if (i % 500 == 0) {
+                    ps.executeBatch();
+                    ps.clearBatch();
+                }
+            }
+            ps.executeBatch();
+            ps.clearBatch();
+            conn.commit();//所有语句都执行完毕后才手动提交sql语句
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (ps != null){
+                ps.close();
+            }
+            if (conn != null){
+                conn.close();
+            }
+        }
+        System.out.println("百万条数据插入用时：" + (System.currentTimeMillis() - start)+"【单位：毫秒】");
+    }
 
 }
