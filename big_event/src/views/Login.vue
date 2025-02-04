@@ -5,6 +5,8 @@ import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router' // 引入router
 const router = useRouter()
+import { useTokenStore } from '@/stores/token.js' //导入token
+const tokenStore = useTokenStore()
 
 //控制注册与登录表单的显示， 默认显示注册
 const isRegister = ref(false)
@@ -52,6 +54,7 @@ const register = async () => {
 const login = async () => {
     let result = await userLoginService(registerData.value);
     ElMessage.success(result.msg ? result.msg : '登录成功')
+    tokenStore.setToken(result.data)
     //跳转到首页
     router.push("/")
 }
