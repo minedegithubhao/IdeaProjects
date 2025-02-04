@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia'// 导入pinia
-import { ref } from 'vue'// 导入ref
+import { defineStore } from 'pinia'; // 导入pinia
+import { ref } from 'vue'; // 导入ref
 
 //创建token存储
 export const useTokenStore = defineStore('token', () => {
@@ -18,4 +18,7 @@ export const useTokenStore = defineStore('token', () => {
 
     return { token, setToken, removeToken }
 
-})
+}, {
+    persist: true // Pinia持久化插件-persist持久化存储
+}
+)
