@@ -1,4 +1,5 @@
 <script setup>
+import { userRegisterService } from '@/api/user.js'
 import { User, Lock } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 //控制注册与登录表单的显示， 默认显示注册
@@ -35,6 +36,19 @@ const rules = {
     rePassword: [
         { validator: checkRePassword, trigger: 'blur' }
     ]
+}
+
+// 注册方法
+const register = async () => {
+    let result = await userRegisterService(registerData.value);
+    if (result.code === 0) {
+        // 提示信息
+        alert(result.msg ? result.msg: '注册成功')
+        // // 跳转登录页面
+        // this.$router.push('/login')
+    } else {
+        alert('注册失败')
+    }
 }
 </script>
 
@@ -73,7 +87,7 @@ const rules = {
 
                 <!-- 注册按钮 -->
                 <el-form-item>
-                    <el-button class="button" type="primary" auto-insert-space>
+                    <el-button class="button" type="primary" auto-insert-space @click="register">
                         注册
                     </el-button>
 
