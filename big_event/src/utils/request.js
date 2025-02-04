@@ -3,16 +3,27 @@
 //导入axios  npm install axios
 import axios from 'axios';
 import { ElMessage } from 'element-plus'
-const success = () => {
-    ElMessage({
-      message: 'Congrats, this is a success message.',
-      type: 'success',
-    })
-  }
+import { useTokenStore } from '@/stores/token.js' //导入token
+
 //定义一个变量,记录公共的前缀  ,  baseURL
 const baseURL = '/api';
 const instance = axios.create({ baseURL })
 
+//添加请求拦截器
+instance.interceptors.request.use(
+    config => {
+        //在请求头中添加token
+        let tokenStore = useTokenStore()
+        if(tokenStore.token){
+            config.headers.Authorization = tokenStore.token;
+        }
+        return config;
+    },
+    err => {
+        // 请求失败
+        return Promise.reject(err);
+    }
+)
 
 //添加响应拦截器
 instance.interceptors.response.use(
