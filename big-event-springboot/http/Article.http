@@ -1,0 +1,16 @@
+### 注册，form表单提交
+POST http://localhost:8080/user/register
+Content-Type: application/x-www-form-urlencoded
+
+username = testUser &
+password = testPassword123
+
+### 登录
+POST http://localhost:8080/user/login
+Content-Type: application/x-www-form-urlencoded
+
+username = testUser &
+password = testPassword123
+
+### 个人基本信息
+GET http://localhost:8080/user/userInfo

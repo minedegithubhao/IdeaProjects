@@ -1,0 +1,19 @@
+spring:
+  # h2数据库
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:file:C:\IdeaProjects\big-event-springboot\big-event-springboot
+    username: sa
+    password:
+
+  #redis
+  data:
+    redis:
+      port: 6379
+      host: localhost
+      password:
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
