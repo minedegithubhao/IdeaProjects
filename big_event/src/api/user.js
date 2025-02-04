@@ -8,7 +8,16 @@ export const userRegisterService = (registerData) => {
     // form表单借助urlSearchParam完成参数传递
     const params = new URLSearchParams();
     for (let key in registerData) {
-        params.append(key,registerData[key])
+        params.append(key, registerData[key])
     }
-    return request.post('/user/register',new URLSearchParams(registerData))
+    return request.post('/user/register', new URLSearchParams(params))
+}
+
+// 登录接口函数
+export const userLoginService = (registerData) => {
+    const params = new URLSearchParams();
+    for (let key in registerData) {
+        params.append(key, registerData[key])
+    }
+    return request.post('/user/login', new URLSearchParams(params))
 }
