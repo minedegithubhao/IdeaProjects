@@ -7,7 +7,18 @@ export const articleCategoryListService = () => {
     return request.get('/category')
 }
 
+// 添加文章分类
 export const addArticleCategoryService = (categoryModel) => {
     // 以post请求方式添加文章分类
     return request.post('/category', categoryModel)
+}
+
+// 修改文章分类
+export const updateArticleCategoryService = (categoryModel) => {
+    return request.put('/category', categoryModel)
+}
+
+// 删除文章分类
+export const deleteArticleCategoryService = (id) => {
+    return request.delete('/category?id='+id)
 }

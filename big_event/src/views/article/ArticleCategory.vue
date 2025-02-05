@@ -1,34 +1,12 @@
 <script setup>
+import { addArticleCategoryService, articleCategoryListService, deleteArticleCategoryService, updateArticleCategoryService } from '@/api/article'
 import {
-    Edit,
-    Delete
+    Delete,
+    Edit
 } from '@element-plus/icons-vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { ref } from 'vue'
-import { ElMessage } from 'element-plus'
-import { articleCategoryListService, addArticleCategoryService } from '@/api/article'
-const categorys = ref([
-    {
-        "id": 3,
-        "categoryName": "美食",
-        "categoryAlias": "my",
-        "createTime": "2023-09-02 12:06:59",
-        "updateTime": "2023-09-02 12:06:59"
-    },
-    {
-        "id": 4,
-        "categoryName": "娱乐",
-        "categoryAlias": "yl",
-        "createTime": "2023-09-02 12:08:16",
-        "updateTime": "2023-09-02 12:08:16"
-    },
-    {
-        "id": 5,
-        "categoryName": "军事",
-        "categoryAlias": "js",
-        "createTime": "2023-09-02 12:08:33",
-        "updateTime": "2023-09-02 12:08:33"
-    }
-])
+const categorys = ref([])
 const articleCategoryList = async () => {
     const result = await articleCategoryListService()
     if (result.code === 0) {
@@ -41,10 +19,7 @@ articleCategoryList()
 const dialogVisible = ref(false)
 
 //添加分类数据模型
-const categoryModel = ref({
-    categoryName: '',
-    categoryAlias: ''
-})
+const categoryModel = ref({})
 //添加分类表单校验
 const rules = {
     categoryName: [
@@ -55,24 +30,83 @@ const rules = {
     ]
 }
 
+//定义变量控制标题的展示
+const title = ref('')
+
 //添加分类
 const addArticleCategory = async () => {
     let result = await addArticleCategoryService(categoryModel.value)
     ElMessage.success(result.msg ? result.msg : '添加成功')
-
-    // 刷新列表
-    articleCategoryList()
-
-    // 关闭弹窗
-    dialogVisible.value = false
-
-    // 清空model中的数据
-    categoryModel.value = {
-        categoryName: '',
-        categoryAlias: ''
-    }
-    
+    // 重置表单并刷新列表
+    resetAndRefresh()
 }
+
+// 修改分类
+const showDialog = (row) => {
+    // 打开弹窗
+    dialogVisible.value = true
+    title.value = '修改分类'
+
+    // 将当前的分类数据赋值给categoryModel
+    categoryModel.value = {
+        categoryName: row.categoryName,
+        categoryAlias: row.categoryAlias,
+        id: row.id
+    }
+}
+
+//修改文章分类
+const updateArticleCategory = async () => {
+    // 点击确认将事件修改为提交
+    let result = await updateArticleCategoryService(categoryModel.value)
+    ElMessage.success(result.msg ? result.msg : '修改成功')
+    // 重置表单并刷新列表
+    resetAndRefresh()
+}
+
+// 重置表单并刷新列表
+const resetAndRefresh = () => {
+    // 刷新列表
+    articleCategoryList();
+    // 关闭弹窗
+    dialogVisible.value = false;
+    // 清空 model 中的数据
+    categoryModel.value = {};
+};
+
+// 保存文章分类
+const saveArticleCategory = () => {
+    if (title.value === '添加分类') {
+        addArticleCategory()
+    } else {
+        updateArticleCategory()
+    }
+}
+
+// 删除文章分类
+const deleteArticleCategory = (id) => {
+    // 确认框
+    ElMessageBox.confirm(
+        '你确定删除该分类信息?',
+        '温馨提示',
+        {
+            confirmButtonText: '确认',
+            cancelButtonText: '取消',
+            type: 'warning',
+        }
+    )
+        .then(async () => {
+            let result = await deleteArticleCategoryService(id)
+            ElMessage.success(result.msg ? result.msg : '删除成功')
+        }).catch(() => {
+            ElMessage.info('取消删除')
+        }).finally(() => {
+            // 刷新列表
+            articleCategoryList();
+        });
+
+}
+
 </script>
 <template>
     <el-card class="page-container">
@@ -80,7 +114,9 @@ const addArticleCategory = async () => {
             <div class="header">
                 <span>文章分类</span>
                 <div class="extra">
-                    <el-button type="primary" @click="dialogVisible = true">添加分类</el-button>
+                    <!-- 在模板中，Vue 会自动解包 ref 对象，因此你可以直接使用 title 而不需要 .value -->
+                    <el-button type="primary"
+                        @click="dialogVisible = true; title = '添加分类'; categoryModel = {}">添加分类</el-button>
                 </div>
             </div>
         </template>
@@ -90,8 +126,9 @@ const addArticleCategory = async () => {
             <el-table-column label="分类别名" prop="categoryAlias"></el-table-column>
             <el-table-column label="操作" width="100">
                 <template #default="{ row }">
-                    <el-button :icon="Edit" circle plain type="primary"></el-button>
-                    <el-button :icon="Delete" circle plain type="danger"></el-button>
+                    <el-button :icon="Edit" circle plain type="primary" @click="showDialog(row)"></el-button>
+                    <el-button :icon="Delete" circle plain type="danger"
+                        @click="deleteArticleCategory(row.id)"></el-button>
                 </template>
             </el-table-column>
             <template #empty>
@@ -100,7 +137,7 @@ const addArticleCategory = async () => {
         </el-table>
 
         <!-- 添加分类弹窗 -->
-        <el-dialog v-model="dialogVisible" title="添加分类" width="30%">
+        <el-dialog v-model="dialogVisible" :title="title" width="30%">
             <el-form :model="categoryModel" :rules="rules" label-width="100px" style="padding-right: 30px">
                 <el-form-item label="分类名称" prop="categoryName">
                     <el-input v-model="categoryModel.categoryName" minlength="1" maxlength="10"></el-input>
@@ -112,7 +149,7 @@ const addArticleCategory = async () => {
             <template #footer>
                 <span class="dialog-footer">
                     <el-button @click="dialogVisible = false">取消</el-button>
-                    <el-button type="primary" @click="addArticleCategory()"> 确认 </el-button>
+                    <el-button type="primary" @click="saveArticleCategory()"> 确认 </el-button>
                 </span>
             </template>
         </el-dialog>
