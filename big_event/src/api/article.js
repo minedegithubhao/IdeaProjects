@@ -20,5 +20,10 @@ export const updateArticleCategoryService = (categoryModel) => {
 
 // 删除文章分类
 export const deleteArticleCategoryService = (id) => {
-    return request.delete('/category?id='+id)
+    return request.delete('/category?id=' + id)
+}
+
+// 文章列表数据
+export const articleListService = (params) => {
+    return request.get('/article', {params:params})
 }

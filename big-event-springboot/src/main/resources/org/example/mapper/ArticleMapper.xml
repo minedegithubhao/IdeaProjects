@@ -5,13 +5,13 @@
 <mapper namespace="org.example.mapper.ArticleMapper">
     <!--动态sql-->
     <select id="list" resultType="org.example.pojo.Article">
-        select * from article
+        select * from sys_article
         <where>
-            <if test="categoryId!=null">
+            <if test="categoryId!=null and categoryId!=''">
                 category_id=#{categoryId}
             </if>
 
-            <if test="state!=null">
+            <if test="state!=null and state!=''">
                 and state=#{state}
             </if>
 
