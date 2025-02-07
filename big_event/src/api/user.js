@@ -21,3 +21,8 @@ export const userLoginService = (registerData) => {
     }
     return request.post('/user/login', new URLSearchParams(params))
 }
+
+// 获取用户详细信息
+export const getUserDetailService = () => {
+    return request.get('/user/userInfo')
+}

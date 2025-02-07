@@ -10,6 +10,21 @@ import {
     CaretBottom
 } from '@element-plus/icons-vue'
 import avatar from '@/assets/default.png'
+// 导入useStore
+import useUserInfoStore from '@/stores/userInfo.js'
+const userInfoStor = useUserInfoStore()
+import { getUserDetailService } from '@/api/user.js'
+// 获取用户详情
+const getUserInfo = async () => {
+    // 获取用户详情
+    let result = await getUserDetailService()
+    // 赋值
+    userInfoStor.setUserInfo(result.data)
+    console.log('result.data:',result.data)
+    console.log('userInfoStor.userInfo:',userInfoStor.info)
+    console.log('userInfoStor.userInfo.username:',userInfoStor.info.username)
+}
+getUserInfo()
 </script>
 
 <template>
@@ -63,10 +78,10 @@ import avatar from '@/assets/default.png'
         <el-container>
             <!-- 头部区域 -->
             <el-header>
-                <div>黑马程序员：<strong>东哥</strong></div>
+                <div>黑马程序员：<strong>{{ userInfoStor.info.username }}</strong></div>
                 <el-dropdown placement="bottom-end">
                     <span class="el-dropdown__box">
-                        <el-avatar :src="avatar" />
+                        <el-avatar :src="userInfoStor.info.userPic ? userInfoStor.info.userPic : avatar" />
                         <el-icon>
                             <CaretBottom />
                         </el-icon>
