@@ -32,4 +32,25 @@ public class ArticleController {
        PageBean<Article> pb =  articleService.list(pageNum,pageSize,categoryId,state);
        return Result.success(pb);
     }
+
+    @DeleteMapping
+    public Result delete(Integer id) {
+        articleService.deleteArticle(id);
+        return Result.success();
+    }
+
+    @GetMapping("/detail")
+    public Result detail(Integer id) {
+        Article article = articleService.getArticle(id);
+        return Result.success(article);
+    }
+
+    /**
+     * 修改文章接口
+     */
+    @PutMapping
+    public Result update(@RequestBody @Validated Article article) {
+        articleService.update(article);
+        return Result.success();
+    }
 }

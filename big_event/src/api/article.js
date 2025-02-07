@@ -32,3 +32,18 @@ export const articleListService = (params) => {
 export const addArticleService = (articleModel) => {
     return request.post('/article', articleModel)
 }
+
+// 删除文章接口
+export const deleteArticleService = (id) => {
+    return request.delete('/article?id=' + id)
+}
+
+// 获取文章详情
+export const getArticleDetailService = (id) => {
+    return request.get('/article/detail?id=' + id)
+}
+
+// 修改文章接口
+export const updateArticleService = (articleModel) => {
+    return request.put('/article', articleModel)
+}

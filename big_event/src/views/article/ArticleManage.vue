@@ -1,16 +1,16 @@
 <script setup>
 import {
-    Edit,
-    Delete
+    Delete,
+    Edit
 } from '@element-plus/icons-vue'
 
-import { ref } from 'vue'
-import { articleCategoryListService, articleListService, addArticleService } from '@/api/article'
+import { addArticleService, articleCategoryListService, articleListService, deleteArticleService, getArticleDetailService, updateArticleService } from '@/api/article'
+import { useTokenStore } from '@/stores/token.js'; //导入token
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
-import { useTokenStore } from '@/stores/token.js' //导入token
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { ref } from 'vue'
 const tokenstore = useTokenStore()
-import { ElMessage } from 'element-plus'
 
 //文章分类数据模型
 const categorys = ref([])
@@ -137,14 +137,55 @@ const addArticle = async (type) => {
     } else {
         articleModel.value.state = '已发布'
     }
-    let result = await addArticleService(articleModel.value)
-    ElMessage.success(result.msg ? result.msg : '添加成功')
+    // 如果标题是修改文章，则调用修改接口
+    if (articleModel.value.id) {
+        let result = await updateArticleService(articleModel.value)
+        ElMessage.success(result.msg ? result.msg : '修改成功')
+    }else{
+        let result = await addArticleService(articleModel.value)
+        ElMessage.success(result.msg ? result.msg : '添加成功')
+    }
     visibleDrawer.value = false
     // 重置表单并刷新列表
     articleModel.value = {}
     articleList()
 }
 
+// 删除文章接口
+const deleteArticle = async (id) => {
+    // 提示确定是否删除
+    ElMessageBox.confirm(
+        '你确定删除该文章信息?',
+        '温馨提示',
+        {
+            confirmButtonText: '确认',
+            cancelButtonText: '取消',
+            type: 'warning',
+        }
+    )
+        .then(async () => {
+            let result = await deleteArticleService(id)
+            ElMessage.success(result.msg ? result.msg : '删除成功')
+        }).catch(() => {
+            ElMessage.info('取消删除')
+        }).finally(() => {
+            // 刷新列表
+            articleList();
+        });
+}
+
+const title = ref('添加文章')
+// 编辑文章接口
+const editArticle = async (id) => {
+    // 修改title
+    title.value = '编辑文章'
+    // 打开抽屉
+    visibleDrawer.value = true
+    // 获取文章详情
+    let result = await getArticleDetailService(id)
+    //赋值
+    articleModel.value = result.data
+}
 </script>
 <template>
     <el-card class="page-container">
@@ -184,8 +225,8 @@ const addArticle = async (type) => {
             <el-table-column label="状态" prop="state"></el-table-column>
             <el-table-column label="操作" width="100">
                 <template #default="{ row }">
-                    <el-button :icon="Edit" circle plain type="primary"></el-button>
-                    <el-button :icon="Delete" circle plain type="danger"></el-button>
+                    <el-button :icon="Edit" circle plain type="primary" @click="editArticle(row.id)"></el-button>
+                    <el-button :icon="Delete" circle plain type="danger" @click="deleteArticle(row.id)"></el-button>
                 </template>
             </el-table-column>
             <template #empty>
@@ -199,7 +240,7 @@ const addArticle = async (type) => {
     </el-card>
 
     <!-- 抽屉 -->
-    <el-drawer v-model="visibleDrawer" title="添加文章" direction="rtl" size="50%">
+    <el-drawer v-model="visibleDrawer" :title="title" direction="rtl" size="50%">
         <!-- 添加文章表单 -->
         <el-form :model="articleModel" label-width="100px">
             <el-form-item label="文章标题">
