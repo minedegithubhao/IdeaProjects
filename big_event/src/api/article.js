@@ -25,5 +25,10 @@ export const deleteArticleCategoryService = (id) => {
 
 // 文章列表数据
 export const articleListService = (params) => {
-    return request.get('/article', {params:params})
+    return request.get('/article', { params: params })
+}
+
+// 添加文章接口
+export const addArticleService = (articleModel) => {
+    return request.post('/article', articleModel)
 }

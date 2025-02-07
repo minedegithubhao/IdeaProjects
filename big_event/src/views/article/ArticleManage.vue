@@ -5,9 +5,12 @@ import {
 } from '@element-plus/icons-vue'
 
 import { ref } from 'vue'
-import { articleCategoryListService, articleListService } from '@/api/article'
+import { articleCategoryListService, articleListService, addArticleService } from '@/api/article'
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
+import { useTokenStore } from '@/stores/token.js' //导入token
+const tokenstore = useTokenStore()
+import { ElMessage } from 'element-plus'
 
 //文章分类数据模型
 const categorys = ref([])
@@ -119,6 +122,29 @@ const articleModel = ref({
     content: '',
     state: ''
 })
+
+// 文件上传成功回调方法
+const uploadSuccess = (response) => {
+    // 调用成功后将该图片地址赋值给coverImg
+    console.log(response.data)
+    articleModel.value.coverImg = response.data
+}
+
+// 添加文章接口
+const addArticle = async (type) => {
+    if (type === 'draft') {
+        articleModel.value.state = '草稿'
+    } else {
+        articleModel.value.state = '已发布'
+    }
+    let result = await addArticleService(articleModel.value)
+    ElMessage.success(result.msg ? result.msg : '添加成功')
+    visibleDrawer.value = false
+    // 重置表单并刷新列表
+    articleModel.value = {}
+    articleList()
+}
+
 </script>
 <template>
     <el-card class="page-container">
@@ -195,8 +221,8 @@ const articleModel = ref({
                     on-success:设置上传成功的回调函数
                 -->
 
-                <el-upload class="avatar-uploader" :auto-upload="true" :show-file-list="false"
-                action="">
+                <el-upload class="avatar-uploader" :auto-upload="true" :show-file-list="false" action="/api/upload"
+                    name="file" :headers="{ 'Authorization': tokenstore.token }" :on-success="uploadSuccess">
                     <img v-if="articleModel.coverImg" :src="articleModel.coverImg" class="avatar" />
                     <el-icon v-else class="avatar-uploader-icon">
                         <Plus />
@@ -210,8 +236,8 @@ const articleModel = ref({
                 </div>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary">发布</el-button>
-                <el-button type="info">草稿</el-button>
+                <el-button type="primary" @click="addArticle('public')">发布</el-button>
+                <el-button type="info" @click="addArticle('draft')">草稿</el-button>
             </el-form-item>
         </el-form>
     </el-drawer>

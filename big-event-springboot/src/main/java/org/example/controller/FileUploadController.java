@@ -44,7 +44,7 @@ public class FileUploadController {
             file.transferTo(filePath.toFile());
 
             // 返回文件路径
-            String fileUrl = "/files/" + filename;
+            String fileUrl = "http:\\127.0.0.1:8080/files/" + filename;
             return Result.success(fileUrl);
         } catch (IOException e) {
             e.printStackTrace();
