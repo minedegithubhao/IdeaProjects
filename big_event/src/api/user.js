@@ -26,3 +26,16 @@ export const userLoginService = (registerData) => {
 export const getUserDetailService = () => {
     return request.get('/user/userInfo')
 }
+
+// 更新用户信息
+export const updateUserInfoService = (userInfo) => {
+    return request.put('/user/update', userInfo)
+}
+
+// 更新头像
+export const updateUserAvatarService = (avatarUrl) => {
+    const params = new URLSearchParams()
+    params.append('avatarUrl', avatarUrl)
+    console.log(avatarUrl)
+    return request.patch('/user/updateAvatar', params)
+}
