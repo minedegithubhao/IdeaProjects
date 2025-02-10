@@ -1,0 +1,37 @@
+# 端口
+server:
+  port: 8080
+
+# h2数据库
+datasource:
+  driver-class-name: org.h2.Driver
+  url: jdbc:h2:file:C:\IdeaProjects\big-event-springboot\big-event-springboot;AUTO_SERVER=TRUE
+  username: sa
+  password:
+
+#redis
+data:
+  redis:
+    port: 6379
+    host: localhost
+    password:
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+file.upload-dir: C:/IdeaProjects/big-event-springboot/src/main/resources/static/files
+
+# 日志
+logging:
+  level:
+    root: info # 默认日志级别
+    com.bigevent: debug # 指定目录的日志级别
+  file:
+    # 当前项目磁盘根目录下创建spring文件夹和里面的log文件夹，使用spring.log作为默认文件夹
+    path: /spring/log
+  pattern:
+    # 控制台输出日志格式 %d:日期，yyyy-MM-dd HH:mm:ss:SSS时间格式，%thread：线程名，%-5level：日志级别，%logger{50}：日志输出类名50个字符，%msg：日志信息，%n：换行符
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
